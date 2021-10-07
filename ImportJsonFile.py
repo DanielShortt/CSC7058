@@ -13,6 +13,7 @@ for state in jsondata['states']:
  del state['area_codes']
 
 #output update data to a new json file
+#another comment to check on git
 with open ('new_states.json', 'w') as f:
     json.dump(jsondata, f, indent=2)
 
