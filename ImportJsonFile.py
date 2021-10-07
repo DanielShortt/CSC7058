@@ -15,6 +15,7 @@ for state in jsondata['states']:
 #output update data to a new json file
 #another comment to check on git
 #another change
+#another change
 with open ('new_states.json', 'w') as f:
     json.dump(jsondata, f, indent=2)
 
