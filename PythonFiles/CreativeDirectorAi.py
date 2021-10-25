@@ -1,44 +1,64 @@
+import argparse
 import json
-import click
 
-#setting up options for user input
-@click.command()
-@click.option('--dazscenespec', prompt ="Please enter Daz3D file location", help="File address for default Daz3D Property file.")
-@click.option('--defaultsoftmeasurements', prompt ="Please enter Soft Measurement file location", help="Predefined Soft Measurements that reflect this stock image.")
-@click.option('--usersoftmeasurements', prompt ="Please enter User Selected Soft Measurement file location", help="The Soft Measurement selections made by user.")
-@click.option('--variationcount', prompt ="Please enter number of variations(Max 5)", help="The number of variation outputs.")
-@click.option('--storage', prompt ="Please enter location of outputs.", help="The location the output files will be stored.")
-@click.option('--resultuniqueid', prompt ="Please enter uniqueID for this file.", help="The UniqueID for this batch of output files.")
+#arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('sciSceneSpec', help='Location of Scientific ')
+parser.add_argument('defSoftMeasurements', help='File location containing default softmeasurements for the scene')
+parser.add_argument('userSoftMeasurements', help='File location containing user selected softmeasurements for the scene')
+parser.add_argument('variationCount', type = int,  help='The number of scene variations to be created.')
+parser.add_argument('storage', help='Output location of scene variations.')
+parser.add_argument('resultUniqueID', help='Unique ID for scene variations.')
 
-def main(dazscenespec, defaultsoftmeasurements, usersoftmeasurements, variationcount, storage, resultuniqueid):
-    '''
-    Help Message - This program is intended to take an image scene spec, user desired changes and output 5X updated variations.
-    '''
-    #Opening default daz3d property json file
-    with open(f'{dazscenespec}') as file1:
-        Daz3DPropfile = json.load(file1)
+args = parser.parse_args()
 
-    #opening the softmeasurements that represent this image
-    with open(f'{defaultsoftmeasurements}') as file2:
-        DefaultSoftMeasurements = json.load(file2)
+#Opening scientific daz3d property json file
+with open(args.sciSceneSpec) as file1:
+    Daz3DPropfile = json.load(file1)
 
-    #opening the file with user selected soft measurements
-    with open(f'{usersoftmeasurements}') as file3:
-        UserSelectedSM = json.load(file3)
+#print(Daz3DPropfile)
 
-    #storing output as variable
-    WOutLoc = (f"{storage}")
+#opening the default soft measurements that represent this image
+with open(args.defSoftMeasurements) as file2:
+    DefaultSoftMeasurements = json.load(file2)
 
-    #out putting the daz3d property file
-    dazpropsf = (f"{WOutLoc}Daz3DProps{resultuniqueid}.json")  
-    with open (dazpropsf, 'w') as Daz3dV1:
-        json.dump(Daz3DPropfile, Daz3dV1, indent=2)
+#print(DefaultSoftMeasurements)
+
+#opening the file with user selected soft measurements
+with open(args.userSoftMeasurements) as file3:
+    UserSelectedSM = json.load(file3)
+
+#print(UserSelectedSM)
+
+count = args.variationCount
+
+#print(count)
+
+#storage = "D:\Software Masters\Year 3\TestFiles\Daz3DProps2.json"
+
+#storing output location as variable
+WriteLoc = (args.storage)
+
+#print(WriteLoc)
+
+uniqueID = args.resultUniqueID
+
+#print(uniqueID)
 
 
-    #outputting the soft measurements associated with the above daz3D file.
-    softmout = (f"{WOutLoc}SoftM{resultuniqueid}.json")
-    with open (softmout, 'w') as SoftMV1:
-        json.dump(UserSelectedSM, SoftMV1, indent=2)
+#OUTPUTS
 
-if __name__ == '__main__':
-    main()
+#loop to output selected number of variations
+for i in range(count):
+    
+    #uniqueID for daz spec output file
+    writeLocDazSpec = (args.storage + "\\Daz3DProps" + uniqueID + str(i) + ".json")
+
+    with open(writeLocDazSpec, 'w') as out:
+        json.dump(Daz3DPropfile, out, indent=2)
+
+    #uniqueID for soft measurement output file
+    writeLocSM = (args.storage + "\\UserSoftMeasurements" + uniqueID + str(i) + ".json")
+
+    with open(writeLocSM, 'w') as out:
+        json.dump(UserSelectedSM, out, indent=2)        

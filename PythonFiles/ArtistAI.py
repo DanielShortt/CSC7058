@@ -1,39 +1,35 @@
+import argparse
 import json
-import click
 
 
-@click.command()
-@click.option('--SciSceneDef', prompt="Please enter file location.",
-                 help="The location of a scientific scene json file that will be used to create a Daz3D scene")
-@click.option('--SceneID', prompt="Please enter a sceneID.",
-                 help="This should be a uniqueID.")
+#arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('sciSceneSpec', help='The location of a scientific scene json file that will be used to create a Daz3D scene ')
+parser.add_argument('sceneID', help='This should be a uniqueID.')
+parser.add_argument('artistOuputLoc', help='The Artist file output location.')
+parser.add_argument('variationCount', type = int,  help='The number of scene variations to be created.')
+parser.add_argument('resultUniqueID', help='Unique ID for scene variations.')
 
+args = parser.parse_args()
 
+outputLoc = args.artistOuputLoc
 
-def main(SciSceneDef,SceneID):
+#Opening scientific daz3d json file
+with open(args.sciSceneSpec) as file1:
+    sciDaz3DPropfile = json.load(file1)
 
-    '''
-    Help Message -  This Program is intended to take in a JSON file containing a scientific representation of a 
-    scene and output this into a Daz3D scene.
-    '''
+uniqueID = args.resultUniqueID
+count = args.variationCount
 
-    #temp folder destination
-    folderdestination = "D:\Software Masters\Year 3\TestFiles"
-
-    #Opening scientific scene json file
-    with open(f'{SciSceneDef}') as file1:
-        SciDaz3DPropfile = json.load(file1)
-
+for i in range(count):
 
     #Process of scene will happen here
     #temp processing of file
-    SciDaz3DPropfileProcessed = SciDaz3DPropfile
+    SciDaz3DPropfileProcessed = sciDaz3DPropfile
 
-    #out putting the Daz3d Scene JSON file
-    Dazsceneloc = (f"{folderdestination}\{SceneID}.json")  
-    with open (Dazsceneloc, 'w') as Daz3dV1:
-        json.dump(SciDaz3DPropfileProcessed, Daz3dV1, indent=2)    
+    #uniqueID for new Daz3D property file for output
+    dazSceneLoc = (args.storage + "\\Daz3DProps" + uniqueID + str(i) + ".json")
 
-
-if __name__ == '__main__':
-    main()
+    #Outputting new Daz3D scene file.
+    with open(dazSceneLoc, 'w') as out:
+            json.dump(SciDaz3DPropfileProcessed, out, indent=2)    
