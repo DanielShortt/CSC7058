@@ -12,15 +12,20 @@ parser.add_argument('resultUniqueID', help='Unique ID for scene variations.')
 
 args = parser.parse_args()
 
+#Storing output location in a variable
 outputLoc = args.artistOuputLoc
 
 #Opening scientific daz3d json file
 with open(args.sciSceneSpec) as file1:
     sciDaz3DPropfile = json.load(file1)
 
+#Storing unique ID in a variable
 uniqueID = args.resultUniqueID
+
+#Storing number of variations in a variable
 count = args.variationCount
 
+#loop to go process number of scene variations
 for i in range(count):
 
     #Process of scene will happen here
