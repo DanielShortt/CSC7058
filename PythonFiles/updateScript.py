@@ -1,7 +1,7 @@
 import subprocess
 
 genderInput = "Male"
-expression = ""
+expression = "Afraid HD"
 clothingTop = ""
 clothingBottom = ""
 
