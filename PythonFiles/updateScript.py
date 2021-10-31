@@ -5,6 +5,8 @@ expression = "Afraid HD"
 clothingTop = ""
 clothingBottom = ""
 
+
+#Update the gender to female with clothing and facial expression
 if (genderInput == "Female"):
 
     fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.txt", "rt")
@@ -25,7 +27,7 @@ if (genderInput == "Female"):
     fileIn.close()
     fileOut.close()
 
-
+#Update the gender to female with clothing and facial expression
 if (genderInput == "Male"):
 
     fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.txt", "rt")
