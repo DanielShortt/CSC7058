@@ -3,24 +3,26 @@ import subprocess
 #scene variables.
 genderInput = "Male"
 expression = "Afraid HD"
-clothingTop = ""
-clothingBottom = ""
+clothingTorso = ""
+clothingLegs = ""
 
 
 #Update the gender to female with clothing and facial expression
 if (genderInput == "Female"):
 
+    #Open default script
     fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.txt", "rt")
     update = fileIn.read()
 
-    update = update.replace('Male', 'Female')
-    update = update.replace('Basic Wear T Shirt','Basic Wear Shorts')
-    update = update.replace('Basic Wear Boxers','Basic Wear Tank Top')
-    update = update.replace('Happy HD','Afraid HD')
-
+    #Update properties within script
+    update = update.replace('GENDER', 'Female')
+    update = update.replace('TORSOWEAR','Basic Wear Tank Top')
+    update = update.replace('LEGSWEAR','Basic Wear Shorts')
+    update = update.replace('EXPRESSION','Afraid HD')
 
     fileIn.close()
 
+    #Open and write script updates to file
     fileOut = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.dsa", "wt")
 
     fileOut.write(update)
@@ -31,17 +33,19 @@ if (genderInput == "Female"):
 #Update the gender to female with clothing and facial expression
 if (genderInput == "Male"):
 
+    #Open default script
     fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.txt", "rt")
     update = fileIn.read()
 
-    update = update.replace('Female', 'Male')
-    update = update.replace('Basic Wear Shorts','Basic Wear T Shirt')
-    update = update.replace('Basic Wear Tank Top', 'Basic Wear Boxers')
-    update = update.replace('Afraid HD', 'Happy HD')
-
+    #Update properties within script
+    update = update.replace('GENDER', 'Male')
+    update = update.replace('TORSOWEAR','Basic Wear Boxers')
+    update = update.replace('LEGSWEAR', 'Basic Wear T Shirt')
+    update = update.replace('EXPRESSION', 'Happy HD')
 
     fileIn.close()
 
+    #Open and write script updates to file
     fileOut = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.dsa", "wt")
 
     fileOut.write(update)
