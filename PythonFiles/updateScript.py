@@ -1,5 +1,6 @@
 import subprocess
 
+#scene variables.
 genderInput = "Male"
 expression = "Afraid HD"
 clothingTop = ""
