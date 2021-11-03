@@ -1,7 +1,9 @@
 import subprocess
 
+#scene variables. Inputs from 
 genderInput = "Male"
 expression = "Afraid HD"
+filename = "VSCTest2"
 clothingTorso = ""
 clothingLegs = ""
 
@@ -18,6 +20,7 @@ if (genderInput == "Female"):
     update = update.replace('TORSOWEAR','Basic Wear Tank Top')
     update = update.replace('LEGSWEAR','Basic Wear Shorts')
     update = update.replace('EXPRESSION','Afraid HD')
+    update = update.replace('INSERTNAME', filename)
 
     fileIn.close()
 
@@ -41,6 +44,7 @@ if (genderInput == "Male"):
     update = update.replace('TORSOWEAR','Basic Wear Boxers')
     update = update.replace('LEGSWEAR', 'Basic Wear T Shirt')
     update = update.replace('EXPRESSION', 'Happy HD')
+    update = update.replace('INSERTNAME', filename)
 
     fileIn.close()
 
