@@ -16,7 +16,7 @@ for x in range (5):
     if ( x%2==0 ): #temp conditional
         genderInput = "Female"
         #Open default script
-        fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.txt", "rt")
+        fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\TestScriptIncCameraLoop.txt", "rt")
         update = fileIn.read()
 
         #Update properties within script
@@ -29,7 +29,7 @@ for x in range (5):
         fileIn.close()
 
         #Open and write script updates to file
-        fileOut = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.dsa", "wt")
+        fileOut = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\TestScriptIncCameraLoop.dsa", "wt")
 
         fileOut.write(update)
 
@@ -40,7 +40,7 @@ for x in range (5):
     if ( x%2==1 ): #temp conditional
         genderInput = "Male"
         #Open default script
-        fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.txt", "rt")
+        fileIn = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\TestScriptIncCameraLoop.txt", "rt")
         update = fileIn.read()
 
         #Update properties within script
@@ -53,7 +53,7 @@ for x in range (5):
         fileIn.close()
 
         #Open and write script updates to file
-        fileOut = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\testScript.dsa", "wt")
+        fileOut = open("C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scripts\\Shortt\\TestScriptIncCameraLoop.dsa", "wt")
 
         fileOut.write(update)
 
@@ -70,7 +70,7 @@ for x in range (5):
     #os.system( 'C:\\"Daz 3D"\\Applications\\64-bit\\"DAZ 3D"\\DAZStudio4\\DAZStudio.exe')
 
     #Sleep to allow Daz to load and render out file
-    time.sleep(40) # Sleep for 3 seconds
+    time.sleep(200) # Sleep for 3 seconds
 
     #killing process from task manager to ensure no conflict with relaunching Daz Studio
     print("Killing process" + str(x))

@@ -1,0 +1,3 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+MessageBox.information("Hello World!","","");

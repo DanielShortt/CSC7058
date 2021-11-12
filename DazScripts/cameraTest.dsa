@@ -1,0 +1,10 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+//DzBasicCamera( DzCamera::CameraType type=DzCamera::PERSPECTIVE_CAMERA, Boolean isViewCamera=false )
+
+var oCam = new DzBasicCamera();
+oCam.setName( "Test Camera5" );
+oCam.setType( DzCamera.PERSPECTIVE_CAMERA );
+Scene.addNode( oCam );
+var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
+var oCamera = oViewport.get3DViewport().setCamera("Test Camera5"); 

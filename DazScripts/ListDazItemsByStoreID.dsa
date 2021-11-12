@@ -1,0 +1,60 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+(function( sStoreID, sToken ){
+ 
+	// Get the asset manager
+	var oAssetMgr = App.getAssetMgr();
+	// If the asset manager was not found, or we do not
+	// have a database to retrieve information from
+	if( !oAssetMgr || !oAssetMgr.haveDatabase() ){
+		// We are done...
+		return;
+	}
+ 
+	// Get the product; using the store identifier and product token (SKU)
+	var oProduct = oAssetMgr.findProductByStoreToken( sStoreID, sToken );
+	// If we do not have the product
+	if( !oProduct ){
+		// We are done...
+		return;
+	}
+ 
+	// Define an object to hold our lists
+	var oData = {};
+ 
+	// Declare working variables
+	var oAsset;
+ 
+	// Get the list of assets in the product
+	var aAssets = oProduct.getAssets();
+	// Iterate over the assets
+	for( var i = 0, nAssets = aAssets.length; i < nAssets; i += 1 ){
+		// Get the 'current' asset
+		oAsset = aAssets[ i ];
+ 
+		// Replace the element in the list with
+		// the relative file path of the asset
+		aAssets[ i ] = oAsset.getRelativeFilePath();	
+	}
+ 
+	// Capture the store identifier
+	oData["store"] = sStoreID;
+ 
+	// Capture the token (SKU)
+	oData["token"] = sToken;
+ 
+	// Capture the name of the product
+	oData["name"] = oProduct.title;
+	print(oData["name"]);
+ 
+	// Capture the (sorted) list of user-facing assets
+	oData["assets"] = aAssets.sort();
+ 
+	// Capture the (sorted) list of support files
+	oData["support_files"] = oProduct.getSupportFiles().sort();
+ 
+	// Inspect the captured data
+	//print( JSON.stringify( oData, undefined, "\t" ) );
+ 
+// Finalize the function and invoke
+})( "DAZ 3D", "42071" );

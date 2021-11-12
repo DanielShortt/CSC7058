@@ -1,0 +1,17 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+
+var roots = Scene.getNodeList();
+
+var itemLd=Scene.findNodeByLabel( "Head" )
+
+if (itemLd){
+	itemLd.select(true);
+	//MessageBox.information("Head Selected.","","");
+	
+}
+
+//var itemLH=Scene.findNodeByLabel( "Hip" )
+
+//itemLH.select(true );

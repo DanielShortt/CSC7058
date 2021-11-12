@@ -1,0 +1,59 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+//Checking if a named node exists
+var sNode=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+//selecting this node
+if (sNode){
+	sNode.select(true);
+}
+
+//Naming a parameter to change
+var aWantedProps = ["Happy HD"];
+
+//the value the parameter is to be set
+var nSomeValue = 1.0;
+
+//getting the node list of the scene
+var aNodeList = Scene.getNodeList();
+
+//cycling through node list
+for (i=0; i < aNodeList.length; i++)
+{
+	var selNode = aNodeList[i];
+	// we're only interested in the selected node
+	if ( selNode.isSelected() )
+	{
+		//print( selNode.getLabel() ); // for debug tracing
+
+		// aquire the list of properties belongint to this node
+		var aPropList = selNode.getPropertyList();
+		for (j=0; j < aPropList.length; j++)
+		{
+			var selProp = aPropList[j];
+			// aquire the label of this property
+			var sPropLabel = selProp.getLabel();
+			//print( sPropLabel ); // for debug tracing
+				
+			// Does this property belong to the list of props we want?
+			for (x=0; x< aWantedProps.length; x++)
+			{
+				
+				if ( sPropLabel == aWantedProps[x] )
+				{
+					print( sPropLabel ); // for debug tracing
+					// The property's Class will give us the data type we need
+					var sClass = selProp.getWidgetClass();
+					//print( sClass );
+						
+					// we need the class for the PropertySettings object
+					if ( sClass == "DzStyledFloatPropertyWgt" )					
+					{
+						selProp.setDoubleValue( nSomeValue );
+					}
+				} // if ( sPropLabel == aWantedProps[x] )
+			} // for (x=0; x< aWantedProps.length; x++)
+		}	
+	}
+}
+
