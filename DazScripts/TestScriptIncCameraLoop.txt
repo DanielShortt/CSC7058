@@ -157,7 +157,7 @@ for( var i = 0; i < cameras.length; i++ ){
 
 for( var i = 0; i < 8; i++ ){
 	
-	sleep( 1000 );
+	sleep( 5000 );
 
 	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
 	var oCamera = oViewport.get3DViewport().setCamera("Cam"+i);

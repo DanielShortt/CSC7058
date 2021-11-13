@@ -3,12 +3,15 @@ import os
 import psutil
 import time
 
-for x in range (5):
+varNums = 2 #not zero indexed in this case
+camNums = 1 #zero Index = camNums +2
+
+for x in range (varNums):
 
     #scene variables.
     genderInput = ""
     expression = "Afraid HD"
-    filename = "VSCTest24" + str(x)
+    filename = "testFile" + str(x)
     clothingTorso = ""
     clothingLegs = ""
 
@@ -68,26 +71,46 @@ for x in range (5):
     subprocess.Popen([dazStart])
     print("Daz running" + str(x))
     #os.system( 'C:\\"Daz 3D"\\Applications\\64-bit\\"DAZ 3D"\\DAZStudio4\\DAZStudio.exe')
-
+    time.sleep(5)
     #Sleep to allow Daz to load and render out file
-    time.sleep(200) # Sleep for 3 seconds
+    #time.sleep(400) # Sleep for 3 seconds
 
-    #killing process from task manager to ensure no conflict with relaunching Daz Studio
-    print("Killing process" + str(x))
-    procname = "DAZStudio.exe"
+    #Check for file creation . Kill DAZ
+    fileCreated = False
 
-    # Iterate over all running process
-    for proc in psutil.process_iter():
-        try:
-            # Get process name & pid from process object.
-            processName = proc.name()
-            processID = proc.pid
-            #print(processName , ' ::: ', processID)
-            #kill process command
-            if proc.name() == procname:
-                proc.kill()
-        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-            pass
+    while(fileCreated == False):
+
+        #CHANGE PATH
+        if os.path.isfile("C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + filename + str(camNums) + ".png"):
+            #do something
+            print("FOUND THE FILE")
+            time.sleep(5)
+            print("Killing process" + str(x))
+
+            # Iterate over all running process
+            for proc in psutil.process_iter():
+                try:
+                    # Get process name & pid from process object.
+                    processName = proc.name()
+                    processID = proc.pid
+                    #print(processName , ' ::: ', processID)
+                    #kill process command
+
+                        #killing process from task manager to ensure no conflict with relaunching Daz Studio
+                    
+                    procname = "DAZStudio.exe"
+
+
+                    if proc.name() == procname:
+                        proc.kill()
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                    pass
+
+            #Changing fileCreated boolean to True, will end loop
+            fileCreated = True
+        else:
+            #print("No")
+            time.sleep=(10)
     
     #delay to let process kill command clear
     time.sleep(10) # Sleep for x seconds
