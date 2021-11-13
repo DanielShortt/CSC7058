@@ -155,12 +155,13 @@ for( var i = 0; i < cameras.length; i++ ){
     renderSettings.isCurrentFrameRender = true;
     renderSettings.renderImgToId = renderSettings.DirectToFile;
 
-for( var i = 0; i < 8; i++ ){
+for( var i = 0; i < 2; i++ ){
 	
-	sleep( 1000 );
-
+	sleep( 2000 );
 	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
-	var oCamera = oViewport.get3DViewport().setCamera("Cam"+i);
+
+	sleep( 2000 );
+	var oCamera = oViewport.get3DViewport().setCamera("oCam"+i);
 
 	/////////////////////////
 	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
@@ -169,11 +170,12 @@ for( var i = 0; i < 8; i++ ){
     //set image path and name
 
    	renderSettings.renderImgFilename= "";  
-    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "VSCTest243" + i +"." + renderFileInfo.extension();
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + i +"." + renderFileInfo.extension();
 
 	oRenderMgr.doRender();
 					
-}	
+}
+
 
 /////////////////////////
 //CLOSING DAZ STUDIO 
@@ -188,6 +190,7 @@ for( var i = 0; i < 8; i++ ){
 //	oAction.trigger();
 
 //Close daz option 2
-Scene.clear();
-MainWindow.close();
+//Scene.clear();
+//MainWindow.close();
+
 */

@@ -1,5 +1,5 @@
 // DAZ Studio version 4.15.0.30 filetype DAZ Script
-/*
+
 
 /////////////////////////
 //LOADING THE SCENE FILES
@@ -155,12 +155,12 @@ for( var i = 0; i < cameras.length; i++ ){
     renderSettings.isCurrentFrameRender = true;
     renderSettings.renderImgToId = renderSettings.DirectToFile;
 
-for( var i = 0; i < 8; i++ ){
+for( var i = 0; i < 2; i++ ){
 	
-	sleep( 5000 );
+	sleep( 2000 );
 
 	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
-	var oCamera = oViewport.get3DViewport().setCamera("Cam"+i);
+	var oCamera = oViewport.get3DViewport().setCamera("oCam"+i);
 
 	/////////////////////////
 	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
@@ -189,7 +189,5 @@ for( var i = 0; i < 8; i++ ){
 //	oAction.trigger();
 
 //Close daz option 2
-//Scene.clear();
-//MainWindow.close();
-
-*/
+Scene.clear();
+MainWindow.close();

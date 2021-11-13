@@ -5,90 +5,16 @@ print("///////////////////////////////////////////");
 
 var cameras = new Array();
 
-cameras[0] = "oCam.setType(DzCamera.FRONT_CAMERA)"; 
-cameras[1] = "oCam.setType(DzCamera.BACK_CAMERA)";
-cameras[2] = "oCam.setType(DzCamera.LEFT_CAMERA)";
-cameras[3] = "oCam.setType(DzCamera.RIGHT_CAMERA)";
-cameras[4] = "oCam.setType(DzCamera.TOP_CAMERA)";
-cameras[5] = "oCam.setType(DzCamera.BOTTOM_CAMERA)";
-cameras[6] = "oCam.setType(DzCamera.PERSPECTIVE_CAMERA)";
-cameras[7] = "oCam.setType(DzCamera.ORTHO_CAMERA)";
-cameras[8] = "oCam.setType(DzCamera.GENERAL_CAMERA)";
-
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam0" );
-	oCam.setType(DzCamera.FRONT_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-oCam.setName( "Cam1" );
-oCam.setType(DzCamera.BACK_CAMERA);
-Scene.addNode( oCam );
-
-
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam2" );
-	oCam.setType(DzCamera.LEFT_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam3" );
-	oCam.setType(DzCamera.RIGHT_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam4" );
-	oCam.setType(DzCamera.TOP_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam5" );
-	oCam.setType(DzCamera.BOTTOM_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam6" );
-	oCam.setType(DzCamera.PERSPECTIVE_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam7" );
-	oCam.setType(DzCamera.ORTHO_CAMERA);
-	Scene.addNode( oCam );
-
-	
-var oCam = new DzBasicCamera()
-	oCam.setName( "Cam8" );
-	oCam.setType(DzCamera.GENERAL_CAMERA);
-	Scene.addNode( oCam );
-	var tempCam = cameras[i];
-
-
+cameras[1] = "FRONT_CAMERA"; 
+cameras[2] = "BACK_CAMERA";
+cameras[3] = "LEFT_CAMERA";
+cameras[4] = "RIGHT_CAMERA";
+cameras[5] = "TOP_CAMERA";
+cameras[6] = "BOTTOM_CAMERA";
+cameras[7] = "PERSPECTIVE_CAMERA";
+cameras[8] = "ORTHO_CAMERA";
+cameras[9] = "GENERAL_CAMERA";
 
 for(var i =0; i < cameras.length; i++ ){
-	
-	//var tempCam = cameras[i];
-	sleep( 1000 );
 	print(cameras[i]);
-	
-	//var oCam = new DzBasicCamera()
-	//oCam.setName( "Cam"+ i );
-	//oCam.setType( tempCam );
-	//Scene.addNode( oCam );
-	//var tempCam = cameras[i];
-	
-	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
-	var oCamera = oViewport.get3DViewport().setCamera("Cam"+i);	
-	
 };
-
-for( var i = 0; i < cameras.length; i++ ){
-
-
-}

@@ -1,6 +1,12 @@
 // DAZ Studio version 4.15.0.30 filetype DAZ Script
 
 (function(){
+	
+	//Get the content manager
+	oCM = App.getContentMgr();
+	
+
+ 
  
 	// Get the asset manager
 	var oAssetMgr = App.getAssetMgr();
@@ -66,8 +72,8 @@
 					
 			aAssets = oProduct.getAssets();
 			
-			
-			for( var k = 0; k < nAssets.length; k += 1 ){
+			for( var k = 0; k < 1; k += 1 ){ //REDUCED LOOP FOR TESTING
+			//for( var k = 0; k < nAssets.length; k += 1 ){
 				//print("WE ARE IN !!!!!!!");
 				//This prints the path to the asset
 				//print("Asset = " + nAssets[k].getRelativeFilePath());
@@ -78,19 +84,29 @@
 				//print("Asset = " + nAssets[k].getFilename());
 				//print("Asset = " + nAssets[k].assetName); //THIS WORKS
 				
-				aAssets[k] = nAssets[k].assetName;
+				//aAssets[k] = nAssets[k].assetName;
 				
 				//PRINT THIS TO FILE
-				//aAssets[k] = nAssets[k].getRelativeFilePath();
-			
+				aAssets[k] = nAssets[k].getRelativeFilePath();
+				var fileOpen = oCM.getAbsolutePath(aAssets[k], true);
+				
+
+				oCM.openFile(fileOpen, true);
+				
+				
+				//print(fileOpen);
+				sleep(5000)
+				//oCM.openFile(]);
+				Scene.clear();
+				
 			}
 				
 			
-			output["Assets"] = aAssets;
+			//output["Assets"] = aAssets;
 			
-			var jsonOutput = JSON.stringify( output, undefined, "\t" )
+			//var jsonOutput = JSON.stringify( output, undefined, "\t" )
 			
-			print( jsonOutput );		
+			//print( jsonOutput );		
 			
 		}		
 	}

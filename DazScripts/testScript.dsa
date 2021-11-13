@@ -1,5 +1,5 @@
 // DAZ Studio version 4.15.0.30 filetype DAZ Script
-
+/*
 
 /////////////////////////
 //LOADING THE SCENE FILES
@@ -123,7 +123,7 @@ var oRenderMgr = App.getRenderMgr();
     renderSettings.renderImgToId = renderSettings.DirectToFile;
     
      //set image path and name
-        renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "VSCTest244" + "." + renderFileInfo.extension();
+        renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile4" + "." + renderFileInfo.extension();
 
 		oRenderMgr.doRender();
 		
@@ -133,7 +133,7 @@ var oRenderMgr = App.getRenderMgr();
 /////////////////////////		
 		
 //Enter camera script info in here.
-		
+*/		
 		
 		
 /////////////////////////
