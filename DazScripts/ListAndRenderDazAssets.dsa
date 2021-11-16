@@ -93,6 +93,12 @@
 
 				oCM.openFile(fileOpen, true);
 				
+				var diaBox = DzDialog("Error opening file");
+				
+				if(diaBox){
+					diaBox.close();
+				}
+				
 				
 				//print(fileOpen);
 				sleep(5000)

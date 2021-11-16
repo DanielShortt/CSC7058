@@ -1,5 +1,5 @@
 // DAZ Studio version 4.15.0.30 filetype DAZ Script
-/*
+
 
 /////////////////////////
 //LOADING THE SCENE FILES
@@ -15,7 +15,7 @@ oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scene Builde
 oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear Boxers.duf", true );
 oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear T Shirt.duf", true );
 oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Runtime/Libraries/Props/ART_LoadingDock/WallBack.pp2", true );
-oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Camera Presets/CamerasTest.duf", true );
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Camera Presets/CamerasTest1.duf", true );
 
 
 /////////////////////////
@@ -69,7 +69,7 @@ for (i=0; i < sceneNodeList.length; i++)
 	// we're only interested in the selected node
 	if ( selNode.isSelected() )
 	{
-		//print( selNode.getLabel() ); // for debug tracing
+		//print( selNode.getLabel() ); 
 
 		// aquire the list of properties belongint to this node
 		var nodePropList = selNode.getPropertyList();
@@ -78,7 +78,7 @@ for (i=0; i < sceneNodeList.length; i++)
 			var selProp = nodePropList[j];
 			// aquire the label of this property
 			var sPropLabel = selProp.getLabel();
-			//print( sPropLabel ); // for debug tracing
+			//print( sPropLabel ); 
 				
 			// Does this property belong to the list of props we want?
 			for (x=0; x< propUpdate.length; x++)
@@ -86,7 +86,7 @@ for (i=0; i < sceneNodeList.length; i++)
 				
 				if ( sPropLabel == propUpdate[x] )
 				{
-					print( sPropLabel ); // for debug tracing
+					//print( sPropLabel ); 
 					// The property's Class will give us the data type we need
 					var sClass = selProp.getWidgetClass();
 					//print( sClass );
@@ -154,14 +154,25 @@ for( var i = 0; i < cameras.length; i++ ){
     //change render settings
     renderSettings.isCurrentFrameRender = true;
     renderSettings.renderImgToId = renderSettings.DirectToFile;
+    
+    var count = 0;
 
-for( var i = 0; i < 2; i++ ){
+//Render first set of camera files.
+
+	/////////////////////////
+	//COMMENTED OUT FOR TESTING AIM CAMERA
+	/////////////////////////
+
+
+
+/*
+for( var i = 1; i < 3; i++ ){
 	
 	sleep( 2000 );
 	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
 
 	sleep( 2000 );
-	var oCamera = oViewport.get3DViewport().setCamera("oCam"+i);
+	var oCamera = oViewport.get3DViewport().setCamera("CloseUpCam"+i);
 
 	/////////////////////////
 	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
@@ -170,11 +181,194 @@ for( var i = 0; i < 2; i++ ){
     //set image path and name
 
    	renderSettings.renderImgFilename= "";  
-    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + i +"." + renderFileInfo.extension();
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + count +"." + renderFileInfo.extension();
 
 	oRenderMgr.doRender();
+	count++;
 					
 }
+
+//Render second set of camera files.
+
+for( var i = 1; i < 5; i++ ){
+	
+	sleep( 2000 );
+	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
+
+	sleep( 2000 );
+	var oCamera = oViewport.get3DViewport().setCamera("FarCam"+i);
+
+	/////////////////////////
+	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+	/////////////////////////
+	
+    //set image path and name
+
+   	renderSettings.renderImgFilename= "";  
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + count +"." + renderFileInfo.extension();
+
+	oRenderMgr.doRender();
+	count++;
+					
+}
+*/
+
+//print("Hello");
+for( var i = 1; i < 2; i++ ){
+	
+	sleep( 2000 );
+	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
+
+	sleep( 2000 );
+	var oCamera = oViewport.get3DViewport().setCamera("ModCam"+i);
+	var oCamera = oViewport.get3DViewport().getCamera("ModCam"+i);
+
+	/////////////////////////
+	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+	/////////////////////////
+	
+    //set image path and name
+    
+    /////////////////////////
+	//Select Head
+	/////////////////////////
+	
+	//Checking if a named node exists
+	var selNode=Scene.findNodeByLabel( "Head" )
+	
+	//selecting this node
+	if (selNode){
+		selNode.select(true);
+	}
+	
+	var center1 =  Scene.findNodeByLabel( "Head" )
+	var newPos = center1.getWSPos();
+	//print(center1);
+	
+	oCamera.aimAt(newPos); 	
+
+   	renderSettings.renderImgFilename= "";  
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + count +"." + renderFileInfo.extension();
+
+	//oRenderMgr.doRender();
+	count++;
+	//print(count);
+					
+}
+
+	sleep(2000)
+
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+		//MessageBox.information("Head Selected.","","");
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+			itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() -200 );
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -200 );
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+	sleep(2000)
+	
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+			itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() +400 );
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() +1200 );
+			itemBg.getYPosControl().setValue( itemBg.getYPosControl().getValue() +400 );
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+		sleep(2000)
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -450 );
+
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+		sleep(2000)
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+		
+			itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() -450 );
+			itemBg.getYPosControl().setValue( itemBg.getYPosControl().getValue() -100 );
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -20 );
+
+
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+
+
+
 
 
 /////////////////////////
@@ -193,4 +387,3 @@ for( var i = 0; i < 2; i++ ){
 //Scene.clear();
 //MainWindow.close();
 
-*/
