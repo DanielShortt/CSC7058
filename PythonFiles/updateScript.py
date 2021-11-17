@@ -4,14 +4,14 @@ import psutil
 import time
 
 varNums = 2 #not zero indexed in this case
-camNums = 1 #zero Index = camNums +2
+camNums = 10 #zero Index = camNums +2
 
 for x in range (varNums):
 
     #scene variables.
     genderInput = ""
     expression = "Afraid HD"
-    filename = "testFile" + str(x)
+    filename = "newTest" + str(x)
     clothingTorso = ""
     clothingLegs = ""
 
@@ -71,20 +71,21 @@ for x in range (varNums):
     subprocess.Popen([dazStart])
     print("Daz running" + str(x))
     #os.system( 'C:\\"Daz 3D"\\Applications\\64-bit\\"DAZ 3D"\\DAZStudio4\\DAZStudio.exe')
-    time.sleep(5)
+    time.sleep=(5)
     #Sleep to allow Daz to load and render out file
     #time.sleep(400) # Sleep for 3 seconds
 
     #Check for file creation . Kill DAZ
     fileCreated = False
-
+    killFile = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + filename + str(camNums) + ".jpg"
+    print(killFile)
     while(fileCreated == False):
-
+        
         #CHANGE PATH
-        if os.path.isfile("C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + filename + str(camNums) + ".png"):
+        if os.path.isfile(killFile):
             #do something
             print("FOUND THE FILE")
-            time.sleep(5)
+            time.sleep=(5)
             print("Killing process" + str(x))
 
             # Iterate over all running process
@@ -113,4 +114,4 @@ for x in range (varNums):
             time.sleep=(10)
     
     #delay to let process kill command clear
-    time.sleep(10) # Sleep for x seconds
+    time.sleep=(10) # Sleep for x seconds

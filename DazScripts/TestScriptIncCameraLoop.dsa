@@ -181,7 +181,7 @@ for( var i = 1; i < 3; i++ ){
     //set image path and name
 
    	renderSettings.renderImgFilename= "";  
-    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + count +"." + renderFileInfo.extension();
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "INSERTNAME" + count +"." + renderFileInfo.extension();
 
 	oRenderMgr.doRender();
 	count++;
@@ -205,7 +205,7 @@ for( var i = 1; i < 5; i++ ){
     //set image path and name
 
    	renderSettings.renderImgFilename= "";  
-    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + count +"." + renderFileInfo.extension();
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "INSERTNAME" + count +"." + renderFileInfo.extension();
 
 	oRenderMgr.doRender();
 	count++;
@@ -248,7 +248,7 @@ for( var i = 1; i < 2; i++ ){
 	oCamera.aimAt(newPos); 	
 
    	renderSettings.renderImgFilename= "";  
-    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "testFile1" + count +"." + renderFileInfo.extension();
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "INSERTNAME" + count +"." + renderFileInfo.extension();
 
 	//oRenderMgr.doRender();
 	count++;
