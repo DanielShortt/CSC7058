@@ -38,13 +38,19 @@ fileIn = open(dazAssets, "rt")
 updateStartupScript = fileIn.read()
 
 ############################################################################
+#Check if progress file exists 
+
+#if file exists store line of relate file - this is where the current process will start from else start from beginning.
+
+
+############################################################################
 #set start up script to render daz assets from list stored above
 
 fileIn = open("", "rt")
 updateStartupScript = fileIn.read()
 
 #Update startup scirpt 
-updateStartupScript = updateStartupScript.replace('',  '') #script path to be replaced     #new script path
+updateStartupScript = updateStartupScript.replace('', '') #script path to be replaced     #new script path
 fileIn.close()
 
 #Open and write script updates to file
@@ -59,8 +65,6 @@ fileOut.close()
 #need to convert input data into an array?
 
 for x in range (): #arrayLength
-    print("lol") #remove error until real code is input
-
 
 ############################################################################
     #set relative path of current iteration
@@ -94,10 +98,20 @@ for x in range (): #arrayLength
 
 ############################################################################
         #check if current progress location file exists
+            #update file progress with relative file path of current asset being rendered.
 
 
+            #Kill Daz process
 
-          ############################################################################  
-            #create file if it doesn't exist or store file path of 
+
+        ############################################################################  
+        #create file if it doesn't exist or store file path of 
+            #create progress fill
+
+            #update file progress with relative file path of current asset being rendered.
+
+
+            #Kill Daz process
+
 
 
