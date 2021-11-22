@@ -1,5 +1,8 @@
 import subprocess
 import time
+
+
+
 ############################################################################
 #Set startup script to find and store daz assets relative file paths into a list
 
