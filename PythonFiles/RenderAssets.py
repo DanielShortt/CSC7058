@@ -83,7 +83,7 @@ with open('assets.json') as data_file:
     for asset in assetData:
         #print('x')
         if '.duf' in asset:
-            assetArray.append
+            assetArray.append(asset)
             
 
 ############################################################################
@@ -93,19 +93,23 @@ progressFilePath = 'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/renderP
 currentPos = 0
 
 if os.path.isfile(progressFilePath):
+
     fileIn = open(progressFilePath, "rt")
     currentProgress = fileIn.readline()
-
+    fileIn.close()
     #if the progress file exists. Store the position of the currentProgress.
     #this is where the current process will start from if available - else start from beginning.
 
     for x in assetArray:
         if x == currentProgress:
             print("Temp progress check")
+            break
         else:
             currentPos+=1
-
-    #CONTINUE HERE>>>   
+else:
+    newFile = open(progressFilePath, 'w+')
+    newFile.close()
+    #Complete for now.
 
 ############################################################################
 #set start up script to render daz assets from list stored above
@@ -121,11 +125,11 @@ winreg.CloseKey(reg) #close the registry
 ############################################################################
 #for loop to iterate through list of assets
 
-for x in range (): #arrayLength
+for x in range (currentPos, len(assetArray)): #arrayLength
 
 ############################################################################
     #set relative path of current iteration
-    relFilePath = x #set relative fil path for render
+    relFilePath = assetArray[x] #set relative fil path for render
 
 ############################################################################
     #check relative file path for acceptable file extensiosn
@@ -133,7 +137,17 @@ for x in range (): #arrayLength
     if '.duf' in relFilePath:
         #print('continue')
 
-############################################################################
+    ############################################################################
+        #update script to render asset with relative file path
+        fileIn = open("SCRIPT TO RENDER ASSET", "rt")
+        update = fileIn.read()
+        #Update properties within script
+        update = update.replace('FILEPATH', relFilePath)
+        fileIn.close()
+
+    
+
+    ############################################################################
         #open daz studio
         dazStart = "C:\\Daz 3D\\Applications\\64-bit\\DAZ 3D\\DAZStudio4\\DAZStudio.exe"
         #Starting daz studio 
@@ -155,20 +169,34 @@ for x in range (): #arrayLength
 
 ############################################################################
         #check if current progress location file exists
-            #update file progress with relative file path of current asset being rendered.
+        time.sleep = (100)
 
+        #update file progress with relative file path of current asset being rendered.
 
+        file = open('file.txt', 'r+')
+        file.truncate(0)
+        file.close()
+
+        with open('file.txt', 'a') as file:
+            file.write(relFilePath) 
             #Kill Daz process
 
+        file.close()
 
-        ############################################################################  
-        #create file if it doesn't exist or store file path of 
-            #create progress fill
+        #Kill Daz process
 
-            #update file progress with relative file path of current asset being rendered.
+        for proc in psutil.process_iter():
+                try:
+                    # Get process name & pid from process object.
+                    processName = proc.name()
+                    #processID = proc.pid #not required.
+                    #killing process from task manager to ensure no conflict with relaunching Daz Studio
+                    procname = "DAZStudio.exe"
+                    if proc.name() == procname:
+                        proc.kill()
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                    pass
 
-
-            #Kill Daz process
 
 
 
