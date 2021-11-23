@@ -1,9 +1,4 @@
-import subprocess
-import time
-import winreg 
-import psutil
-import os
-import json
+import subprocess, time, winreg, psutil, os, json
 
 
 
@@ -73,14 +68,14 @@ time.sleep=(10) # Sleep for x seconds
 ############################################################################
 #read in daz list of assets from above to this python script
 
-dazAssetListLoc = "" #file location of daz asset list. OUTPUT FORMAT UNDECIDED. List is output by daz studio. ASSUME JSON.
+dazAssetListLoc = "DAZ ASSETS FILE" #file location of daz asset list. OUTPUT FORMAT UNDECIDED. List is output by daz studio. ASSUME JSON.
 fileIn = open(dazAssetListLoc, "rt")
 dazAssets = fileIn.read()
 
 ############################################################################
 #take above list and store in array
 
-assetArr = []
+assetArray = []
 
 #Take JSON file and add easy row to new python list.
 with open('assets.json') as data_file:    
@@ -88,34 +83,29 @@ with open('assets.json') as data_file:
     for asset in assetData:
         #print('x')
         if '.duf' in asset:
-            assetArr.append
+            assetArray.append
             
 
 ############################################################################
 #Check if progress file exists 
 
 progressFilePath = 'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/renderProgressFile.txt'
+currentPos = 0
 
-if os.path.isfile(dazAssets):
+if os.path.isfile(progressFilePath):
     fileIn = open(progressFilePath, "rt")
+    currentProgress = fileIn.readline()
 
+    #if the progress file exists. Store the position of the currentProgress.
+    #this is where the current process will start from if available - else start from beginning.
 
+    for x in assetArray:
+        if x == currentProgress:
+            print("Temp progress check")
+        else:
+            currentPos+=1
 
-
-
-
-
-    #CONTINUE HERE>>>
-
-
-
-
-
-
-
-
-#if file exists store line of relate file - this is where the current process will start from else start from beginning.
-
+    #CONTINUE HERE>>>   
 
 ############################################################################
 #set start up script to render daz assets from list stored above
@@ -149,7 +139,7 @@ for x in range (): #arrayLength
         #Starting daz studio 
         subprocess.Popen([dazStart])
         print("Daz running")
-        time.sleep=(5)
+        time.sleep=(60) #allow 60 seconds for the render
 
 
 ############################################################################
