@@ -10,16 +10,21 @@ import subprocess, time, winreg, psutil, os, json
 
 reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the registry
 sKey = winreg.OpenKey(reg, "SOFTWARE\DAZ\Studio4", 0 , winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY) #get the element to be updated
-newPath = "SCRIPT TO CREATE LIST OF ASSETS" #insert location of script that will collect list of assets here.
+newPath = "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/ListDazAssets.dsa" #insert location of script that will collect list of assets here.
 winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
 winreg.CloseKey(sKey) #close the value
 winreg.CloseKey(reg) #close the registry
+
+directory = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender"
+
+if not os.path.exists(directory):
+    os.makedirs(directory)
 
 ############################################################################
 #open Daz Studio and run above script
 
 #Setting program .exe path to a variable 
-dazStart = "C:\\Daz 3D\\Applications\\64-bit\\DAZ 3D\\DAZStudio4\\DAZStudio.exe"
+dazStart = "C:/Daz 3D/Applications/64-bit/DAZ 3D/DAZStudio4/DAZStudio.exe"
 #Starting daz studio 
 subprocess.Popen([dazStart])
 #print("Daz running")
@@ -29,7 +34,7 @@ time.sleep=(30)
 #Kill daz process if daz asset file exists.
 
 fileCreated = False
-dazAssets = "DAZ ASSET FILE" #file path of daz asset file
+dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.json" #file path of daz asset file
 #print(killFile)
 while(fileCreated == False):
         #CHANGE PATH
@@ -89,6 +94,7 @@ for asset in assetData:
 progressFilePath = 'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/renderProgressFile.txt'
 currentPos = 0
 
+#create file if not exist.
 if os.path.isfile(progressFilePath):
 
     fileIn = open(progressFilePath, "rt")
@@ -173,18 +179,13 @@ for x in range (currentPos, len(assetArray)): #arrayLength
                 break
 
             else:
+                renderCount+=1
                 time.sleep=(10)
         #time.sleep=(100) #allow 60 seconds for the render
 
         if(renderFound == False):
-            file = open('myfile.dat', 'w+')
+            file = open('myfile.dat', 'w+') #create file and record relative file paths of renders not created.
             file.write(relFilePath) 
-
-
-
-
-
-
 
             #>>>> CONTINUE HERE >>>>>>
 
