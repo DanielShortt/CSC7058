@@ -69,7 +69,7 @@ time.sleep=(10) # Sleep for x seconds
 ############################################################################
 #read in daz list of assets from above to this python script
 
-dazAssetListLoc = "DAZ ASSETS FILE" #file location of daz asset list. OUTPUT FORMAT UNDECIDED. List is output by daz studio. ASSUME JSON.
+dazAssetListLoc = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.json" #file location of daz asset list. OUTPUT FORMAT UNDECIDED. List is output by daz studio. ASSUME JSON.
 fileIn = open(dazAssetListLoc, "rt")
 dazAssets = fileIn.read()
 fileIn.close()
@@ -94,7 +94,7 @@ for asset in assetData:
 progressFilePath = 'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/renderProgressFile.txt'
 currentPos = 0
 
-#create file if not exist.
+
 if os.path.isfile(progressFilePath):
 
     fileIn = open(progressFilePath, "rt")
