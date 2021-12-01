@@ -30,9 +30,18 @@
 	var nProducts;
 	var nAssets;
 	var aAssets;
+	var oAssets = new Array;
+	
+	//set file path for new file
+	var directory_path = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt";
+	//create new file
+	var file = new DzFile( directory_path );
  
 	// Get the number of intermediate containers; alpha-numeric sorting
 	var nIntermediates = oProductsTop.getNumChildContainers();
+	
+	output = {};
+	
 	// Iterate over all intermediate containers
 	for( var i = 0; i < nIntermediates; i += 1 ){
 		// Get the 'current' intermediate container
@@ -42,7 +51,7 @@
  
 		// Get the number of product containers within the intermediate
 		nProducts = oIntermediate.getNumChildContainers();
-		output = {};
+		
 		// Iterate over all product containers
 		for( var j = 0; j < nProducts; j += 1 ){
 			// Get the 'current' product container
@@ -62,7 +71,7 @@
 			//print("About to go in.");
 			//print("");
 			
-			output["Main"] = oProduct.title;	
+			//output["Main"] = oProduct.title;	
 					
 			aAssets = oProduct.getAssets();
 			
@@ -78,22 +87,50 @@
 				//print("Asset = " + nAssets[k].getFilename());
 				//print("Asset = " + nAssets[k].assetName); //THIS WORKS
 				
-				aAssets[k] = nAssets[k].assetName;
+				//aAssets[k] = nAssets[k].assetName;
 				
-				//PRINT THIS TO FILE
-				//aAssets[k] = nAssets[k].getRelativeFilePath();
-			
+				//
+				aAssets[k] = nAssets[k].getRelativeFilePath() + "\n" ;
+
+				//open file for appending data
+				file.open( DzFile.Append );
+			//write to file
+				file.write(aAssets[k]);
+			//close file
+				file.close();				
+				
+				//oAssets.push(aAssets[k]);
 			}
+			
+				//list of assets
+			//output["Assets"] = aAssets;
+			//store assets in json format
+			
 				
 			
-			output["Assets"] = aAssets;
 			
-			var jsonOutput = JSON.stringify( output, undefined, "\t" )
-			
-			print( jsonOutput );		
+			//print(jsonOutput);
+				
 			
 		}		
 	}
- 
+	
+	
+	var jsonOutput = JSON.stringify( output, undefined, "\t" );
+			
+			//CHECK IF FILE EXISTS*****************************
+			
+			
+			
+	
+	for( var i = 0; i < oAssets.length; i += 1 ){
+		
+		print(oAssets[i])
+		
+	}
 // Finalize the function and invoke
 })();
+
+//Close daz option 2
+Scene.clear();
+MainWindow.close();

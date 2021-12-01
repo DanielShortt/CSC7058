@@ -141,7 +141,7 @@ print("ASSET RENDER SCRIPT SET.")
 #for loop to iterate through list of assets
 
 for x in range (currentPos, len(assetArray)): #arrayLength
-    time.sleep(60.0)
+    #time.sleep(60.0)
 ############################################################################
     #set relative path of current iteration
     relFilePath = assetArray[x] #set relative fil path for render
@@ -186,7 +186,7 @@ for x in range (currentPos, len(assetArray)): #arrayLength
     
         print("ABOUT TO RENDER")
 
-        time.sleep(10)
+        #time.sleep(10)
     ############################################################################
         #open daz studio
         dazStart = "C:/Daz 3D/Applications/64-bit/DAZ 3D/DAZStudio4/DAZStudio.exe"
@@ -221,7 +221,7 @@ for x in range (currentPos, len(assetArray)): #arrayLength
 
         #store relative file path of files not rendered
         if(renderFound == False):
-            file = open(directory + '/' + 'renderErrors.txt', 'w+') #create file and record relative file paths of renders not created.
+            file = open(directory + '/' + 'renderErrors.txt', 'a') #create file and record relative file paths of renders not created.
             file.write(relFilePath) 
             file.close()
 

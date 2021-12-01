@@ -15,7 +15,7 @@ oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scene Builde
 oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear Boxers.duf", true );
 oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear T Shirt.duf", true );
 oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Runtime/Libraries/Props/ART_LoadingDock/WallBack.pp2", true );
-oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Camera Presets/CamerasTest1.duf", true );
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Camera Presets/CamerasTest.duf", true );
 
 
 /////////////////////////
@@ -154,6 +154,8 @@ for( var i = 0; i < cameras.length; i++ ){
     //change render settings
     renderSettings.isCurrentFrameRender = true;
     renderSettings.renderImgToId = renderSettings.DirectToFile;
+    
+oRenderMgr.doRender();    
     
     var count = 0;
 

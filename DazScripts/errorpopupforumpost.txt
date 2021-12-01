@@ -1,0 +1,9 @@
+Hi, I have a list of assests that I am attempting to render. When attemping to open a number of these assets I get errors such as "Error opening file", e.g. This may be because the file that is being opened is not a pyhsical asset e.g. a texture file.  This error pop ups only contain an "OK" button. After going through the process of opening the file and processing the render, Is it possible to check for a popup and select this OK button or close the pop with a command similar to the below commands for closing the main window automatically without user interaction?
+
+// var mWindow = MainWindow;
+
+// var oAM = mWindow.getActionMgr();
+
+// var oAction = oAM.findAction("DzExitAction");
+
+I have a long list of assets that may contain textures or other non physical asset files that I would like to ignore without manually sorting the files before starting this render process due to the number of assets. This would allow me to start the render process and ignore these warning popups without having to watch it go through the process.
