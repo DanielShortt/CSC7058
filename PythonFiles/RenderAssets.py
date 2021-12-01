@@ -20,6 +20,10 @@ directory = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender"
 if not os.path.exists(directory):
     os.makedirs(directory)
 
+fileCreated = False
+dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file path of daz asset file
+#print(killFile)
+
 ############################################################################
 #open Daz Studio and run above script
 
@@ -33,9 +37,6 @@ print("Daz running")
 ############################################################################
 #Kill daz process if daz asset file exists.
 
-fileCreated = False
-dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file path of daz asset file
-#print(killFile)
 while(fileCreated == False):
         #CHANGE PATH
         if os.path.isfile(dazAssets):
@@ -145,8 +146,10 @@ for x in range (currentPos, len(assetArray)): #arrayLength
 ############################################################################
     #set relative path of current iteration
     relFilePath = assetArray[x] #set relative fil path for render
+    relFilePath = relFilePath.strip()
     fileName = os.path.basename(relFilePath)
     fileName = fileName.replace('.duf', '')
+    fileName = fileName.strip()
 
     print(fileName)
 
