@@ -86,15 +86,16 @@
     var renderFilename = renderSettings.renderImgFilename;
     var renderFileInfo = new DzFileInfo( renderFilename );
 
-    //change render settings
+   //change render settings
     renderSettings.isCurrentFrameRender = true;
     renderSettings.renderImgToId = renderSettings.DirectToFile;
+    var outputPath = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/Renders";
     
-    print(renderSettings.renderImgToId);
+    //print(renderSettings.renderImgToId);
     
     //renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + testName +"." + renderFileInfo.extension();
 	//renderSettings.renderImgFilename = "testRender.jpg1";
-	renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + testName +"." + renderFileInfo.extension();
+	renderSettings.renderImgFilename = outputPath + "/" + testName + "." + renderFileInfo.extension();
 	//start the render
 	
 	oRenderMgr.doRender();

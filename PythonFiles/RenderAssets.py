@@ -87,6 +87,7 @@ assetArray = []
 for line in lines:
     #print('x')
     if '.duf' in line:
+        line = line.strip()
         assetArray.append(line)
 
         
@@ -110,6 +111,7 @@ if os.path.isfile(progressFilePath):
 
     fileIn = open(progressFilePath, "rt")
     currentProgress = fileIn.readline()
+    currentProgress = currentProgress.strip()
     fileIn.close()
     #if the progress file exists. Store the position of the currentProgress.
     #this is where the current process will start from if available - else start from beginning.
@@ -198,7 +200,7 @@ for x in range (currentPos, len(assetArray)): #arrayLength
         #print("Daz running")
         renderCount = 0
         renderFound = False
-        while(renderCount < 10):
+        while(renderCount < 6):
 
             if os.path.isfile(renderedFile):
                   # Iterate over all running process
