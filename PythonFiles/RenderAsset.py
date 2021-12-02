@@ -8,9 +8,64 @@ import subprocess, time, winreg, psutil, os, json
 ############################################################################
 #set the daz studio script that runs on launch
 
-directory = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender" #Directory of Render output information.
-dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file path of daz asset file
+reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the registry
+sKey = winreg.OpenKey(reg, "SOFTWARE\DAZ\Studio4", 0 , winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY) #get the element to be updated
+newPath = "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/ListDazAssets.dsa" #insert location of script that will collect list of assets here.
+winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
+winreg.CloseKey(sKey) #close the value
+winreg.CloseKey(reg) #close the registry
 
+directory = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender"
+
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
+fileCreated = False
+dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file path of daz asset file
+#print(killFile)
+
+############################################################################
+#open Daz Studio and run above script
+
+#Setting program .exe path to a variable 
+dazStart = "C:/Daz 3D/Applications/64-bit/DAZ 3D/DAZStudio4/DAZStudio.exe"
+#Starting daz studio 
+subprocess.Popen([dazStart])
+print("Daz running")
+#time.sleep(30)
+
+############################################################################
+#Kill daz process if daz asset file exists.
+
+while(fileCreated == False):
+        #CHANGE PATH
+        if os.path.isfile(dazAssets):
+            #do something
+            #print("FOUND THE FILE")
+            time.sleep(5)
+            #print("Killing process")
+
+            # Iterate over all running process
+            for proc in psutil.process_iter():
+                try:
+                    # Get process name & pid from process object.
+                    processName = proc.name()
+                    #processID = proc.pid #not required.
+                    #killing process from task manager to ensure no conflict with relaunching Daz Studio
+                    procname = "DAZStudio.exe"
+                    if proc.name() == procname:
+                        proc.kill()
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                    pass
+
+            #Changing fileCreated boolean to True, will end loop
+            fileCreated = True
+        else:
+            #print("No")
+            time.sleep(10)
+    
+#delay to let process kill command clear
+time.sleep(10) # Sleep for x seconds
 
 ############################################################################
 #read in daz list of assets from above to this python script
@@ -131,7 +186,7 @@ for x in range (currentPos, len(assetArray)): #arrayLength
         if not os.path.exists(renderDirectory):
             os.makedirs(renderDirectory)
 
-        #time.sleep(10)
+        time.sleep(10)
 
     
         print("ABOUT TO RENDER")
@@ -172,7 +227,7 @@ for x in range (currentPos, len(assetArray)): #arrayLength
         #store relative file path of files not rendered
         if(renderFound == False):
             file = open(directory + '/' + 'renderErrors.txt', 'a') #create file and record relative file paths of renders not created.
-            file.write(relFilePath  + "\n") 
+            file.write(relFilePath) 
             file.close()
 
 ############################################################################
@@ -225,5 +280,3 @@ winreg.CloseKey(reg) #close the registry
 
 ############################################################################
 #End
-
-
