@@ -113,16 +113,8 @@
 				
 			
 		}		
-	}
-	
-	
-	var jsonOutput = JSON.stringify( output, undefined, "\t" );
-			
-			//CHECK IF FILE EXISTS*****************************
-			
-			
-			
-	
+	}		
+				
 	for( var i = 0; i < oAssets.length; i += 1 ){
 		
 		print(oAssets[i])
