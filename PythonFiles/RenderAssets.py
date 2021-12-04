@@ -2,8 +2,7 @@ import subprocess, time, winreg, psutil, os, json
 
 ############################################################################
 #Program that will start daz studio,
-#store the assets on local machine 
-#and then render out each asset.
+#and render assets from asset list created by ListAssets.py.
 
 ############################################################################
 #set the daz studio script that runs on launch
@@ -13,7 +12,7 @@ dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file pa
 
 
 ############################################################################
-#read in daz list of assets from above to this python script
+#read in daz list of assets from ListAssets.py to this python script
 
 dazAssetListLoc = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file location of daz asset list. OUTPUT FORMAT UNDECIDED. List is output by daz studio. ASSUME JSON.
 fileIn = open(dazAssetListLoc, "r")
@@ -25,15 +24,13 @@ fileIn.close()
 
 assetArray = []
 
-#Take JSON file and add easy row to new python list.
-#with open('assets.json') as data_file:
+#Take asset list txt file and add each row to new python list.
 
-#assetData = json.load(dazAssets)
 for line in lines:
     #print('x')
     if '.duf' in line:
-        line = line.strip()
-        assetArray.append(line)
+        line = line.strip() #removing any return characters in string
+        assetArray.append(line) #adding string to array
 
         
 
@@ -43,11 +40,12 @@ for item in assetArray:
     arrayFile.write("%s\n" % item)
 arrayFile.close()
 
-print("TEST ARRAY STORED AND WRITTEN TO FILE.")
+#print("TEST ARRAY STORED AND WRITTEN TO FILE.")
             
 ############################################################################
 #Check if progress file exists 
 
+#the path to the progress file
 progressFilePath = 'C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/renderProgressFile.txt'
 currentPos = 0
 
@@ -69,9 +67,10 @@ if os.path.isfile(progressFilePath):
         else:
             currentPos+=1
 else:
+    #create file
     newFile = open(progressFilePath, 'w+')
     newFile.close()
-    #Complete for now.
+
 
 ############################################################################
 #set start up script to render daz assets from list stored above
@@ -88,11 +87,12 @@ print("ASSET RENDER SCRIPT SET.")
 ############################################################################
 #for loop to iterate through list of assets
 
+#start from currentPos (calculated above) in array and iterate through each item
 for x in range (currentPos, len(assetArray)): #arrayLength
     #time.sleep(60.0)
 ############################################################################
     #set relative path of current iteration
-    relFilePath = assetArray[x] #set relative fil path for render
+    relFilePath = assetArray[x] #set relative file path for render
     relFilePath = relFilePath.strip()
     fileName = os.path.basename(relFilePath)
     fileName = fileName.replace('.duf', '')
@@ -145,7 +145,7 @@ for x in range (currentPos, len(assetArray)): #arrayLength
         #print("Daz running")
         renderCount = 0
         renderFound = False
-        while(renderCount < 6):
+        while(renderCount < 6): #60 time limit to open and render file before Daz is closed. Items not rendered added to error list
 
             if os.path.isfile(renderedFile):
                   # Iterate over all running process
@@ -191,11 +191,11 @@ for x in range (currentPos, len(assetArray)): #arrayLength
 
         #update file progress with relative file path of current asset being rendered.
         file = open(progressFilePath, 'r+')
-        file.truncate(0)
+        file.truncate(0) #clear out file
         file.close()
 
         with open(progressFilePath, 'a') as file:
-            file.write(relFilePath) 
+            file.write(relFilePath) #write most recent file worked on
             file.close()
 
         #Kill Daz process

@@ -2,8 +2,7 @@ import subprocess, time, winreg, psutil, os, json
 
 ############################################################################
 #Program that will start daz studio,
-#store the assets on local machine 
-#and then render out each asset.
+#store the asset list on local machine 
 
 ############################################################################
 #set the daz studio script that runs on launch
@@ -15,14 +14,14 @@ winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the n
 winreg.CloseKey(sKey) #close the value
 winreg.CloseKey(reg) #close the registry
 
-directory = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender"
+directory = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender" #Directory for store asset render files
 
+#create directory if not exists
 if not os.path.exists(directory):
     os.makedirs(directory)
 
 fileCreated = False
 dazAssets = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt" #file path of daz asset file
-#print(killFile)
 
 ############################################################################
 #open Daz Studio and run above script
