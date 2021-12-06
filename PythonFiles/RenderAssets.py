@@ -87,6 +87,18 @@ print("ASSET RENDER SCRIPT SET.")
 ############################################################################
 #for loop to iterate through list of assets
 
+#Array of character model load statements.
+
+characters = [] 
+
+#update with daz script rel file paths
+characters.append("People/Genesis 2 Male/Genesis 2 Base Male.duf")
+characters.append("People/Genesis 2 Female/Genesis 2 Base Female.duf")
+characters.append("People/Genesis 3 Male/Genesis 3 Male.duf")
+characters.append("People/Genesis 3 Female/Genesis 3 Female.duf")
+characters.append("People/Genesis 8 Male/Genesis 8 Basic Male.duf")
+characters.append("People/Genesis 8 Female/Genesis 8 Basic Female.duf")
+
 #start from currentPos (calculated above) in array and iterate through each item
 for x in range (currentPos, len(assetArray)): #arrayLength
     #time.sleep(60.0)
@@ -113,6 +125,42 @@ for x in range (currentPos, len(assetArray)): #arrayLength
         #Update properties within script
         update = update.replace('FILEPATH', relFilePath)
         update = update.replace('FILENAME', fileName)
+
+
+    ############################################################################
+    #TIME TO START LOOKING AT LOADING THE NECESSARY CHARACTER
+
+    ############################################################################
+    #IF RelFilePath Contains "MALE" then load required MALE or feMALE character
+        if "male" in relFilePath:
+
+     ###########################################################################
+        #Start checking RelFilePath for containing Genesis Male/Female 2/3/8 keywords
+            #print("in") #test
+            
+            #Start with an array and iterate through it until correct char statement is found?
+
+            #replacing keyword in renderAssets.txt to load character model
+            if "Genesis 2 Male" in relFilePath:
+                print("Load genesis 2 male character")
+                update = update.replace('//LOADCHAR', characters[0])
+            elif "Genesis 2 Female" in relFilePath:
+                print("Load genesis 2 female character")
+                update = update.replace('//LOADCHAR', characters[1])
+            elif "Genesis 3 Male" in relFilePath:
+                print("Load genesis 3 male character")
+                update = update.replace('//LOADCHAR', characters[2])
+            elif "Genesis 3 Female" in relFilePath:
+                print("Load genesis 3 female character")
+                update = update.replace('//LOADCHAR', characters[3])
+            elif "Genesis 8 Male" in relFilePath:
+                print("Load genesis 8 male character")
+                update = update.replace('//LOADCHAR', characters[4])
+            elif "Genesis 8 Female" in relFilePath:
+                print("Load genesis 8 female character")
+                update = update.replace('//LOADCHAR', characters[5])
+
+            
         fileIn.close()
 
         #Open and write script updates to file
