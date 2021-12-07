@@ -47,7 +47,7 @@
 		// Get the 'current' intermediate container
 		oIntermediate = oProductsTop.getChildContainer( i );
 		// Print the container name
-		print( "+++++", oIntermediate.getContainerName(), "+++++" );
+		//print( "+++++", oIntermediate.getContainerName(), "+++++" );
  
 		// Get the number of product containers within the intermediate
 		nProducts = oIntermediate.getNumChildContainers();
@@ -64,7 +64,7 @@
 			}
  
 			// Print the container name
-			print( oProduct.getContainerName() );
+			//print( oProduct.getContainerName() );
 			nAssets = oProduct.getAssets();
 			//print("");
 			//print(oProduct.getContainerName() + " Number of assets ["+nAssets.length+"]");
@@ -125,4 +125,4 @@
 
 //Close daz option 2
 Scene.clear();
-//MainWindow.close();
+MainWindow.close();

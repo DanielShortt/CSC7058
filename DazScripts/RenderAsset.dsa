@@ -2,13 +2,19 @@
 
 	
 
-	var testItem = "People/Genesis 2 Female/Clothing/Cherry Blossom Dress/Materials/Allure Fan.duf";
-	var testName = "Allure Fan"
+	var testItem = "People/Genesis 3 Male/Genesis 3 Male.duf";
+	var loadChar = "People/Genesis 3 Male/Genesis 3 Male.duf"
+	var testName = "!UberVolume Base"
 	//Get the content manager
 	oCM = App.getContentMgr();
 	//load the asset that is to be rendered into the viewport
 	var fileOpen = oCM.getAbsolutePath(testItem, true);
 	oCM.openFile(fileOpen);
+	
+	if(loadChar != "CHARLOAD" && loadChar != testItem){
+		var fileOpen = oCM.getAbsolutePath(loadChar, true);
+		oCM.openFile(fileOpen);	
+	}
 	
 	var oViewport = MainWindow.getViewportMgr().getActiveViewport();
 	var oCam = new DzBasicCamera()
@@ -106,4 +112,4 @@
 	
 	//Close daz option 2
 	Scene.clear();
-	MainWindow.close();
+	//MainWindow.close();

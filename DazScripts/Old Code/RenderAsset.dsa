@@ -2,21 +2,13 @@
 
 	
 
-	var testItem = "FILEPATH";
-	var loadChar = "CHARLOAD"
-	var testName = "FILENAME"
+	var testItem = "People/Genesis 2 Female/Clothing/Cherry Blossom Dress/Materials/Allure Fan.duf";
+	var testName = "Allure Fan"
 	//Get the content manager
 	oCM = App.getContentMgr();
 	//load the asset that is to be rendered into the viewport
-
-	if(loadChar != "CHARLOAD" && loadChar != testItem){
-		var fileOpen = oCM.getAbsolutePath(loadChar, true);
-		oCM.openFile(fileOpen);	
-	}
-
 	var fileOpen = oCM.getAbsolutePath(testItem, true);
 	oCM.openFile(fileOpen);
-
 	
 	var oViewport = MainWindow.getViewportMgr().getActiveViewport();
 	var oCam = new DzBasicCamera()
