@@ -29,7 +29,14 @@
 	var oCamera = oViewport.get3DViewport().setCamera("AssetCam");
 	var oCamera = oViewport.get3DViewport().getCamera("AssetCam");
 	
-	var selAsset = Scene.findNodeByLabel( testName );
+	//select which node to centre camera on.
+	if(loadChar == "CHARLOAD"){
+		var selAsset = Scene.findNodeByLabel( testName );
+	} else {
+		var selAsset = Scene.findNodeByLabel( loadChar );
+	}
+
+	//var selAsset = Scene.findNodeByLabel( testName );
 	if (selAsset){
 		selAsset.select(true);
 	}
