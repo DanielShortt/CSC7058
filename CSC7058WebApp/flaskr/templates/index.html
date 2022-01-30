@@ -1,0 +1,370 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block head %}
+    <script>
+
+        function divHide(id, cara) {
+
+            //Take ID of hair selected and add to Json file in background.
+
+            buttonid = id
+            console.log(buttonid)
+            console.log(cara)
+
+            var T = document.getElementById(cara);
+            T.style.display = "none";  // <-- Set it to block
+        }
+
+        function showDiv(divId, element) {
+            document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
+        }
+
+    </script>
+{% endblock %}
+
+
+
+<!-- THIS IS A DRAFT -->
+
+{% block content %}
+
+
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5 imgform">
+
+
+    <form class="", name="", id=""> <!--FORM IDENTIFICATION NEEDS PROCESSED-->
+
+
+        <div class="d-flex justify-content-center">
+            <div>
+                <h1>CSC7058</h1>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div>
+                <p>Please label the image below with the options provided around image.</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div>
+                <p>Environment</p>
+            </div>
+        </div>
+
+        <div>
+            <form>
+                <div class="container g-0 justify-content-center">
+
+                    <div class="row TopRowButtons">
+
+                        <div class="col" >
+                            <div class="col" >
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example" onchange="showDiv('cara1', this)">
+                                    <option selected>Indoor/Outdoor</option>
+                                    <option value="1">Indoor</option>
+                                    <option value="2">Outdoor</option>
+                                </select>
+                            </div>
+                        </div>
+
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example" onchange="showDiv('cara2', this)">
+                                    <option selected>Time</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example">
+                                    <option selected>Setting</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example">
+                                    <option selected>Lighting</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example">
+                                    <option selected>Atmosphere</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example">
+                                    <option selected>Focal Area</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example">
+                                    <option selected>Focal Location</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                        <div class="col">
+                            <div class="col">
+                                <select class="form-select form-select-sm opt1" aria-label="Default select example">
+                                    <option selected>Number of Characters</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+        
+                <div class="container justify-content-center"></div>
+
+                    <div class="row">
+
+                        <div class="col" >
+                            <div class="d-flex justify-content-center">
+                                <div class ="mainImg">
+                                    <!-- Insert the image to be lablled here --> 
+                                    <!-- This need to be dynamic and populated from DB -->
+
+                                    <img src="https://s3-us-west-2.amazonaws.com/prd-rteditorial/wp-content/uploads/2019/10/30183441/conju2.jpg"/>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5 carasection" id="cara" style="display:none">
+                <div class ="row">
+                    <div class="col d-flex justify-content-center">
+                        <img src="https://s3-us-west-2.amazonaws.com/prd-rteditorial/wp-content/uploads/2019/10/30183441/conju2.jpg"/>
+                    </div>
+                </div>
+        </div>
+
+
+
+        <!--CARA ONE-->
+        <!---->
+
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5 carasection" id="cara1" style="display:none">
+            <div class ="row">
+                <div class="col d-flex justify-content-center">
+                    
+
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        
+                        <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <input type="image" src="https://media.glamour.com/photos/5ed7f0e860e794862e68a2b7/6:7/w_2193,h_2559,c_limit/GettyImages-1177592874.jpg" name="time1" class="d-block w-100" id="time1" style="height:200px;" onclick="divHide(this.id, 'cara1' )">
+                            <div class="d-flex justify-content-center">
+                            <h5>First slide label</h5>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="https://i2-prod.getreading.co.uk/incoming/article11652973.ece/ALTERNATES/s1200c/braids-plaits.jpg" class="d-block w-100" style="height:200px;">
+                            <div class="d-flex justify-content-center">
+                            <h5>Second slide label</h5>
+                            
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="https://ath2.unileverservices.com/wp-content/uploads/sites/3/2020/07/04111150/pigtails-dutch-braids.jpg" class="d-block w-100" style="height:200px;">
+                            <div class="d-flex justify-content-center">
+                            <h5>Third slide label</h5>
+                            
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+
+
+                </div>
+
+
+                <!-- #########################################################################################################################-->
+                <!-- FIGURE OUT HOW TO PASS VALUE OF INPUT TO hairHide() FUNCTION-->
+
+
+                <div class="d-flex justify-content-center">
+
+                    <div class="input-group mb-3 cara1Opt">
+                        <input type="text" class="form-control" placeholder="Other - URL" id= "hairOther" aria-label="Other - URL" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="divHide(document.getElementById('hairOther').value, 'cara1')">OK</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+            
+        <!--CARA TWO-->
+        <!---->
+
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5 carasection" id="cara2" style="display:none">
+            <div class ="row">
+                <div class="col d-flex justify-content-center">
+                    
+
+                    <div id="carouselTime" class="carousel slide" data-bs-ride="carousel">
+                        
+                        <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <input type="image" src="https://media.glamour.com/photos/5ed7f0e860e794862e68a2b7/6:7/w_2193,h_2559,c_limit/GettyImages-1177592874.jpg" name="time1" class="d-block w-100" id="hair1" style="height:200px;" onclick="divHide(this.id, 'cara2')">
+                            <div class="d-flex justify-content-center">
+                            <h5>First slide label</h5>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="https://i2-prod.getreading.co.uk/incoming/article11652973.ece/ALTERNATES/s1200c/braids-plaits.jpg" class="d-block w-100" style="height:200px;">
+                            <div class="d-flex justify-content-center">
+                            <h5>Second slide label</h5>
+                            
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="https://ath2.unileverservices.com/wp-content/uploads/sites/3/2020/07/04111150/pigtails-dutch-braids.jpg" class="d-block w-100" style="height:200px;">
+                            <div class="d-flex justify-content-center">
+                            <h5>Third slide label</h5>
+                            
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTime" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTime" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+
+
+                </div>
+
+
+                <!-- #########################################################################################################################-->
+
+                <div class="d-flex justify-content-center">
+
+                    <div class="input-group mb-3 cara1Opt">
+                        <input type="text" class="form-control" placeholder="Other - URL" id= "timeOther" aria-label="Other - URL" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="divHide(   ('Time.').concat(document.getElementById('timeOther').value),    'cara2')">OK</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- BEGINNING OF FORM INFORMATION TO BE COLLECTED FOR PROCESSING OF SCENE -->
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            
+                <div class="d-flex justify-content-center">
+                    <p>Is the above scene indoor or outdoor?</p>
+                </div>
+
+                <div class="d-flex justify-content-center"> 
+                    
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Indoor</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">outdoor</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                        <label class="form-check-label" for="inlineRadio3">Other</label>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <p>If you have selected other please give information below..</p>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <textarea class="form-control" aria-label="With textarea" placeholder="Insert text here..."></textarea>
+                    
+                </div>
+        </div>
+
+
+        <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx-->
+        <!-- SUBMIT BUTTON SHOULD BE LAST ON SCREEN-->
+
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

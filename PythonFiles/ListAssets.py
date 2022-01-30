@@ -9,7 +9,8 @@ import subprocess, time, winreg, psutil, os, json
 
 reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the registry
 sKey = winreg.OpenKey(reg, "SOFTWARE\DAZ\Studio4", 0 , winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY) #get the element to be updated
-newPath = "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/ListDazAssets.dsa" #insert location of script that will collect list of assets here.
+#insert location of script that will collect list of assets here.
+newPath = "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/ListDazAssets.dsa" 
 winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
 winreg.CloseKey(sKey) #close the value
 winreg.CloseKey(reg) #close the registry
@@ -71,7 +72,7 @@ time.sleep(10) # Sleep for x seconds
 
 reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the registry
 sKey = winreg.OpenKey(reg, "SOFTWARE\DAZ\Studio4", 0 , winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY) #get the element to be updated
-newPath = "" #Resetting the Script to load on launch to NULL
+newPath = "" #Resetting the Script to load on launch to None
 winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
 winreg.CloseKey(sKey) #close the value
 winreg.CloseKey(reg) #close the registry               
