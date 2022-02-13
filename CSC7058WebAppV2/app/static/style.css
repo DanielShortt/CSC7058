@@ -6,13 +6,18 @@ html,body{
     height:100%;
 }
 
+
 .allowScroll{
     height:90%;
     overflow-y: scroll;
 }
 
+.allowScrollCC{
+    height:90%;
+}
+
 .theLabels{
-    height:300px;
+    max-height:215px;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
 }
@@ -73,10 +78,18 @@ html,body{
 }
 
 .objects{
-    
+    max-height: 215px;
     border-top: 5px solid red;
     border-bottom: 1px solid black ;
+    overflow-y: scroll;
     
+}
+
+.charObjects{
+    max-height: 215px;
+    border-top: 5px solid red;
+    border-bottom: 1px solid black ;
+    overflow-y: scroll;
 }
 
 .objectstitle{
@@ -151,6 +164,24 @@ html,body{
     width:25%;
 }
 
+.dayIcon:hover{
+    background-color:cornflowerblue;
+}
+
+.charIcon{
+    padding: 5px;
+    border-width:2px;
+    border-radius: 5px;
+    border-style:solid;
+    border-color:black;
+    background-color: white;
+    width:25%;
+}
+
+.charIcon:hover{
+    background-color:cornflowerblue;
+}
+
 .numCharBar{
 
     padding: 5px;
@@ -165,14 +196,39 @@ html,body{
     border-color:rgb(135, 197, 255);
     background-color: rgb(198, 212, 252);
     border-style:solid;
+    display: inline-block;
 }
 
-.dayIcon:hover{
-    background-color:cornflowerblue;
-}
+
 
 .classWithShadow{
     -moz-box-shadow: 3px 3px 4px #000; 
     -webkit-box-shadow: 3px 3px 4px #000; 
     box-shadow: 3px 3px 4px #000; 
+
+
+ }.nextChar{
+    float:right ;
+ }
+
+ .charRotationOptions{
+    padding: 2px;
+    display: inline-block;
+    margin: 2px;
+
+   
+ }
+
+ .charRotationButton{
+    padding-top: 3px;
+    display: inline-block;
+    border-width:2px;
+    border-radius: 10px;
+    border-style:solid;
+    border-color:rgb(135, 197, 255);
+    background-color: rgb(198, 212, 252);
+    border-style:solid;
+
+    
+
  }

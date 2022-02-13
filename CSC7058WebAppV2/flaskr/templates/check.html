@@ -3,7 +3,228 @@
 {% block title %}Home Page{% endblock %}
 
 {% block head %}
+<script>
 
+    //GLOBAL VARIABLES
+    var divShown = "";
+    var charDivShown="";
+    var charLoopCount = 0;
+    var time = "", setting = "", lighting = "", atmosphere = "", mainProp = "", propLoc = "", cameraType = "", numberChars = "";
+    var gender1="", hair1="", clothingTop1="", clothingBottom1="", accessory1="";
+    var gender2="", hair2="", clothingTop2="", clothingBottom2="", accessory2="";
+    var gender3="", hair3="", clothingTop3="", clothingBottom3="", accessory3="";
+    var gender4="", hair4="", clothingTop4="", clothingBottom4="", accessory4="";
+
+    //FUNCTION TO HIDE DIV
+    function divHide(id, cara) {
+        //Take ID of hair selected and add to Json file in background.
+        buttonid = id
+        var T = document.getElementById(cara);
+        T.style.display = "none";  // <-- Set it to block
+        divShown = "";
+    }
+
+    function hideCharDiv(id, cara) {
+        //Take ID of hair selected and add to Json file in background.
+        buttonid = id
+        var T = document.getElementById(cara);
+        T.style.display = "none";  // <-- Set it to block
+        charDivShown = "";
+    }
+
+    //FUNCTION TO SHOW DIV
+    function showDiv(divId, element) {
+
+        if (divShown != "") {
+            divHide("", divShown);
+        }
+
+        document.getElementById(divId).style.display = 'block';
+        divShown = divId;
+    }
+
+    function showCharDiv(divId, element){
+        if (charDivShown != "") {
+            hideCharDiv("", charDivShown);
+        }
+
+        document.getElementById(divId).style.display = 'block';
+        charDivShown = divId;
+    }
+
+    function charInfo(numOfChars){
+        //Add Char info here. Must take int argument to control loop iterations.
+
+
+        if(numOfChars=="char0"){
+            //loopCount no change
+        }else if (numOfChars=="char1"){
+            charLoopCount = 1;
+        }else if (numOfChars=="char2"){
+            charLoopCount = 2;
+        }else if (numOfChars=="char3"){
+            charLoopCount = 3;
+        }else if (numOfChars=="char4"){
+            charLoopCount = 4;  
+        }
+
+        var charLoopTitle = "Character " + charLoopCount;
+        CharLoopTitleId="charNumTitle"
+        var updateCharLoopTitle = document.getElementById(CharLoopTitleId);
+        updateCharLoopTitle.innerHTML = charLoopTitle;
+
+        
+
+        var charIdUpdate = "caraCharDetails" + charLoopCount;
+        console.log(charIdUpdate);
+
+        var updateCharLoopId = document.getElementById("caraCharDetails").id;
+        console.log(updateCharLoopId);
+        document.getElementById("caraCharDetails").id = charIdUpdate; 
+        console.log(charIdUpdate);
+        document.getElementById(charIdUpdate).style.display = 'block';
+
+        //showDiv("caraCharDetails", 1)
+    }
+
+
+    function nextChar(){
+        //CREATE NEXT BUTTON. HIDE CURRENT DIVS. UPDATE DIV ID's. SHOW NEW DIVS.
+    }
+    
+
+    //FUNCTION TO PLACE SHADOW ON BUTTON ONCE PRESSED ************************* REMOVE?
+    function addShadow(id) {
+        document.getElementById(id).style["boxShadow"] = "0 0 10px #000000";
+    }
+
+
+    //CREATING AND MODIFYING THE LABEL OBJECTS
+
+    function addElement(object, label) {
+
+        var elementExists = false;
+        var objectLabelId = "";
+
+       // console.log("The current label is " + label);
+
+
+        //time ="", setting = "", lighting = "", atmosphere = "", mainProp = "", propLoc = "", cameraType = "", numberChars = ""
+        if (label == "Time") {
+
+            if (time != "") {
+                elementExists = true;
+            }
+
+            time = label;
+            objectLabelId = "timeId";
+
+        } else if (label == "Setting") {
+            if (setting != "") {
+                elementExists = true;
+                objectLabelId = "settingId";
+            }
+            setting = label;
+            objectLabelId = "settingId";
+
+
+        } else if (label == "Lighting") {
+            if (lighting != "") {
+                elementExists = true;
+                objectLabelId = "lightingId";
+            }
+            lighting = label;
+            objectLabelId = "lightingId";
+
+        } else if (label == "Atmosphere") {
+            if (atmosphere != "") {
+                elementExists = true;
+                objectLabelId = "atmosphereId";
+            }
+            atmosphere = label;
+            objectLabelId = "atmosphereId";
+
+        } else if (label == "Prop") {
+            if (mainProp != "") {
+                elementExists = true;
+                objectLabelId = "PropId";
+            }
+            mainProp = label;
+            objectLabelId = "propId";
+
+        } else if (label == "PropLoc") {
+            if (propLoc != "") {
+                elementExists = true;
+                objectLabelId = "propLocId";
+            }
+            propLoc = label;
+            objectLabelId = "propLocId";
+
+        } else if (label == "Camera") {
+            if (cameraType != "") {
+                elementExists = true;
+                objectLabelId = "cameraId";
+            }
+            cameraType = label;
+            objectLabelId = "cameraId";
+
+        } else if (label == "Number Chars") {
+            if (numberChars != "") {
+                elementExists = true;
+                objectLabelId = "numberCharsId";
+            }
+            numberChars = label;
+            objectLabelId = "numberCharsId";
+
+        }
+
+
+        if (elementExists == false) {
+
+            console.log("About to create a new element")
+
+            // create a new div element
+            const newDiv = document.createElement("div");
+            newDiv.className = "row anObject";
+            // newDiv.onclick=""; Create NEW function to modify selected settings. <--------------------------------------------
+
+            const newDiv1 = document.createElement("div");
+            newDiv1.className = "objectTitle";
+
+            const newLabel = document.createElement("label");
+            newLabel.id = objectLabelId;
+            const newLabel1 = document.createElement("label");
+            newLabel1.className = "labelType";
+
+
+            // and give it some content
+            const objectID = document.createTextNode(object);
+            const objectLabel = document.createTextNode(label);
+
+            newLabel.appendChild(objectID);
+            newLabel1.appendChild(objectLabel);
+
+            // add the text node to the newly created div
+            newDiv.appendChild(newDiv1);
+            newDiv1.appendChild(newLabel);
+            newDiv1.appendChild(newLabel1);
+
+
+            // add the newly created element and its content into the DOM
+            const currentDiv = document.getElementById("insertObjects");
+            const parentDiv = document.getElementById("objects");
+            parentDiv.insertBefore(newDiv, currentDiv.nextSibling);
+
+            //console.log(time);
+
+        } else {
+            console.log(object);
+            console.log(objectLabelId);
+            document.getElementById(objectLabelId).innerHTML = object;
+            elementExists = false;
+        }
+    }
+</script>
 {% endblock %}
 
 
@@ -20,6 +241,7 @@
         <!--Label Column-->
         <div class="col-2 labelscol">
             <div class="h-100 d-flex flex-column">
+                <!-- LABELS -->
                 <div class="row justify-content-center theLabels">
                     <h6>Labels</h6>
 
@@ -32,19 +254,19 @@
 
                     <div class="row aLabel" onclick="showDiv('caraSetting', 1)">
                         <div class="labeltitle">
-                            <label>Setting</label>
+                            <label>Sett</label>
                             <i class="bi bi-shop-window labelicon"></i>
                         </div>
                     </div>
                     <div class="row aLabel" onclick="showDiv('caraLighting', 1)">
                         <div class="labeltitle">
-                            <label>Lighting</label>
+                            <label>Light</label>
                             <i class="bi bi-sun labelicon"></i>
                         </div>
                     </div>
                     <div class="row aLabel" onclick="showDiv('caraAtmosphere', 1)">
                         <div class="labeltitle">
-                            <label>Atmosphere</label>
+                            <label>Atmos</label>
                             <i class="bi bi-cloud-fog2 labelicon"></i>
                         </div>
                     </div>
@@ -56,7 +278,7 @@
                     </div>
                     <div class="row aLabel" onclick="showDiv('caraPropLoc', 1)">
                         <div class="labeltitle">
-                            <label>Prop Location</label>
+                            <label>Prop Loc</label>
                             <i class="bi bi-compass labelicon"></i>
                         </div>
                     </div>
@@ -82,14 +304,6 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center bg-blue  charObjects" id="charObjects">
-                    <div class="row justify-content-center objectstitle" id="insertCharObjects">
-                        <h6>Characters</h6>
-                        <!--BELOW IS EXAMPLE ONLY-->
-                        <div class="row justify-content-center objectstitle" id="Char1"></div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -101,6 +315,46 @@
                 <div class="row d-flex justify-content-center">
 
                     <!--<h1 class="d-flex justify-content-center">Column</h1>-->
+
+                    <div class="row d-flex justify-content-center ">
+                        <div class="col-3">
+
+                        </div>
+
+                        <div class="col-6 justify-content-center ">
+                            <div class="row d-flex justify-content-center iconBar">
+                                <div class="col d-flex justify-content-center iconCol">
+                                    <div class="row d-flex justify-content-center labelImage">
+                                        <i class="bi bi-pencil" style="font-size: .75rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-center iconCol">
+                                    <div class="row d-flex justify-content-center labelImage">
+                                        <i class="bi bi-pencil" style="font-size: .75rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-center iconCol">
+                                    <div class="row d-flex justify-content-center labelImage">
+                                        <i class="bi bi-pencil" style="font-size: .75rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-center iconCol">
+                                    <div class="row d-flex justify-content-center labelImage">
+                                        <i class="bi bi-pencil" style="font-size: .75rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-center iconCol">
+                                    <div class="row d-flex justify-content-center labelImage">
+                                        <i class="bi bi-pencil" style="font-size: .75rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+
+                        </div>
+                    </div>
 
                     <div class="row d-flex justify-content-center">
 
@@ -127,7 +381,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Day"
-                        onclick="addShadow(this.id); divHide('day', 'caraTime'); addElement(this.id, 'time')">
+                        onclick="addShadow(this.id); divHide('day', 'caraTime'); addElement(this.id, 'Time')">
 
                         <div class="row text-center">
                             <i class="bi bi-sun-fill" style="font-size: 2rem;"></i>
@@ -146,7 +400,7 @@
                     </div>
 
                     <div class="col-1 dayIcon" id="Night"
-                        onclick="addShadow(this.id); divHide('night', 'caraTime'); addElement(this.id, 'time')">
+                        onclick="addShadow(this.id); divHide('night', 'caraTime'); addElement(this.id, 'Time')">
                         <div class="row text-center">
                             <i class="bi bi-moon-fill" style="font-size: 2rem;"></i>
                         </div>
@@ -179,7 +433,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Beach"
-                        onclick="addShadow(this.id); divHide('Beach', 'caraSetting'); addElement(this.id, 'setting')">
+                        onclick="addShadow(this.id); divHide('Beach', 'caraSetting'); addElement(this.id, 'Setting')">
                         <div class="row text-center">
                             <!--REPLACE ICON WITH IMAGE OF BEACH-->
                             <img
@@ -195,7 +449,7 @@
                     </div>
 
                     <div class="col-1 dayIcon" id="Tomb"
-                        onclick="addShadow(this.id); divHide('Tomb', 'caraSetting'); addElement(this.id, 'setting')">
+                        onclick="addShadow(this.id); divHide('Tomb', 'caraSetting'); addElement(this.id, 'Setting')">
                         <div class="row text-center">
                             <!--REPLACE ICON WITH IMAGE OF TOMB-->
                             <img
@@ -222,7 +476,7 @@
                 <div class="row justify-content-center">
 
                     <div class="col-1 dayIcon" id="Dark"
-                        onclick="addShadow(this.id); divHide('Dark', 'caraLighting'); addElement(this.id, 'lighting')">
+                        onclick="addShadow(this.id); divHide('Dark', 'caraLighting'); addElement(this.id, 'Lighting')">
                         <div class="row text-center">
                             
                             <img
@@ -238,7 +492,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Dim"
-                        onclick="addShadow(this.id); divHide('Dim', 'caraLighting'); addElement(this.id, 'lighting')">
+                        onclick="addShadow(this.id); divHide('Dim', 'caraLighting'); addElement(this.id, 'Lighting')">
                         <div class="row text-center">
                             
                             <img
@@ -254,7 +508,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Bright"
-                        onclick="addShadow(this.id); divHide('Bright', 'caraLighting'); addElement(this.id, 'lighting')">
+                        onclick="addShadow(this.id); divHide('Bright', 'caraLighting'); addElement(this.id, 'Lighting')">
                         <div class="row text-center">
                             
                             <img
@@ -281,7 +535,7 @@
                 <div class="row justify-content-center">
 
                     <div class="col-1 dayIcon" id="Fear"
-                        onclick="addShadow(this.id); divHide('Fear', 'caraAtmosphere'); addElement(this.id, 'atmosphere')">
+                        onclick="addShadow(this.id); divHide('Fear', 'caraAtmosphere'); addElement(this.id, 'Atmosphere')">
                         <div class="row text-center">
                             
                             <img
@@ -297,7 +551,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Happy"
-                        onclick="addShadow(this.id); divHide('Happy', 'caraAtmosphere'); addElement(this.id, 'atmosphere')">
+                        onclick="addShadow(this.id); divHide('Happy', 'caraAtmosphere'); addElement(this.id, 'Atmosphere')">
                         <div class="row text-center">
                             
                             <img
@@ -313,7 +567,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Sad"
-                        onclick="addShadow(this.id); divHide('Sad', 'caraAtmosphere'); addElement(this.id, 'atmosphere')">
+                        onclick="addShadow(this.id); divHide('Sad', 'caraAtmosphere'); addElement(this.id, 'Atmosphere')">
                         <div class="row text-center">
                             
                             <img
@@ -343,7 +597,7 @@
                 <div class="row justify-content-center">
 
                     <div class="col-1 dayIcon" id="Desk"
-                        onclick="addShadow(this.id); divHide('Desk', 'caraProp'); addElement(this.id, 'prop')">
+                        onclick="addShadow(this.id); divHide('Desk', 'caraProp'); addElement(this.id, 'Prop')">
                         <div class="row text-center">
                             
                             <img
@@ -359,7 +613,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Altar"
-                        onclick="addShadow(this.id); divHide('Altar', 'caraProp'); addElement(this.id, 'prop')">
+                        onclick="addShadow(this.id); divHide('Altar', 'caraProp'); addElement(this.id, 'Prop')">
                         <div class="row text-center">
                             
                             <img
@@ -375,7 +629,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Car"
-                        onclick="addShadow(this.id); divHide('Car', 'caraProp'); addElement(this.id, 'prop')">
+                        onclick="addShadow(this.id); divHide('Car', 'caraProp'); addElement(this.id, 'Prop')">
                         <div class="row text-center">
                             
                             <img
@@ -392,7 +646,7 @@
                 <div class="row row2 justify-content-center">
 
                     <div class="col-1 dayIcon " id="SurfBoard"
-                        onclick="addShadow(this.id); divHide('SurfBoard', 'caraProp'); addElement(this.id, 'prop')">
+                        onclick="addShadow(this.id); divHide('SurfBoard', 'caraProp'); addElement(this.id, 'Prop')">
                         <div class="row text-center">
                             
                             <img
@@ -418,7 +672,7 @@
                 <div class="row justify-content-center">
 
                     <div class="col-1 dayIcon" id="leftUpper"
-                        onclick="addShadow(this.id); divHide('leftUpper', 'caraPropLoc'); addElement(this.id, 'propLoc')">
+                        onclick="addShadow(this.id); divHide('leftUpper', 'caraPropLoc'); addElement(this.id, 'PropLoc')">
                         <div class="row text-center">
                             
                             <img
@@ -434,7 +688,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="centerUpper"
-                        onclick="addShadow(this.id); divHide('centerUpper', 'caraPropLoc'); addElement(this.id, 'propLoc')">
+                        onclick="addShadow(this.id); divHide('centerUpper', 'caraPropLoc'); addElement(this.id, 'PropLoc')">
                         <div class="row text-center">
                             
                             <img
@@ -450,7 +704,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="rightUpper"
-                        onclick="addShadow(this.id); divHide('rightUpper', 'caraPropLoc'); addElement(this.id, 'propLoc')">
+                        onclick="addShadow(this.id); divHide('rightUpper', 'caraPropLoc'); addElement(this.id, 'PropLoc')">
                         <div class="row text-center">
                             
                             <img
@@ -467,7 +721,7 @@
                 <div class="row row2 justify-content-center">
 
                     <div class="col-1 dayIcon " id="leftLower"
-                        onclick="addShadow(this.id); divHide('leftLower', 'caraPropLoc'); addElement(this.id, 'propLoc')">
+                        onclick="addShadow(this.id); divHide('leftLower', 'caraPropLoc'); addElement(this.id, 'PropLoc')">
                         <div class="row text-center">
                             
                             <img
@@ -483,7 +737,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="centerLower"
-                        onclick="addShadow(this.id); divHide('centerLower', 'caraPropLoc'); addElement(this.id, 'propLoc')">
+                        onclick="addShadow(this.id); divHide('centerLower', 'caraPropLoc'); addElement(this.id, 'PropLoc')">
                         <div class="row text-center">
                             
                             <img
@@ -499,7 +753,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="rightLower"
-                        onclick="addShadow(this.id); divHide('rightLower', 'caraPropLoc'); addElement(this.id, 'propLoc')">
+                        onclick="addShadow(this.id); divHide('rightLower', 'caraPropLoc'); addElement(this.id, 'PropLoc')">
                         <div class="row text-center">
                             
                             <img
@@ -525,7 +779,7 @@
                 <div class="row justify-content-center">
 
                     <div class="col-1 dayIcon" id="FaceClose"
-                        onclick="addShadow(this.id); divHide('FaceClose', 'caraCamera'); addElement(this.id, 'camera')">
+                        onclick="addShadow(this.id); divHide('FaceClose', 'caraCamera'); addElement(this.id, 'Camera')">
                         <div class="row text-center">
                             
                             <img
@@ -541,7 +795,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="Front"
-                        onclick="addShadow(this.id); divHide('Front', 'caraCamera'); addElement(this.id, 'camera')">
+                        onclick="addShadow(this.id); divHide('Front', 'caraCamera'); addElement(this.id, 'Camera')">
                         <div class="row text-center">
                             
                             <img
@@ -557,7 +811,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="IsoClose"
-                        onclick="addShadow(this.id); divHide('IsoClose', 'caraCamera'); addElement(this.id, 'camera')">
+                        onclick="addShadow(this.id); divHide('IsoClose', 'caraCamera'); addElement(this.id, 'Camera')">
                         <div class="row text-center">
                             
                             <img
@@ -574,7 +828,7 @@
                 <div class="row row2 justify-content-center">
 
                     <div class="col-1 dayIcon " id="TopLeftCam"
-                        onclick="addShadow(this.id); divHide('TopLeftCam', 'caraCamera'); addElement(this.id, 'camera')">
+                        onclick="addShadow(this.id); divHide('TopLeftCam', 'caraCamera'); addElement(this.id, 'Camera')">
                         <div class="row text-center">
                             
                             <img
@@ -590,7 +844,7 @@
                     </div>
 
                     <div class="col-1 dayIcon " id="TopRightCam"
-                        onclick="addShadow(this.id); divHide('TopRightCam', 'caraCamera'); addElement(this.id, 'camera')">
+                        onclick="addShadow(this.id); divHide('TopRightCam', 'caraCamera'); addElement(this.id, 'Camera')">
                         <div class="row text-center">
                             
                             <img
@@ -619,108 +873,99 @@
             <div class="container numCharsCaraSection" id="caraNumChars" style="display:none">
                 <div class="row justify-content-center">
                     <div class="col-6 justify-content-center ">
-
-                        <div class="row d-flex justify-content-center text-center numCharBarTitle" >
-                            <h1>Character Creation</h1>
-                        </div>
-
-
-                            <div class="row d-flex justify-content-center numCharBar" id="numCharBar"style="display:block">
-                                <div class="col d-flex justify-content-center numCharCol" id="char0" onclick="charInfo(this.id)">
-                                    <label>0</label>
-                                </div>
-                                <div class="col d-flex justify-content-center numCharCol" id="char1" onclick="charInfo(this.id)">
-                                    <label>1</label>
-                                </div>
-                                <div class="col d-flex justify-content-center numCharCol" id="char2" onclick="charInfo(this.id)">
-                                    <label>2</label>
-                                </div>
-                                <div class="col d-flex justify-content-center numCharCol" id="char3" onclick="charInfo(this.id)">
-                                    <label>3</label>
-                                </div>
-                                <div class="col d-flex justify-content-center numCharCol" id="char4" onclick="charInfo(this.id)">
-                                    <label>4</label>
-                                </div>
+                        <div class="row d-flex justify-content-center numCharBar">
+                            <div class="col d-flex justify-content-center numCharCol" id="char0" onclick="charInfo(this.id)">
+                                <label>0</label>
                             </div>
-
-                        
-                        
+                            <div class="col d-flex justify-content-center numCharCol" id="char1" onclick="charInfo(this.id)">
+                                1
+                            </div>
+                            <div class="col d-flex justify-content-center numCharCol" id="char2" onclick="charInfo(this.id)">
+                                2
+                            </div>
+                            <div class="col d-flex justify-content-center numCharCol" id="char3" onclick="charInfo(this.id)">
+                                3
+                            </div>
+                            <div class="col d-flex justify-content-center numCharCol" id="char4" onclick="charInfo(this.id)">
+                                4
+                            </div>
+                        </div>
                     </div>
 
 
 
 
-                    <!--########## STARTING CHAR DETS -->
+                                <!--########## STARTING CHAR DETS -->
 
 
 
 
                     
-                    <div class="container text-center row charDetails center-text justify-content-center" id="caraCharDetails" style="display:none">
+                    <div class="container text-center row charDetails justify-content-center" id="caraCharDetails" style="display:none">
                         
-                        <div class="row d-flex  justify-content-center">
-                            <div class="col-2 d-flex  justify-content-center ">
-
-                            </div>
-                            <div class="col-2 d-flex  justify-content-center ">
-                                <h2 id="charNumTitle">ENTER CHAR CREATION SCREEN DETAILS HERE</h2>
-                            </div>
-                        </div>
+                        <h2 id="charNumTitle">ENTER CHAR CREATION SCREEN DETAILS HERE</h2>
 
                         <div class="row d-flex  justify-content-center">
-                            <!--CHRACTER Column-->
+                            <!--Label Column-->
                             <div class="col-2 d-flex  justify-content-center ">
 
-                                <!-- CHARACTER LABEL OPTIONS -->
+                                <!-- LABELS -->
                                 <div class="row d-flex  justify-content-center">
-
-                                    <div class="row d-flex aLabel justify-content-center" onclick="showCharDiv('gender', 1)">
+                                    <div class="row d-flex  justify-content-center" onclick="showCharDiv('theGenders', 1)">
                                         <div class="labeltitle d-flex  justify-content-center">
-                                            <img class="center" src="/static/GenderSymbol.png" width="100" height="100">
+                                            <img class="center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/HeteroSym-pinkblue.svg/640px-HeteroSym-pinkblue.svg.png" width="50" height="50">
                                         </div>
                                     </div>
-                                    <div class="row aLabel" onclick="showCharDiv('hair', 1)"> <!-- ENTER DIV NAME OF HAIR DIV -->
+                
+                                    <div class="row aLabel" onclick="showDiv('caraSetting', 1)">
                                         <div class="labeltitle">
-                                            <img class="center" src="/static/HairSymbol.png" width="100" height="100">
+                                            <label>Sett</label>
                                         </div>
                                     </div>
-                                    <div class="row aLabel" onclick="showCharDiv('pose', 1)"> <!-- ENTER DIV NAME OF POSE DIV -->
+                                    <div class="row aLabel" onclick="showDiv('caraLighting', 1)">
                                         <div class="labeltitle">
-                                            
-                                            <img class="center" src="/static/PoseSymbol.png" width="100" height="100">
+                                            <label>Light</label>
 
                                         </div>
                                     </div>
-                                    <div class="row aLabel" onclick="showCharDiv('top', 1)"> <!-- ENTER DIV NAME OF TOP DIV -->
+                                    <div class="row aLabel" onclick="showDiv('caraAtmosphere', 1)">
                                         <div class="labeltitle">
-                                            
-                                            <img class="center" src="/static/TopSymbol.png" width="100" height="100">
+                                            <label>Atmos</label>
 
                                         </div>
                                     </div>
-                                    <div class="row aLabel" onclick="showCharDiv('bottoms', 1)"> <!-- ENTER DIV NAME OF BOTTOM DIV -->
+                                    <div class="row aLabel" onclick="showDiv('caraProp', 1)">
                                         <div class="labeltitle">
-                                            
-                                            <img class="center" src="/static/BottomSymbol.png" width="100" height="100">
+                                            <label>Main Prop</label>
+
                                         </div>
                                     </div>
-                                    <div class="row aLabel" onclick="showCharDiv('prop', 1)"> <!-- ENTER DIV NAME OF PROP DIV -->
+                                    <div class="row aLabel" onclick="showDiv('caraPropLoc', 1)">
                                         <div class="labeltitle">
-                                            
-                                            <img class="center" src="/static/PropSymbol.png" width="100" height="100">
+                                            <label>Prop Loc</label>
+
                                         </div>
                                     </div>
-                                    
+                                    <div class="row aLabel" onclick="showDiv('caraCamera', 1)">
+                                        <div class="labeltitle">
+                                            <label>Camera</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="row aLabel" onclick="showDiv('caraNumChars', 1)">
+                                        <div class="labeltitle">
+                                            <label>Char</label>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                     
-                            <!--OPTIONS WINDOW Column -->
-                            <div class="col-10 allowScrollCC">
+                            <!--Image Column  Column-->
+                            <div class="col-10 justify-content-center allowScroll">
                                 <div class="d-flex flex-column">
-
-                                    <!--  THE GENDERS -->
-                                    <div class="container genderCaraSection" id="gender" style="display:none">
-                                        
+                                    <div class="container genderCaraSection" id="theGenders" style="display:none">
+                                        <!--  THE GENDERS -->
                                         <div class="row d-flex justify-content-center">
                     
                                             <div class="row text-center d-flex justify-content-center ">
@@ -729,249 +974,75 @@
 
                                             <div class="row d-flex justify-content-center ">
 
-                                                <div class="col-1 charIcon" id="Male" onclick="testPrint1(this.id, 'gender')">
+                                                <div class="col-1 dayIcon" id="Male">
                                                     <div class="row text-center">
-                                                        <img src="/static/MaleSymbol.png" >
+                                                        <img src="https://www.kindpng.com/picc/m/272-2720442_gender-symbols-png-male-symbol-no-background-transparent.png">
                                                     </div>
                                                 </div>
 
-                                                
+                                                <div class="col-1">
 
-                                                <div class="col-1 charIcon" id="Female" onclick="testPrint1(this.id, 'gender')">
+                                                </div>
+
+                                                <div class="col-1 dayIcon">
                                                     <div class="row text-center">
-                                                        <img src="/static/FemaleSymbol.png" >
+
+                                                        <img src="https://w7.pngwing.com/pngs/535/659/png-transparent-gender-symbol-female-woman-female-symbole-purple-violet-text.png">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                                        </div>
-                        
                                     </div>
 
-                                    <!--CHARACTER HAIR OPTIONS 2 IN HERE-->
-                                    <div class="container hairCaraSection" id="hair" style="display:none">
-
-                                        <div class="row d-flex justify-content-center">
-
-                                            <div class="row text-center d-flex justify-content-center ">
-                                                <h6>Hair</h6>
-                                            </div>
-
-                                            <div class="row d-flex justify-content-center ">
-
-                                                <div class="col-1 charIcon" id="Long" onclick="testPrint1(this.id, 'hair')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/HairOptions/LongHair.png" >
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 charIcon" id="Bob" onclick="testPrint1(this.id, 'hair')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/HairOptions/BobHair.png" >
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 charIcon" id="Short" onclick="testPrint1(this.id, 'hair')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/HairOptions/ShortHair.png" >
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 charIcon" id="Mohawk" onclick="testPrint1(this.id, 'hair')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/HairOptions/MohawkHair.png" >
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 charIcon" id="Shaved" onclick="testPrint1(this.id, 'hair')"> 
-                                                    <div class="row text-center">
-                                                        <img src="/static/HairOptions/ShavedHair.png" >
-                                                    </div>
-                                                </div>   
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                                        </div>
-                        
-                                    </div>
-
-                                    <!--CHARACTER POSE OPTIONS 2 IN HERE-->
-                                    <div class="container poseCaraSection" id="pose" style="display:none">
-                                        <div class="row d-flex justify-content-center">
-
-                                            <div class="row text-center d-flex justify-content-center ">
-                                                <h6>Pose</h6>
-                                            </div>
-
-                                            <div class="row d-flex justify-content-center ">
-                                                <!-- ENTER OPTIONS-->
-                                                <div class="col-1 charIcon" id="Standing" onclick="testPrint1(this.id, 'pose')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/PoseOptions/StandingPose.png"  height="250" >
-                                                    </div>
-                                                </div> 
-                                                <div class="col-1 charIcon" id="Sitting" onclick="testPrint1(this.id, 'pose')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/PoseOptions/SittingPose.png"   height="250">
-                                                    </div>
-                                                </div>   
-
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                                        </div>
-                        
-                                    </div>
-
-                                        
+                                    <div class="container cameraCaraSection" id="theGenders" style="display:none">
+                                        <!--CHARACTER OPTIONS 2 IN HERE-->
                                     
                                     </div>
-
-                                    <!--CHARACTER TOP OPTIONS 2 IN HERE-->
-                                    <div class="container topsCaraSection" id="top" style="display:none">
-                                        <div class="row d-flex justify-content-center">
-
-                                            <div class="row text-center d-flex justify-content-center ">
-                                                <h6>Tops</h6>
-                                            </div>
-
-                                            <div class="row d-flex justify-content-center ">
-                                                <!-- ENTER OPTIONS-->
-                                                <div class="col-1 charIcon" id="Tshirt" onclick="testPrint1(this.id, 'top')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/TopOptions/TshirtTop.png"  >
-                                                    </div>
-                                                </div>  
-                                                <div class="col-1 charIcon" id="Shirt" onclick="testPrint1(this.id, 'top')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/TopOptions/ShirtTop.png"   >
-                                                    </div>
-                                                </div>  
-                                                <div class="col-1 charIcon" id="Blouse" onclick="testPrint1(this.id, 'top')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/TopOptions/BlouseTop.png"   >
-                                                    </div>
-                                                </div>  
-                                            </div>
-
-                                            <div class="row">
-                                                <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                                            </div>
-                            
-                                        </div>
-
-                                        
-                                    
-                                    </div>
-
-                                    <!--CHARACTER BOTTOM OPTIONS 2 IN HERE-->
-                                    <div class="container bottomsCaraSection" id="bottoms" style="display:none">
-                                        <div class="row d-flex justify-content-center">
-
-                                            <div class="row text-center d-flex justify-content-center ">
-                                                <h6>Bottoms</h6>
-                                            </div>
-
-                                            <div class="row d-flex justify-content-center ">
-                                                <!-- ENTER OPTIONS-->
-                                                <div class="col-1 charIcon" id="Trousers" onclick="testPrint1(this.id, 'bottoms')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/BottomsOptions/TrousersBottom.png"   >
-                                                    </div>
-                                                </div> 
-                                                <div class="col-1 charIcon" id="Shorts" onclick="testPrint1(this.id, 'bottoms')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/BottomsOptions/ShortsBottom.png"   >
-                                                    </div>
-                                                </div> 
-                                                <div class="col-1 charIcon" id="Skirt" onclick="testPrint1(this.id, 'bottoms')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/BottomsOptions/SkirtBottom.png"   >
-                                                    </div>
-                                                </div> 
-                                                
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                                        </div>
-                        
-                                    </div>
-
-                                    <!--CHARACTER CHARACTER PROP OPTIONS 2 IN HERE-->
-                                    <div class="container propCaraSection" id="prop" style="display:none">
-                                        <div class="row d-flex justify-content-center">
-
-                                            <div class="row text-center d-flex justify-content-center ">
-                                                <h6>Character Props</h6>
-                                            </div>
-
-                                            <div class="row d-flex justify-content-center ">
-                                                <!-- ENTER OPTIONS-->
-
-                                                <div class="col-1 charIcon" id="Sword" onclick="testPrint1(this.id, 'prop')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/PropOptions/SwordProp.png"   >
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 charIcon" id="Gun" onclick="testPrint1(this.id, 'prop')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/PropOptions/GunProp.png"   >
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 charIcon" id="Phone" onclick="testPrint1(this.id, 'prop')">
-                                                    <div class="row text-center">
-                                                        <img src="/static/PropOptions/PhoneProp.png"   >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                                        </div>
-                        
-                                    
-                                    </div>
-
-                                    
-                                    
-                                
 
                                 </div>
-
-                                
-                                <div class="row charRotationOptions">
-
-                                    <div class="col-2 charRotationButton float-left">
-                                        <h6 onclick="prevChar()">Previous</h6>
-                                    </div>
-        
-    
-                                    <div class="col-2 charRotationButton float-right">
-                                        <h6 onclick="nextChar()">Next<h6>
-                                    </div>
-      
-                                </div>
-    
-                            </div>
-
-                            <div>
-                                <h6 onclick="loadJSON()">
-                                    LOAD JSON
-                                </h6>
+                    
                             </div>
 
                         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!--############################################################################################################-->
+
+
+
+
+
+
+
                     </div>
 
+
                 </div>
+
+
+
+                <div class="row">
+                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                </div>
+
             </div>
         </div>
 
