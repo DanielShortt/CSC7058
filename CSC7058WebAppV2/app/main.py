@@ -40,10 +40,10 @@ def renderimage(image):
     now = datetime.now()
     timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
     #current_date_time = datetime.now()
-    
+    outputFileName = imageName+str(timestamp)
     if os.path.exists(propertyFile):
         os.rename("C:/Users/danie/Downloads/ImageProperties.txt", 
-        "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/imageProperties/"+imageName+str(timestamp)+".txt")
+        "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/imageProperties/"+outputFileName+".txt")
 
         #CREATE SCRIPT TO REPLACE GENERIC TERMS WITH DAZ STUDIO ASSETS
 

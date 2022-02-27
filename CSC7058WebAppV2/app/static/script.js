@@ -4,7 +4,6 @@
 var divShown = "";
 var charDivShown = "";
 var charCount = 0, charTotal = 0;
-
 var outputFile = "";
 
 const environmentArrayTitles = ["time", "setting", "lighting", "atmosphere", "mainProp", "propLoc", "camera", "numberChars"];
@@ -514,10 +513,3 @@ function saveStringAsFile(filename, data) {
     }
     
 }
-
-
-
-
-
-
-
