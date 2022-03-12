@@ -7,14 +7,14 @@ var charCount = 0, charTotal = 0;
 var outputFile = "";
 
 const environmentArrayTitles = ["time", "setting", "lighting", "atmosphere", "mainProp", "propLoc", "camera", "numberChars"];
-const characterArrayTitles = ['gender', 'hair', 'pose', 'top', 'bottoms', 'prop'];
+const characterArrayTitles = ['gender', 'charLoc','hair', 'pose', 'top', 'bottoms', 'prop'];
 const environmentArray = { 'time': '', 'setting': '', 'lighting': '', 'atmosphere': '', 'mainProp': '', 'propLoc': '', 'camera': '', 'numberChars': '' };
 
 const characterArray = {
-    'gender1': '', 'hair1': '', 'pose1': '', 'top1': '', 'bottoms1': '', 'prop1': '',
-    'gender2': '', 'hair2': '', 'pose2': '', 'top2': '', 'bottoms2': '', 'prop2': '',
-    'gender3': '', 'hair3': '', 'pose3': '', 'top3': '', 'bottoms3': '', 'prop3': '',
-    'gender4': '', 'hair4': '', 'pose4': '', 'top4': '', 'bottoms4': '', 'prop4': ''
+    'gender1': '', 'charLoc1': '','hair1': '', 'pose1': '', 'top1': '', 'bottoms1': '', 'prop1': '',
+    'gender2': '', 'charLoc2': '','hair2': '', 'pose2': '', 'top2': '', 'bottoms2': '', 'prop2': '',
+    'gender3': '', 'charLoc3': '','hair3': '', 'pose3': '', 'top3': '', 'bottoms3': '', 'prop3': '',
+    'gender4': '', 'charLoc4': '','hair4': '', 'pose4': '', 'top4': '', 'bottoms4': '', 'prop4': ''
 };
 //End of array
 
@@ -453,8 +453,7 @@ function updateCurrentChar(char) {
 //NEED TO LOAD JSON FILE.
 function loadJSON() {
 
-    var output;
-    var count = 1;
+    
 
     //temp method to load in JSON. Need to figure out how to modify data loaded in.
     fetch('static/JSON/scene.json')
@@ -512,4 +511,19 @@ function saveStringAsFile(filename, data) {
         document.body.removeChild(newLink);
     }
     
+}
+
+function getImagePath(url){
+
+    var imageExists = false;
+    imagePath = url;
+
+    while(imageExists){
+        if(url.exists()){
+            imageExists = true;
+        }
+    }
+
+    return url;
+
 }

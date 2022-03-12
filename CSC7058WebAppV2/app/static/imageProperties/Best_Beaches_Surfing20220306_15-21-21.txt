@@ -3,10 +3,10 @@
     {
       "time": "Day",
       "setting": "Beach",
-      "lighting": "Dark",
-      "atmosphere": "",
-      "mainProp": "Altar",
-      "propLoc": "",
+      "lighting": "Bright",
+      "atmosphere": "Happy",
+      "mainProp": "Car",
+      "propLoc": "leftUpper",
       "camera": "",
       "numberChars": 1
     }
@@ -16,9 +16,9 @@
       "gender1": "Male",
       "charLoc1": "charUL",
       "hair1": "Short",
-      "pose1": "Standing",
+      "pose1": "Sitting",
       "top1": "Tshirt",
-      "bottoms1": "Trousers",
+      "bottoms1": "Skirt",
       "prop1": "",
       "gender2": "",
       "charLoc2": "",

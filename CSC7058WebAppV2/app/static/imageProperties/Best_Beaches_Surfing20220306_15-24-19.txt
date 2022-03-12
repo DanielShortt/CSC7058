@@ -4,10 +4,10 @@
       "time": "Day",
       "setting": "Beach",
       "lighting": "Dark",
-      "atmosphere": "",
-      "mainProp": "Altar",
+      "atmosphere": "Sad",
+      "mainProp": "Desk",
       "propLoc": "",
-      "camera": "",
+      "camera": "IsoClose",
       "numberChars": 1
     }
   ],
@@ -17,7 +17,7 @@
       "charLoc1": "charUL",
       "hair1": "Short",
       "pose1": "Standing",
-      "top1": "Tshirt",
+      "top1": "",
       "bottoms1": "Trousers",
       "prop1": "",
       "gender2": "",

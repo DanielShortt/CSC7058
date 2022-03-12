@@ -2,10 +2,10 @@
   "Environment": [
     {
       "time": "Day",
-      "setting": "Beach",
-      "lighting": "Dark",
+      "setting": "Tomb",
+      "lighting": "",
       "atmosphere": "",
-      "mainProp": "Altar",
+      "mainProp": "",
       "propLoc": "",
       "camera": "",
       "numberChars": 1
@@ -13,12 +13,12 @@
   ],
   "CharacterInfo": [
     {
-      "gender1": "Male",
-      "charLoc1": "charUL",
-      "hair1": "Short",
-      "pose1": "Standing",
-      "top1": "Tshirt",
-      "bottoms1": "Trousers",
+      "gender1": "",
+      "charLoc1": "",
+      "hair1": "",
+      "pose1": "",
+      "top1": "",
+      "bottoms1": "",
       "prop1": "",
       "gender2": "",
       "charLoc2": "",

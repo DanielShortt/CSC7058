@@ -108,7 +108,7 @@
 
                            <!-- <img
                                 src="https://s3-us-west-2.amazonaws.com/prd-rteditorial/wp-content/uploads/2019/10/30183441/conju2.jpg" />-->
-                                <img src="{{imgAddress}}"/>"
+                                <img src="{{imgAddress}}"/>
 
                         </div>
 
@@ -393,7 +393,7 @@
 
                 <div class="row row2 justify-content-center">
 
-                    <div class="col-1 dayIcon " id="SurfBoard"
+                    <div class="col-1 dayIcon " id="Surf's Up SurfBoard"
                         onclick="addShadow(this.id); divHide('SurfBoard', 'caraProp'); addElement(this.id, 'prop')">
                         <div class="row text-center">
                             
@@ -681,6 +681,19 @@
                                             <img class="center" src="/static/GenderSymbol.png" width="100" height="100">
                                         </div>
                                     </div>
+
+
+
+
+                                    <!-- ************************** IN WORK **********************************-->
+                                    <div class="row d-flex aLabel justify-content-center" onclick="showCharDiv('charLoc', 1)">
+                                        <div class="labeltitle d-flex  justify-content-center">
+                                            <img class="center" src="/static/charLoc.png" width="100" height="100">
+                                        </div>
+                                    </div>
+
+                                    
+
                                     <div class="row aLabel" onclick="showCharDiv('hair', 1)"> <!-- ENTER DIV NAME OF HAIR DIV -->
                                         <div class="labeltitle">
                                             <img class="center" src="/static/HairSymbol.png" width="100" height="100">
@@ -752,6 +765,107 @@
                                         </div>
                         
                                     </div>
+
+                                    <!-- **************************CHAR LOC IN WORK*******************************-->
+
+
+                                    <!--  THE GENDERS -->
+                                    <div class="container genderCaraSection" id="charLoc" style="display:none">
+                                        
+                                        <div class="row d-flex justify-content-center">
+                    
+                                            <div class="row text-center d-flex justify-content-center ">
+                                                <h6>Character Location</h6>
+                                            </div>
+
+                                            <div class="row d-flex justify-content-center ">
+
+                                                <div class="col-1 charIcon" id="charUL" onclick="testPrint1(this.id, 'charLoc')">
+                                                    <div class="row text-center">
+                                                        <img src="/static/LeftUpper.jpg" >
+                                                    </div>
+                                                    <div class="row text-center">
+                                                        <h5>Back Left</h5>
+                                                    </div>
+                                                </div>
+
+                                                
+
+                                                <div class="col-1 charIcon" id="charUC" onclick="testPrint1(this.id, 'charLoc')">
+                                                    <div class="row text-center">
+                                                        <img src="/static/CenterUpper.jpg" >
+                                                    </div>
+                                                    <div class="row text-center">
+                                                        <h5>Back Centre</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-1 charIcon" id="charUR" onclick="testPrint1(this.id, 'charLoc')">
+                                                    <div class="row text-center">
+                                                        <img src="/static/RightUpper.jpg">
+                                                    </div>
+
+                                                    <div class="row text-center">
+                                                        <h5>Back Right</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-1 charIcon" id="charLL" onclick="testPrint1(this.id, 'charLoc')">
+                                                    <div class="row text-center">
+                                                        <img src="/static/LeftLower.jpg" >
+                                                    </div>
+
+                                                    <div class="row text-center">
+                                                        <h5>Front Left</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-1 charIcon" id="charLC" onclick="testPrint1(this.id, 'charLoc')">
+                                                    <div class="row text-center">
+                                                        <img src="/static/CenterLower.jpg" >
+                                                    </div>
+
+                                                    <div class="row text-center">
+                                                        <h5>Front Centre</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-1 charIcon" id="charLR" onclick="testPrint1(this.id, 'charLoc')">
+                                                    <div class="row text-center">
+                                                        <img src="/static/RightLower.jpg" >
+                                                    </div>
+                                                    <div class="row text-center">
+                                                        <h5>Back Right</h5>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                        </div>
+                        
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                     <!--CHARACTER HAIR OPTIONS 2 IN HERE-->
                                     <div class="container hairCaraSection" id="hair" style="display:none">

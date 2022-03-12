@@ -160,7 +160,8 @@ html,body{
     border-radius: 5px;
     border-style:solid;
     border-color:black;
-    background-color: rgb(253, 253, 188);
+    /*background-color: rgb(253, 253, 188);*/
+    background-color: white;
     width:25%;
 }
 
@@ -231,4 +232,10 @@ html,body{
 
     
 
+ }
+
+ .renderedImage{
+    margin: 0 auto;
+    overflow-y: scroll;
+    /*height:10%;*/
  }

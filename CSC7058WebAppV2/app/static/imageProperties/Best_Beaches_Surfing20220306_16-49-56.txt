@@ -4,17 +4,17 @@
       "time": "Day",
       "setting": "Beach",
       "lighting": "Dark",
-      "atmosphere": "",
-      "mainProp": "Altar",
-      "propLoc": "",
-      "camera": "",
+      "atmosphere": "Fear",
+      "mainProp": "Car",
+      "propLoc": "centreUpper",
+      "camera": "Front",
       "numberChars": 1
     }
   ],
   "CharacterInfo": [
     {
       "gender1": "Male",
-      "charLoc1": "charUL",
+      "charLoc1": "charUR",
       "hair1": "Short",
       "pose1": "Standing",
       "top1": "Tshirt",

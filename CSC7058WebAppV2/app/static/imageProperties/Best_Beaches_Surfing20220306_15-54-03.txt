@@ -3,12 +3,12 @@
     {
       "time": "Day",
       "setting": "Beach",
-      "lighting": "Dark",
-      "atmosphere": "",
+      "lighting": "Dim",
+      "atmosphere": "Sad",
       "mainProp": "Altar",
-      "propLoc": "",
-      "camera": "",
-      "numberChars": 1
+      "propLoc": "rightUpper",
+      "camera": "TopRightCam",
+      "numberChars": 2
     }
   ],
   "CharacterInfo": [
@@ -20,12 +20,12 @@
       "top1": "Tshirt",
       "bottoms1": "Trousers",
       "prop1": "",
-      "gender2": "",
-      "charLoc2": "",
-      "hair2": "",
-      "pose2": "",
-      "top2": "",
-      "bottoms2": "",
+      "gender2": "Female",
+      "charLoc2": "charUR",
+      "hair2": "Long",
+      "pose2": "Sitting",
+      "top2": "Blouse",
+      "bottoms2": "Skirt",
       "prop2": "",
       "gender3": "",
       "charLoc3": "",

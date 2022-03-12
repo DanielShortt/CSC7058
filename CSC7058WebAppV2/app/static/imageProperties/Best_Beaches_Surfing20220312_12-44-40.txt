@@ -3,11 +3,11 @@
     {
       "time": "Day",
       "setting": "Beach",
-      "lighting": "Dark",
-      "atmosphere": "",
-      "mainProp": "Altar",
-      "propLoc": "",
-      "camera": "",
+      "lighting": "Bright",
+      "atmosphere": "Happy",
+      "mainProp": "Surf's Up SurfBoard",
+      "propLoc": "leftUpper",
+      "camera": "Front",
       "numberChars": 1
     }
   ],

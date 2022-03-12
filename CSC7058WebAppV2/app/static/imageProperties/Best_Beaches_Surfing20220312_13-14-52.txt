@@ -3,22 +3,22 @@
     {
       "time": "Day",
       "setting": "Beach",
-      "lighting": "Dark",
-      "atmosphere": "",
-      "mainProp": "Altar",
+      "lighting": "Bright",
+      "atmosphere": "Happy",
+      "mainProp": "Surf's Up SurfBoard",
       "propLoc": "",
-      "camera": "",
+      "camera": "Front",
       "numberChars": 1
     }
   ],
   "CharacterInfo": [
     {
-      "gender1": "Male",
+      "gender1": "Female",
       "charLoc1": "charUL",
-      "hair1": "Short",
+      "hair1": "Long",
       "pose1": "Standing",
-      "top1": "Tshirt",
-      "bottoms1": "Trousers",
+      "top1": "Blouse",
+      "bottoms1": "Skirt",
       "prop1": "",
       "gender2": "",
       "charLoc2": "",
