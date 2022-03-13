@@ -237,5 +237,5 @@ html,body{
  .renderedImage{
     margin: 0 auto;
     overflow-y: scroll;
-    /*height:10%;*/
+    height:90%;
  }

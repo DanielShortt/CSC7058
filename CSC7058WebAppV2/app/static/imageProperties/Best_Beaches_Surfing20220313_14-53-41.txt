@@ -1,7 +1,7 @@
 {
   "Environment": [
     {
-      "time": "",
+      "time": "Day",
       "setting": "Beach",
       "lighting": "",
       "atmosphere": "",
@@ -13,12 +13,12 @@
   ],
   "CharacterInfo": [
     {
-      "gender1": "",
+      "gender1": "Male",
       "charLoc1": "",
-      "hair1": "",
-      "pose1": "",
-      "top1": "",
-      "bottoms1": "",
+      "hair1": "Short",
+      "pose1": "Standing",
+      "top1": "Tshirt",
+      "bottoms1": "Shorts",
       "prop1": "",
       "gender2": "",
       "charLoc2": "",

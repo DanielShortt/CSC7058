@@ -1,4 +1,4 @@
-import os
+import os, time
 import subprocess
 import ntpath
 from datetime import datetime
@@ -42,6 +42,7 @@ def renderimage(image):
     timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
     #current_date_time = datetime.now()
     outputFileName = imageName+str(timestamp)
+    outputRenderName = outputFileName
     outputFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/imageProperties/"+outputFileName+".txt"
 
 
@@ -61,33 +62,58 @@ def renderimage(image):
         # renderedImage = "/static/renderedImage/renderTest.jpg"
         # return render_template("render.html", content=renderedImage, imageTitle = imageName )
 
-    #imageFileName = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + outputFileName + ".jpg"
+    imageFileName = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + outputRenderName + ".jpg"
+    #imageFileName = "/static/RenderLibrary/"+ outputRenderName + ".jpg"
     #imageFileName = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/found.jpg"
-    imageFileName = "/static/Images/Best_Beaches_Surfing.jpg"
+    #fullImageFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/RenderLibrary/found.jpg"
+    #imageFileName = "/static/Images/Best_Beaches_Surfing.jpg"
     #imageFileName = "/static/RenderLibrary/found.jpg"
+
     imageFound = False
     renderCount = 0
 
-    #while not (imageFound):
+    while not (imageFound):
 
         #flash(f"Rendering Image. Please wait. {renderCount}")
 
-        # if os.path.exists(imageFileName):
-        #     renderedImage = imageFileName
-        #     imageFound = True
-    #     return render_template("render.html", content=renderedImage, imageTitle = imageName )  
+        if os.path.exists(imageFileName):
+            renderedImage = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/RenderLibrary/" + outputRenderName + ".jpg"
+            os.rename(imageFileName, renderedImage)
+            renderedImageMoved = "/static/RenderLibrary/" + outputRenderName + ".jpg"
+            #renderedImage = imageFileName
+            imageFound = True
+            return render_template("render.html", content=renderedImageMoved, imageTitle = imageName )  
         # else:
         #     renderedImage = "/static/" + "loading.png"
         #     return render_template("render.html", content=renderedImage, imageTitle = "Loading Image." )
 
 
-    if os.path.exists(imageFileName):
-        renderedImage = imageFileName
-        imageFound = True
-        return render_template("render.html", content=renderedImage, imageTitle = imageName )  
+        
+
+
+        time.sleep(2.4)
+
+        ############ WORKING #### COMMENTED OUT ####### FOR TESTING ###############
+    # if os.path.exists(imageFileName):
+    #     renderedImage = imageFileName
+    #     imageFound = True
+    #     return render_template("render.html", content=renderedImage, imageTitle = imageName )  
 
     renderCount = renderCount +1
+
+    #imageCheck(fullImageFileName)
     
+
+def imageCheck(imagePath):
+
+    imageName = ntpath.basename(imagePath)
+
+    imageName = "/static/RenderLibrary/" + imageName
+
+    return render_template("render.html", content=imageName, imageTitle = imageName )
+
+
+
     
         
 

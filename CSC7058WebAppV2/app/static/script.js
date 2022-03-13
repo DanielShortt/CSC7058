@@ -513,17 +513,44 @@ function saveStringAsFile(filename, data) {
     
 }
 
-function getImagePath(url){
+// function getImagePath(path){
 
-    var imageExists = false;
-    imagePath = url;
+//     console.log("into the function.")
 
-    while(imageExists){
-        if(url.exists()){
-            imageExists = true;
-        }
-    }
+//     //fileNotFound = true
+//     myInterval = false
+//     image = path
 
-    return url;
+//     window.alert("Loading Image." = image);
 
-}
+    
+
+//     if(myInterval){
+//         clearInterval(myInterval)
+//     }
+   
+    
+        
+// }
+
+
+// myInterval = setInterval(imageFound(path), 10000);
+
+// function imageFound(path){
+
+//         var imageRender = new File(path);
+
+//         if(imageRender.exists()){
+//             //window.alert("Reloading page.");
+//             fileNotFound = false;
+//             clearInterval(myInterval)
+//             return true;
+//           } else {
+//               return false;
+//           }
+
+//         //IF NOT SHOW LOADING DIV AND
+
+//     }
+
+
