@@ -229,13 +229,37 @@ html,body{
     border-color:rgb(135, 197, 255);
     background-color: rgb(198, 212, 252);
     border-style:solid;
+ }
+    .mainImage  {
+        align-items: center;
+    }
 
-    
 
+ 
+ .homePageWelcome{
+    margin-top:75px;
+    margin-left: 7%;
+ }
+ 
+ .mainHomeTitle{
+     font-family: Arial, Helvetica, sans-serif;
  }
 
  .renderedImage{
     margin: 0 auto;
     overflow-y: scroll;
     height:90%;
+ }
+
+.imageSelection{
+    height:90%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+ .selectImage{
+    margin:30px;
+    padding: 5px;
+    background-color: white;
+    width:25%;
  }

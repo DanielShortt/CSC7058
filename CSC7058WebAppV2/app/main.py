@@ -10,15 +10,37 @@ app = Flask(__name__, template_folder='../flaskr/templates')
 app.secret_key = "hello"
 app.permanent_session_lifetime = timedelta(minutes=5)
 
+
+#THE HOME PAGE
 @app.route("/")
 def home():
-    imageSelected = "/static/Images/Best_Beaches_Surfing.jpg"
+    image1 = "/static/Images/Best_Beaches_Surfing.jpg"
+    imageName1 = ntpath.basename(image1)
+    image2 = "/static/Images/conjuring.jpg"
+    imageName2 = ntpath.basename(image2)
+    image3 = "/static/Images/fast-furious.jpg"
+    imageName3 = ntpath.basename(image3)
+    image4 = "/static/Images/Sherlock-Holmes.jpg"
+    imageName4 = ntpath.basename(image4)
 
-    imageSelectedName = ntpath.basename(imageSelected)
-    imageSelectedName = os.path.splitext(imageSelectedName)[0]
+    return render_template("index.html", imgAddress1 = image1, imgName1 = imageName1,
+     imgAddress2 =image2, imgName2 = imageName2,
+     imgAddress3 =image3, imgName3 = imageName3,
+     imgAddress4 =image4, imgName4 = imageName4 )
 
-    return render_template("index.html", imgAddress = imageSelected, imgName = imageSelectedName)
 
+#THE LABEL TOOL
+@app.route("/label<image>")
+def label(image):
+    imageSelectedName = image
+
+    imageSelected = "/static/Images/" + image
+
+
+    return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName)
+
+
+#THE LOGIN PAGE.  NOT REQUIRED AT THIS STAGE.
 @app.route("/login", methods=["POST","GET"])
 def login():
     if request.method == "POST":
@@ -33,6 +55,7 @@ def login():
             return redirect(url_for("user"))
         return render_template("login.html")
 
+#THE RENDER PAGE. FOR EXAMPLE ONLY.
 @app.route("/render<image>")
 def renderimage(image):
 
@@ -101,23 +124,8 @@ def renderimage(image):
 
     renderCount = renderCount +1
 
-    #imageCheck(fullImageFileName)
-    
 
-def imageCheck(imagePath):
-
-    imageName = ntpath.basename(imagePath)
-
-    imageName = "/static/RenderLibrary/" + imageName
-
-    return render_template("render.html", content=imageName, imageTitle = imageName )
-
-
-
-    
-        
-
-
+#THE MAIN FUNCTIONs
 if __name__ == "__main__":
     app.run(debug=True)
 
