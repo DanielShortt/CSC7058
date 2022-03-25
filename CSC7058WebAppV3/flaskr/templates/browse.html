@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row browseNav">
+
+        <div class="col right">
+
+            <table class="table table-sm browseTable">
+                <tr class="tableRow">
+                    <td text-align="left" valign="middle" width="200px">
+                        <div class="input-group input-group-sm rounded justify-content-center">
+                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <span class="input-group-text border-0" id="search-addon">
+                                <i class="bi bi-search"></i>
+                            </span>
+                        </div>
+                    </td>
+
+                    <td text-align="text-start" valign="middle">
+                        <div class="col tableItem">
+                            Showing results of search criteria : {{searchTerm}}
+                        </div>
+                    </td>
+
+                    <td class="text-end" valign="middle">
+                        <a href="#"><i onclick="gridview(3)" class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem; color: gray;"></i></a>
+                        <i class="bi bi-grid-fill" style="font-size: 1.5rem; color: gray;"></i>
+                        <i class="bi bi-square-fill" style="font-size: 1.5rem; color: gray;"></i>
+                        <i class="bi bi-arrows-fullscreen" style="font-size: 1.5rem; color: gray;"></i>
+                        <i class="bi bi-list" style="font-size: 1.5rem; color: gray;"></i>
+
+                    </td>
+
+                    <td class="text-end" valign="middle">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" 
+                            id="dropdownMenuButton" data-bs-toggle="dropdown" style="vertical-align: middle">
+                              Sort by:
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Most Recent</a>
+                              <a class="dropdown-item" href="#">Most Relevant</a>
+                              <a class="dropdown-item" href="#">Most labels</a>
+                            </div>
+                          </div>
+            
+                    </div>
+    
+                        
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td text-align="text-start" valign="middle">
+
+                        <div class="filterTitle">
+                            Filters
+                        </div>
+                        <div class="filterLink">
+                            <a class="text-end tableItemClear" href="#">Clear</a>
+                        </div>
+
+                    </td>
+
+                    <td text-align="left" valign="middle">
+                        <div class="col browseTag">
+                            <h6>beach <a class="browseTagClose"><i class="bi bi-x"></i></a></h6>
+                            
+                        </div>
+                        <!-- <div class="col browseTag">
+                            <h6>Car<a class="browseTagClose"><i class="bi bi-x"></i></a></h6>
+                        </div> -->
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+    <div class = "row browseSelections">
+
+        <div class="text-start col-1">
+            <ul class="browseuls" style="list-style-type:none;">
+                <li class=" float-left browseFilterList">Time</li>
+                <li class="browseFilterList">Setting</li>
+                <li class="browseFilterList">lighting</li>
+                <li class="browseFilterList">Atmosphere</li>
+                <li class="browseFilterList">Main Prop</li>
+                <li class="browseFilterList">Camera</li>
+                <li class="browseFilterList">Number of People</li>
+                <li class="browseFilterList">Gender</li>
+            </ul>
+
+        </div>
+
+        <div class="col justify-content-center browseResults">
+
+
+            <div class="row imgRow justify-content-center">
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_15-53-25.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_16-13-36.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_16-26-09.jpg" ></a>
+            </div>
+
+            <div class="row imgRow justify-content-center">
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_16-39-55.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_16-53-27.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_17-11-45.jpg" ></a>
+            </div>
+
+            <div class="row imgRow justify-content-center">
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing.jpg20220319_18-14-11.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220306_16-49-56.jpg" ></a>
+                <a class="img" href="label{{'Best_Beaches_Surfing20220311_13-01-39.jpg'}}"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220311_13-01-39.jpg" ></a>
+            </div>
+
+            <div class="row imgRow justify-content-center">
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220311_13-47-24.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220312_12-44-40.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220313_13-00-25.jpg" ></a>
+            </div>
+
+            <div class="row imgRow justify-content-center">
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220313_13-45-13.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220313_14-51-34.jpg" ></a>
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220313_14-53-41.jpg" ></a>
+            </div>
+
+            <div class="row imgRow justify-content-center">
+                <a class="img" href="#"><img class="img" src="/static/SearchResults/Best_Beaches_Surfing20220313_14-57-54.jpg" ></a>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

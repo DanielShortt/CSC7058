@@ -7,9 +7,6 @@ import argparse
 import re
 import winreg
 
-
-
-
 #arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('sciSceneSpec', help='Location of Scientific ')
@@ -33,7 +30,7 @@ enviroAssets = {'Day':'Presets/Lights/Day.duf',
                 'Happy':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/atmosphere/ExpressionHappy.txt',
                 'Sad':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/atmosphere/ExpressionSad.txt',
                 'Desk':'Props/Z_Office_Collection/Desk/Desk.duf',
-                'Altar':'Props/NGartplay/Staging Chamber 3DL/SC Altar.duf',
+                'Altar':'Props/NGartplay/Staging Chamber 3DL/sc-altar.duf',
                 'Car':'Figures/Celica/Celica.duf',
                 "Surf's Up SurfBoard":"People/Genesis 2 Male/Clothing/Surf's Up Outfit and Board/Surf's Up SurfBoard.duf",
                 'leftUpper':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObjectUpperLeft.txt',

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+<div class="container-fluid homePageMain">
+
+    <div class="row homePageIntro">
+
+        <div class="col">
+
+            <div class="row mainHomeTitle text-center">
+                <h1 class="mainHomeTitle">Create your story board image here</h1>
+            </div>
+
+            <div class="row mainHomeWelcomeMessage text-center">
+                <h6>Select from the images below to start creating your story board image.</h6>
+            </div>
+
+            <div class="row searchBar text-center">
+
+                <div class="col-6 col-md-4"></div>
+
+                <div class="col-6 col-md-4">
+
+                    <div class="searchGroup rounded justify-content-center">
+                        <form method="POST">
+                            <div>
+                                <input type="text" class="form-control rounded" placeholder="Search... " aria-label="Search"
+                                    aria-describedby="search-addon" name="searchBarHome"/>
+                               <!-- <span class="input-group-text border-0" id="search-addon">
+                                    <i class="bi bi-search"></i>
+                                </span>-->
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+
+                <div class="col-6 col-md-4"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row content">
+        <div class = "col mainContent">
+
+
+            <div class="row trendingTitle text-center">
+                <h6>Trending images</h6>
+            </div>
+        
+        
+            <div class="row">
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName1}}"> <img src="{{imgAddress1}}" width="75%"> </a>
+                </div>
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName2}}"><img src="{{imgAddress2}}" width="75%"></a>
+                </div>
+            </div>
+        
+            <div class="row">
+        
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName3}}"><img src="{{imgAddress3}}" width="75%"></a>
+                </div>
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName4}}"><img src="{{imgAddress4}}" width="75%"></a>
+                </div>
+        
+            </div>
+        
+        
+        
+        
+            <div class="row ">
+                <div class="col text-center selectImage">
+                    <h6>Upload your own image...</h6>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Select image file..</label>
+                            <input type="file" class="form-control-file" id="UploadImage">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    
+
+
+</div>
+
+
+
+
+{% endblock %}

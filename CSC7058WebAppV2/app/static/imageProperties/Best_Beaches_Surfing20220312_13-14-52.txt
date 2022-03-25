@@ -1,0 +1,46 @@
+{
+  "Environment": [
+    {
+      "time": "Day",
+      "setting": "Beach",
+      "lighting": "Bright",
+      "atmosphere": "Happy",
+      "mainProp": "Surf's Up SurfBoard",
+      "propLoc": "",
+      "camera": "Front",
+      "numberChars": 1
+    }
+  ],
+  "CharacterInfo": [
+    {
+      "gender1": "Female",
+      "charLoc1": "charUL",
+      "hair1": "Long",
+      "pose1": "Standing",
+      "top1": "Blouse",
+      "bottoms1": "Skirt",
+      "prop1": "",
+      "gender2": "",
+      "charLoc2": "",
+      "hair2": "",
+      "pose2": "",
+      "top2": "",
+      "bottoms2": "",
+      "prop2": "",
+      "gender3": "",
+      "charLoc3": "",
+      "hair3": "",
+      "pose3": "",
+      "top3": "",
+      "bottoms3": "",
+      "prop3": "",
+      "gender4": "",
+      "charLoc4": "",
+      "hair4": "",
+      "pose4": "",
+      "top4": "",
+      "bottoms4": "",
+      "prop4": ""
+    }
+  ]
+}
