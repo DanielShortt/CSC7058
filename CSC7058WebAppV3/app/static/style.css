@@ -118,7 +118,16 @@ html,body{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.numCharBarTitle{
+    margin-top: 20px;
+    border-top: solid 1px;
+}
 
+.labelHeader{
+    margin-top: 20px;
+    margin-bottom: 10px;
+   
+}
 .settingCaraSection{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -392,11 +401,13 @@ display:inline-block;
 
 .guideModalText{
     margin-left: 25px;
+    margin-top: 10px;
 }
 
 .downloadRender{
     justify-content: center;
     display: inline-block;
+    margin-top: 20px;
 }
 .downloadButton{
 display: inline-block;

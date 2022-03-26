@@ -78,7 +78,7 @@
                 <!-- LABELLED OBJECTS -->
                 <div class="row justify-content-center bg-blue  objects" id="objects">
                     <div class="row justify-content-center objectstitle" id="insertObjects">
-                        <h6>Objects</h6>
+                        <h6>Scene</h6>
                     </div>
                     <div class="row anObject" onclick="showDiv('caraNumChars', 1)">
                         <div class="objectTitle">
@@ -192,11 +192,14 @@
         <!--************************************************-->
         <!--************************************************-->
         <!--************************************************-->
-        <div class="col-10 justify-content-center allowScroll">
+        <div class="col-10 justify-content-center text-center allowScroll">
+            <div class="labelHeader">
+                <h5>The closest image(s) to the selected properties is displayed below.</h5>
+            </div>
 
             <div class="col justify-content-center" id="mainImage1" style="display:block">
                 <div class="row justify-content-center">
-                    <div class="col mainImage text-centre justify-content-center ">
+                    <div class="col mainImage text-center justify-content-center ">
                         <img src="{{imgAddress}}" height="500px" />
                     </div>
                 </div>
@@ -205,7 +208,7 @@
             <div class="col justify-content-center" id="mainImage2" style="display:none">
 
                 <div class="row justify-content-center">
-                    <div class="col mainImage text-centre justify-content-center ">
+                    <div class="col mainImage text-center justify-content-center ">
                         <img class="img" src="{{imgAddress}}" height="150px" />
                         <img class="img" src="{{imgAddress}}" height="150px" />
                         <img class="img" src="{{imgAddress}}" height="150px" />
@@ -213,7 +216,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col mainImage text-centre justify-content-center ">
+                    <div class="col mainImage text-center justify-content-center ">
                         <img class="img" src="{{imgAddress}}" height="150px" />
                         <img class="img" src="{{imgAddress}}" height="150px" />
                         <img class="img" src="{{imgAddress}}" height="150px" />
@@ -226,7 +229,7 @@
             <div class="col justify-content-center" id="mainImage3" style="display:none">
 
                 <div class="row justify-content-center">
-                    <div class="col mainImage text-centre justify-content-center ">
+                    <div class="col mainImage text-center justify-content-center ">
                         <img class="img" src="{{imgAddress}}" height="350px" />
                         <img class="img" src="{{imgAddress}}" height="350px" />
                     </div>
@@ -1229,7 +1232,7 @@
                 </p>
                 <p>
                     A number of images will be displayed when there is no exact match. These will be the closest match to the properties you have selected.
-                    This image can be rendered by selecting Render.
+                    An image matching the selected properties can be rendered by selecting Render.
                 </p>
                 <p>
                     The properties seen on the left can be modified to create your image.

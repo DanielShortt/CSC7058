@@ -18,7 +18,7 @@ def home():
     imageName1 = ntpath.basename(image1)
     image2 = "/static/Images/conjuring.jpg"
     imageName2 = ntpath.basename(image2)
-    image3 = "/static/Images/fast-furious.jpg"
+    image3 = "/static/Images/Fast-Furious-Render.jpg"
     imageName3 = ntpath.basename(image3)
     image4 = "/static/Images/Sherlock-Holmes.jpg"
     imageName4 = ntpath.basename(image4)
