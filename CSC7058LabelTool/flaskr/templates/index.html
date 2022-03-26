@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+<!-- Main page-->
+<div class="container-fluid homePageMain">
+
+    <div class="row homePageIntro">
+
+        <div class="col">
+            <!-- page header -->
+            <div class="row mainHomeTitle text-center">
+                <h1 class="mainHomeTitle">Welcome, Start labelling images here!</h1>
+            </div>
+
+            <div class="row mainHomeWelcomeMessage text-center">
+
+                
+                    {% if not session['user'] %}
+                        
+                        <h6>Please log in</h6>
+                        
+                    {% else %}
+
+                        <h6>Hello : {{session["user"]}}</h6>
+
+                    {% endif %}
+                
+
+
+
+                
+            </div>
+
+            <!--Bootstrap Search Bar-->
+            <div class="row searchBar text-center">
+
+                {% if not session['user'] %}
+
+                    <!--Divider div-->
+                    <div class="col-6 col-md-4"></div>
+
+                    <div class="col downloadRender">
+
+                        <div class="downloadButton">
+
+                            <button onclick=" showDiv('labelLoginModal', 1)" type="button" class="btn btn-primary">Login</button>
+
+                        </div>
+
+                    </div>
+
+                    <!--Divider Div-->
+                    <div class="col-6 col-md-4"></div>
+
+                {% else %}
+
+                    <div class="col-6 col-md-4"></div>
+
+                    <div class="col downloadRender">
+
+                        <div class="labelBrowseButton">
+
+                            <h4>Select browse to start labelling</h4>
+
+                            <a class="btn btn-primary" href="/browse" role="button">Browse</a>
+
+                        </div>
+
+                    </div>
+
+                    <!--Divider Div-->
+                    <div class="col-6 col-md-4"></div>
+
+
+
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row content">
+        <div class="col mainContent">
+
+
+            <div class="row trendingTitle text-center">
+                <h6>Trending images</h6>
+            </div>
+
+
+            <div class="row">
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName1}}"> <img src="{{imgAddress1}}" width="75%"> </a>
+                </div>
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName2}}"><img src="{{imgAddress2}}" width="75%"></a>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName3}}"><img src="{{imgAddress3}}" width="75%"></a>
+                </div>
+                <div class="col selectImage text-center">
+                    <a class="nav-link" href="label{{imgName4}}"><img src="{{imgAddress4}}" width="75%"></a>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row ">
+                <div class="col text-center selectImage">
+                    <h6>Upload your own image...</h6>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Select image file..</label>
+                            <input type="file" class="form-control-file" id="UploadImage">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+<div class="modal" tabindex="-1" id="labelLoginModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+            </div>
+
+            <div class="labelLoginModal">
+
+                <form method="POST">
+
+                    <div>
+                        <input type="text" class="form-control rounded" placeholder="Username" aria-label="Search"
+                            aria-describedby="search-addon" name="labelLogin" />
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                </form>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
