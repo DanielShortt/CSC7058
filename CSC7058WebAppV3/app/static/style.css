@@ -385,3 +385,24 @@ display:inline-block;
 .browseTagClose{
     display: inline-block;
 }
+
+.browseTitleMessage{
+    margin-top: 25px;
+}
+
+.guideModalText{
+    margin-left: 25px;
+}
+
+.downloadRender{
+    justify-content: center;
+    display: inline-block;
+}
+.downloadButton{
+display: inline-block;
+    
+}
+
+.renderButton{
+    display: inline-block;
+}

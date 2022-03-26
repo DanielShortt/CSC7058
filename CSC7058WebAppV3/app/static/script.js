@@ -10,10 +10,10 @@ var clickCount = 0;
 const environmentArrayTitles = ["time", "setting", "lighting", "atmosphere", "mainProp", "propLoc", "camera", "numberChars"];
 const characterArrayTitles = ['gender', 'charLoc','hair', 'pose', 'top', 'bottoms', 'prop'];
                             
-const environmentArray = { 'time': 'Night', 'setting': 'Beach', 'lighting': '', 'atmosphere': 'Sad', 'mainProp': "Surf's Up SurfBoard", 'propLoc': 'leftUpper', 'camera': '', 'numberChars': '1' };
+const environmentArray = { 'time': 'Night', 'setting': 'Beach', 'lighting': '', 'atmosphere': 'Sad', 'mainProp': "Surf's Up SurfBoard", 'propLoc': 'leftUpper', 'camera': '', 'numberChars': 1 };
 
 const characterArray = {
-    'gender1': 'Male', 'charLoc1': 'charUL','hair1': 'Short', 'pose1': 'sitting', 'top1': 'Tshirt', 'bottoms1': 'Shorts', 'prop1': '',
+    'gender1': 'Male', 'charLoc1': 'charUL','hair1': 'Short', 'pose1': 'Sitting', 'top1': 'Tshirt', 'bottoms1': 'Shorts', 'prop1': '',
     'gender2': '', 'charLoc2': '','hair2': '', 'pose2': '', 'top2': '', 'bottoms2': '', 'prop2': '',
     'gender3': '', 'charLoc3': '','hair3': '', 'pose3': '', 'top3': '', 'bottoms3': '', 'prop3': '',
     'gender4': '', 'charLoc4': '','hair4': '', 'pose4': '', 'top4': '', 'bottoms4': '', 'prop4': ''
@@ -515,4 +515,29 @@ function saveStringAsFile(filename, data) {
     }
     
 }
+
+function codeAddress() {
+    var myModal = new bootstrap.Modal(document.getElementById('tipModal'), {})
+    myModal.toggle()   
+}
+window.onload = codeAddress;
+
+async function downloadImage(){
+    
+    imageSrc = "/static/RenderLibrary/Best_Beaches_Surfing20220313_14-57-54.jpg";
+    console.log(imageSrc)
+    const image = await fetch(imageSrc)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+  
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = 'Best_Beaches_Surfing20220313_14-57-54.jpg'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+}
+
+
 

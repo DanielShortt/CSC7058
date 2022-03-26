@@ -65,12 +65,15 @@ def login():
 @app.route("/render<image>")
 def renderimage(image):
 
+    time.sleep(10)
+
     propertyFile = "C:/Users/danie/Downloads/ImageProperties.txt"
     imageName = image
     now = datetime.now()
     timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
     #current_date_time = datetime.now()
-    outputFileName = imageName+str(timestamp)
+    #outputFileName = imageName+str(timestamp)
+    outputFileName = str(timestamp)
     outputRenderName = outputFileName
     outputFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV3/app/static/imageProperties/"+outputFileName+".txt"
 

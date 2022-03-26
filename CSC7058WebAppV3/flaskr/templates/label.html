@@ -80,44 +80,44 @@
                     <div class="row justify-content-center objectstitle" id="insertObjects">
                         <h6>Objects</h6>
                     </div>
-                    <div class="row anObject"  onclick="showDiv('caraNumChars', 1)">
+                    <div class="row anObject" onclick="showDiv('caraNumChars', 1)">
                         <div class="objectTitle">
                             <label id="numberCharsId">1</label>
                             <label class="labelType">numberChars</label>
                         </div>
                     </div>
-                
-                    <div class="row anObject"  onclick="showDiv('caraPropLoc', 1)">
+
+                    <div class="row anObject" onclick="showDiv('caraPropLoc', 1)">
                         <div class="objectTitle">
                             <label id="propLocId">leftUpper</label>
                             <label class="labelType">propLoc</label>
                         </div>
                     </div>
-                    <div class="row anObject"  onclick="showDiv('caraProp', 1)">
+                    <div class="row anObject" onclick="showDiv('caraProp', 1)">
                         <div class="objectTitle">
                             <label id="propId">Surf's Up SurfBoard</label>
                             <label class="labelType">prop</label>
                         </div>
                     </div>
-                    <div class="row anObject"  onclick="showDiv('caraAtmosphere', 1)">
+                    <div class="row anObject" onclick="showDiv('caraAtmosphere', 1)">
                         <div class="objectTitle">
                             <label id="atmosphereId">Sad</label>
                             <label class="labelType">atmosphere</label>
                         </div>
                     </div>
-                    <div class="row anObject"  onclick="showDiv('caraSetting', 1)">
+                    <div class="row anObject" onclick="showDiv('caraSetting', 1)">
                         <div class="objectTitle">
                             <label id="settingId">Beach</label>
                             <label class="labelType">setting</label>
                         </div>
                     </div>
-                    <div class="row anObject"  onclick="showDiv('caraTime', 1)">
+                    <div class="row anObject" onclick="showDiv('caraTime', 1)">
                         <div class="objectTitle">
                             <label id="timeId">Night</label>
                             <label class="labelType">time</label>
                         </div>
                     </div>
-                
+
                 </div>
 
                 <div class="row justify-content-center bg-blue  charObjects" id="charObjects">
@@ -125,41 +125,54 @@
                         <h6>Characters</h6>
                         <!--BELOW IS EXAMPLE ONLY-->
                         <div class="row justify-content-center objectstitle" id="Char1"></div>
-                        
+
                     </div>
                     <div class="charLabels1" id="charLabels1">
-                        <label class="characterLabelHeader1" id="characterLabelHeader1" onclick="activeChar(this.id),showDiv('caraNumChars')">Character 1</label>
-                        <div class="row aCharacterObject1" id="aCharacterObject1" onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('gender')" style="display: block;">
+                        <label class="characterLabelHeader1" id="characterLabelHeader1"
+                            onclick="activeChar(this.id),showDiv('caraNumChars')">Character 1</label>
+                        <div class="row aCharacterObject1" id="aCharacterObject1"
+                            onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('gender')"
+                            style="display: block;">
                             <div class="charObjectTitle">
                                 <label id="gender1id">Male</label>
                                 <label class="labelType">gender</label>
                             </div>
                         </div>
-                        <div class="row aCharacterObject1" id="aCharacterObject1" onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('charLoc')" style="display: block;">
+                        <div class="row aCharacterObject1" id="aCharacterObject1"
+                            onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('charLoc')"
+                            style="display: block;">
                             <div class="charObjectTitle">
                                 <label id="charLoc1id">charUL</label>
                                 <label class="labelType">charLoc</label>
                             </div>
                         </div>
-                        <div class="row aCharacterObject1" id="aCharacterObject1" onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('hair')" style="display: block;">
+                        <div class="row aCharacterObject1" id="aCharacterObject1"
+                            onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('hair')"
+                            style="display: block;">
                             <div class="charObjectTitle">
                                 <label id="hair1id">Short</label>
                                 <label class="labelType">hair</label>
                             </div>
                         </div>
-                        <div class="row aCharacterObject1" id="aCharacterObject1" onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('pose')" style="display: block;">
+                        <div class="row aCharacterObject1" id="aCharacterObject1"
+                            onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('pose')"
+                            style="display: block;">
                             <div class="charObjectTitle">
                                 <label id="pose1id">Sitting</label>
                                 <label class="labelType">pose</label>
                             </div>
                         </div>
-                        <div class="row aCharacterObject1" id="aCharacterObject1" onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('top')" style="display: block;">
+                        <div class="row aCharacterObject1" id="aCharacterObject1"
+                            onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('top')"
+                            style="display: block;">
                             <div class="charObjectTitle">
                                 <label id="top1id">Tshirt</label>
                                 <label class="labelType">top</label>
                             </div>
                         </div>
-                        <div class="row aCharacterObject1" id="aCharacterObject1" onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('bottoms')" style="display: block;">
+                        <div class="row aCharacterObject1" id="aCharacterObject1"
+                            onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('bottoms')"
+                            style="display: block;">
                             <div class="charObjectTitle">
                                 <label id="bottoms1id">Shorts</label>
                                 <label class="labelType">bottoms</label>
@@ -193,17 +206,17 @@
 
                 <div class="row justify-content-center">
                     <div class="col mainImage text-centre justify-content-center ">
-                        <img class = "img" src="{{imgAddress}}" height="150px" />
-                        <img class = "img" src="{{imgAddress}}" height="150px" />
-                        <img class = "img" src="{{imgAddress}}" height="150px" />
+                        <img class="img" src="{{imgAddress}}" height="150px" />
+                        <img class="img" src="{{imgAddress}}" height="150px" />
+                        <img class="img" src="{{imgAddress}}" height="150px" />
                     </div>
                 </div>
 
                 <div class="row justify-content-center">
                     <div class="col mainImage text-centre justify-content-center ">
-                        <img class = "img" src="{{imgAddress}}" height="150px" />
-                        <img class = "img" src="{{imgAddress}}" height="150px" />
-                        <img class = "img" src="{{imgAddress}}" height="150px" />
+                        <img class="img" src="{{imgAddress}}" height="150px" />
+                        <img class="img" src="{{imgAddress}}" height="150px" />
+                        <img class="img" src="{{imgAddress}}" height="150px" />
                     </div>
                 </div>
 
@@ -214,8 +227,8 @@
 
                 <div class="row justify-content-center">
                     <div class="col mainImage text-centre justify-content-center ">
-                        <img class = "img" src="{{imgAddress}}" height="350px" />
-                        <img class = "img" src="{{imgAddress}}" height="350px" />
+                        <img class="img" src="{{imgAddress}}" height="350px" />
+                        <img class="img" src="{{imgAddress}}" height="350px" />
                     </div>
                 </div>
             </div>
@@ -1164,28 +1177,71 @@
 
                         </div>
 
-                        <div>
-                            <h6 onclick="loadJSON()">
-                                LOAD JSON
-                            </h6>
+                        
 
-                            <h6>
-                                <a class="nav-link" href="render{{imgName}}"
-                                    onclick="showDiv('loadingModal', 1)">render</a>
+                    </div>
 
-                            </h6>
+                    
+
+                </div>
+
+                
+
+            </div>
 
 
+                <div class="row text-center justify-content-center">
+                    <div class="col downloadRender">
+
+                        <div class="downloadButton">
+
+                            <button onclick="downloadImage()" type="button" class="btn btn-primary">Download Image</button>
+                            
                         </div>
 
+                        <div class="renderButton">
+
+                            <a class="renderLink nav-link" href="render{{imgName}}"> <button onclick="loadJSON(); showDiv('loadingModal', 1)" type="button" class="btn btn-primary">Render</button> </a>
+                            
+                        </div>
                     </div>
 
                 </div>
 
-            </div>
+
         </div>
     </div>
 
+</div>
+
+
+
+<div class="modal" tabindex="-1" id="tipModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Tips</h5> 
+            </div>
+            <div class="guideModalText">
+                <p>
+                    A single image is displayed when a rendered image matching the selected properties is found.
+                    This render can be downloaded by selecting Download.
+                </p>
+                <p>
+                    A number of images will be displayed when there is no exact match. These will be the closest match to the properties you have selected.
+                    This image can be rendered by selecting Render.
+                </p>
+                <p>
+                    The properties seen on the left can be modified to create your image.
+                    Additional properties not selected can also be added.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <div class="modal" tabindex="-1" id="loadingModal" role="dialog" style="display:none">
@@ -1193,20 +1249,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Rendering Image</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
             <div class="modal-body">
-                <p>Loading</p>
+                <p>Please wait. Your image is being rendered.</p>
             </div>
 
         </div>
     </div>
 </div>
 
-
-</div>
 
 
 
