@@ -3,7 +3,7 @@
 {% block title %}Label Tool{% endblock %}
 
 {% block head %}
-
+<script src="{{ url_for('static', filename='modalLoad.js')}}"></script>
 {% endblock %}
 
 
@@ -17,12 +17,14 @@
 <div class="container-fluid h-100 Labeltool ">
     <!-- Start of Labelling HTML Code -->
     <div class="row d-flex justify-content-center h-100" id="mainBody" style="display:block">
+
         <!--Label Column-->
         <div class="col-2 labelscol">
             <div class="h-100 d-flex flex-column">
                 <div class="row justify-content-center theLabels">
                     <h6>Labels</h6>
 
+                    <!-- On click shown the time div displaying the time label options-->
                     <div class="row aLabel" onclick="showDiv('caraTime', 1)">
                         <div class="labeltitle">
                             <label>Time</label>
@@ -80,6 +82,8 @@
                     <div class="row justify-content-center objectstitle" id="insertObjects">
                         <h6>Scene</h6>
                     </div>
+
+                    <!-- On click shown the charnumber div displaying the character number options and similar below -->
                     <div class="row anObject" onclick="showDiv('caraNumChars', 1)">
                         <div class="objectTitle">
                             <label id="numberCharsId">1</label>
@@ -99,18 +103,21 @@
                             <label class="labelType">prop</label>
                         </div>
                     </div>
+
                     <div class="row anObject" onclick="showDiv('caraAtmosphere', 1)">
                         <div class="objectTitle">
                             <label id="atmosphereId">Sad</label>
                             <label class="labelType">atmosphere</label>
                         </div>
                     </div>
+
                     <div class="row anObject" onclick="showDiv('caraSetting', 1)">
                         <div class="objectTitle">
                             <label id="settingId">Beach</label>
                             <label class="labelType">setting</label>
                         </div>
                     </div>
+
                     <div class="row anObject" onclick="showDiv('caraTime', 1)">
                         <div class="objectTitle">
                             <label id="timeId">Night</label>
@@ -121,15 +128,22 @@
                 </div>
 
                 <div class="row justify-content-center bg-blue  charObjects" id="charObjects">
+
                     <div class="row justify-content-center objectstitle" id="insertCharObjects">
+
                         <h6>Characters</h6>
-                        <!--BELOW IS EXAMPLE ONLY-->
                         <div class="row justify-content-center objectstitle" id="Char1"></div>
 
                     </div>
+
+                    <!-- Character Details - 
+                        different characters selected in labelled column will show that character information and hide the other character information-->
                     <div class="charLabels1" id="charLabels1">
                         <label class="characterLabelHeader1" id="characterLabelHeader1"
                             onclick="activeChar(this.id),showDiv('caraNumChars')">Character 1</label>
+
+                        <!-- On click show the gender div displaying the character numbergender options and similar below -->
+                        <!-- Will set the active character to that selected. Ensuring only active character options are updated-->
                         <div class="row aCharacterObject1" id="aCharacterObject1"
                             onclick="showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('gender')"
                             style="display: block;">
@@ -189,14 +203,14 @@
 
 
         <!--************Image Column  Column ***************-->
-        <!--************************************************-->
-        <!--************************************************-->
-        <!--************************************************-->
+
         <div class="col-10 justify-content-center text-center allowScroll">
             <div class="labelHeader">
-                <h5>The closest image(s) to the selected properties is displayed below.</h5>
+                <h5>The closest image(s) for the selected properties is displayed below.</h5>
             </div>
 
+            <!-- Div shown depends on the character options updated/modified - Prototype only-->
+            <!-- Intention is to show images matching properties selected or closest possible matches-->
             <div class="col justify-content-center" id="mainImage1" style="display:block">
                 <div class="row justify-content-center">
                     <div class="col mainImage text-center justify-content-center ">
@@ -236,14 +250,13 @@
                 </div>
             </div>
 
-            <!--************************************************-->
-            <!--************************************************-->
-            <!--************************************************-->
-            <!--************************************************-->
+
 
             <!-- TIME OF DATE OPTIONS SHOWN HERE -->
             <div class="container timeCaraSection" id="caraTime" style="display:none">
                 <div class="row ">
+
+
                     <div class="col-2">
 
 
@@ -393,7 +406,7 @@
                 </div>
 
                 <div class="row">
-                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                    <a>Skip</a>
                 </div>
 
             </div>
@@ -735,7 +748,7 @@
 
                         <div class="row d-flex justify-content-center numCharBar" id="numCharBar" style="display:block">
                             <div class="col d-flex justify-content-center numCharCol" id="char0"
-                                onclick="charInfo(this.id)">
+                                onclick="charInfo(this.id) ; hideCharDiv('', 'caraNumChars')">
                                 <label>0</label>
                             </div>
                             <div class="col d-flex justify-content-center numCharCol" id="char1"
@@ -786,7 +799,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- ************************** IN WORK **********************************-->
+                                    <!-- ************************** Character information **********************************-->
                                     <div class="row d-flex aLabel justify-content-center"
                                         onclick="showCharDiv('charLoc', 1)">
                                         <div class="labeltitle d-flex  justify-content-center">
@@ -852,7 +865,7 @@
                                             <div class="row d-flex justify-content-center ">
 
                                                 <div class="col-1 charIcon" id="Male"
-                                                    onclick="testPrint1(this.id, 'gender')">
+                                                    onclick="addCharElement(this.id, 'gender')">
                                                     <div class="row text-center">
                                                         <img src="/static/MaleSymbol.png">
                                                     </div>
@@ -861,7 +874,7 @@
 
 
                                                 <div class="col-1 charIcon" id="Female"
-                                                    onclick="testPrint1(this.id, 'gender')">
+                                                    onclick="addCharElement(this.id, 'gender')">
                                                     <div class="row text-center">
                                                         <img src="/static/FemaleSymbol.png">
                                                     </div>
@@ -887,7 +900,7 @@
                                             <div class="row d-flex justify-content-center ">
 
                                                 <div class="col-1 charIcon" id="charUL"
-                                                    onclick="testPrint1(this.id, 'charLoc')">
+                                                    onclick="addCharElement(this.id, 'charLoc')">
                                                     <div class="row text-center">
                                                         <img src="/static/LeftUpper.jpg">
                                                     </div>
@@ -899,7 +912,7 @@
 
 
                                                 <div class="col-1 charIcon" id="charUC"
-                                                    onclick="testPrint1(this.id, 'charLoc')">
+                                                    onclick="addCharElement(this.id, 'charLoc')">
                                                     <div class="row text-center">
                                                         <img src="/static/CenterUpper.jpg">
                                                     </div>
@@ -909,7 +922,7 @@
                                                 </div>
 
                                                 <div class="col-1 charIcon" id="charUR"
-                                                    onclick="testPrint1(this.id, 'charLoc')">
+                                                    onclick="addCharElement(this.id, 'charLoc')">
                                                     <div class="row text-center">
                                                         <img src="/static/RightUpper.jpg">
                                                     </div>
@@ -920,7 +933,7 @@
                                                 </div>
 
                                                 <div class="col-1 charIcon" id="charLL"
-                                                    onclick="testPrint1(this.id, 'charLoc')">
+                                                    onclick="addCharElement(this.id, 'charLoc')">
                                                     <div class="row text-center">
                                                         <img src="/static/LeftLower.jpg">
                                                     </div>
@@ -931,7 +944,7 @@
                                                 </div>
 
                                                 <div class="col-1 charIcon" id="charLC"
-                                                    onclick="testPrint1(this.id, 'charLoc')">
+                                                    onclick="addCharElement(this.id, 'charLoc')">
                                                     <div class="row text-center">
                                                         <img src="/static/CenterLower.jpg">
                                                     </div>
@@ -942,7 +955,7 @@
                                                 </div>
 
                                                 <div class="col-1 charIcon" id="charLR"
-                                                    onclick="testPrint1(this.id, 'charLoc')">
+                                                    onclick="addCharElement(this.id, 'charLoc')">
                                                     <div class="row text-center">
                                                         <img src="/static/RightLower.jpg">
                                                     </div>
@@ -972,31 +985,31 @@
                                             <div class="row d-flex justify-content-center ">
 
                                                 <div class="col-1 charIcon" id="Long"
-                                                    onclick="testPrint1(this.id, 'hair')">
+                                                    onclick="addCharElement(this.id, 'hair')">
                                                     <div class="row text-center">
                                                         <img src="/static/HairOptions/LongHair.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 charIcon" id="Bob"
-                                                    onclick="testPrint1(this.id, 'hair')">
+                                                    onclick="addCharElement(this.id, 'hair')">
                                                     <div class="row text-center">
                                                         <img src="/static/HairOptions/BobHair.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 charIcon" id="Short"
-                                                    onclick="testPrint1(this.id, 'hair')">
+                                                    onclick="addCharElement(this.id, 'hair')">
                                                     <div class="row text-center">
                                                         <img src="/static/HairOptions/ShortHair.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 charIcon" id="Mohawk"
-                                                    onclick="testPrint1(this.id, 'hair')">
+                                                    onclick="addCharElement(this.id, 'hair')">
                                                     <div class="row text-center">
                                                         <img src="/static/HairOptions/MohawkHair.png">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 charIcon" id="Shaved"
-                                                    onclick="testPrint1(this.id, 'hair')">
+                                                    onclick="addCharElement(this.id, 'hair')">
                                                     <div class="row text-center">
                                                         <img src="/static/HairOptions/ShavedHair.png">
                                                     </div>
@@ -1021,13 +1034,13 @@
                                             <div class="row d-flex justify-content-center ">
                                                 <!-- ENTER OPTIONS-->
                                                 <div class="col-1 charIcon" id="Standing"
-                                                    onclick="testPrint1(this.id, 'pose')">
+                                                    onclick="addCharElement(this.id, 'pose')">
                                                     <div class="row text-center">
                                                         <img src="/static/PoseOptions/StandingPose.png" height="250">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 charIcon" id="Sitting"
-                                                    onclick="testPrint1(this.id, 'pose')">
+                                                    onclick="addCharElement(this.id, 'pose')">
                                                     <div class="row text-center">
                                                         <img src="/static/PoseOptions/SittingPose.png" height="250">
                                                     </div>
@@ -1056,18 +1069,18 @@
                                         <div class="row d-flex justify-content-center ">
                                             <!-- ENTER OPTIONS-->
                                             <div class="col-1 charIcon" id="Tshirt"
-                                                onclick="testPrint1(this.id, 'top')">
+                                                onclick="addCharElement(this.id, 'top')">
                                                 <div class="row text-center">
                                                     <img src="/static/TopOptions/TshirtTop.png">
                                                 </div>
                                             </div>
-                                            <div class="col-1 charIcon" id="Shirt" onclick="testPrint1(this.id, 'top')">
+                                            <div class="col-1 charIcon" id="Shirt" onclick="addCharElement(this.id, 'top')">
                                                 <div class="row text-center">
                                                     <img src="/static/TopOptions/ShirtTop.png">
                                                 </div>
                                             </div>
                                             <div class="col-1 charIcon" id="Blouse"
-                                                onclick="testPrint1(this.id, 'top')">
+                                                onclick="addCharElement(this.id, 'top')">
                                                 <div class="row text-center">
                                                     <img src="/static/TopOptions/BlouseTop.png">
                                                 </div>
@@ -1093,19 +1106,19 @@
                                         <div class="row d-flex justify-content-center ">
                                             <!-- ENTER OPTIONS-->
                                             <div class="col-1 charIcon" id="Trousers"
-                                                onclick="testPrint1(this.id, 'bottoms')">
+                                                onclick="addCharElement(this.id, 'bottoms')">
                                                 <div class="row text-center">
                                                     <img src="/static/BottomsOptions/TrousersBottom.png">
                                                 </div>
                                             </div>
                                             <div class="col-1 charIcon" id="Shorts"
-                                                onclick="testPrint1(this.id, 'bottoms')">
+                                                onclick="addCharElement(this.id, 'bottoms')">
                                                 <div class="row text-center">
                                                     <img src="/static/BottomsOptions/ShortsBottom.png">
                                                 </div>
                                             </div>
                                             <div class="col-1 charIcon" id="Skirt"
-                                                onclick="testPrint1(this.id, 'bottoms')">
+                                                onclick="addCharElement(this.id, 'bottoms')">
                                                 <div class="row text-center">
                                                     <img src="/static/BottomsOptions/SkirtBottom.png">
                                                 </div>
@@ -1132,18 +1145,18 @@
                                             <!-- ENTER OPTIONS-->
 
                                             <div class="col-1 charIcon" id="Sword"
-                                                onclick="testPrint1(this.id, 'prop')">
+                                                onclick="addCharElement(this.id, 'prop')">
                                                 <div class="row text-center">
                                                     <img src="/static/PropOptions/SwordProp.png">
                                                 </div>
                                             </div>
-                                            <div class="col-1 charIcon" id="Gun" onclick="testPrint1(this.id, 'prop')">
+                                            <div class="col-1 charIcon" id="Gun" onclick="addCharElement(this.id, 'prop')">
                                                 <div class="row text-center">
                                                     <img src="/static/PropOptions/GunProp.png">
                                                 </div>
                                             </div>
                                             <div class="col-1 charIcon" id="Phone"
-                                                onclick="testPrint1(this.id, 'prop')">
+                                                onclick="addCharElement(this.id, 'prop')">
                                                 <div class="row text-center">
                                                     <img src="/static/PropOptions/PhoneProp.png">
                                                 </div>
@@ -1164,7 +1177,7 @@
 
                             </div>
 
-
+                            <!-- change active character +1 / -1-->
                             <div class="row charRotationOptions">
 
                                 <div class="col-2 charRotationButton float-left">
@@ -1180,37 +1193,34 @@
 
                         </div>
 
-                        
-
                     </div>
 
-                    
-
                 </div>
-
-                
 
             </div>
 
+            <!-- The download and render buttons -->
+            <div class="row text-center justify-content-center">
 
-                <div class="row text-center justify-content-center">
-                    <div class="col downloadRender">
+                <div class="col downloadRender">
 
-                        <div class="downloadButton">
+                    <div class="downloadButton">
 
-                            <button onclick="downloadImage()" type="button" class="btn btn-primary">Download Image</button>
-                            
-                        </div>
+                        <button onclick="downloadImage()" type="button" class="btn btn-primary">Download Image</button>
 
-                        <div class="renderButton">
+                    </div>
 
-                            <a class="renderLink nav-link" href="render{{imgName}}"> <button onclick="loadJSON(); showDiv('loadingModal', 1)" type="button" class="btn btn-primary">Render</button> </a>
-                            
-                        </div>
+                    <div class="renderButton">
+
+                        <a class="renderLink nav-link" href="render{{imgName}}"> <button
+                                onclick="loadJSON(); showDiv('loadingModal', 1)" type="button"
+                                class="btn btn-primary">Render</button> </a>
+
                     </div>
 
                 </div>
 
+            </div>
 
         </div>
     </div>
@@ -1218,12 +1228,12 @@
 </div>
 
 
-
+<!-- Modal to display tips to user on how to use label tool -->
 <div class="modal" tabindex="-1" id="tipModal" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Quick Tips</h5> 
+                <h5 class="modal-title">Quick Tips</h5>
             </div>
             <div class="guideModalText">
                 <p>
@@ -1231,7 +1241,8 @@
                     This render can be downloaded by selecting Download.
                 </p>
                 <p>
-                    A number of images will be displayed when there is no exact match. These will be the closest match to the properties you have selected.
+                    A number of images will be displayed when there is no exact match. These will be the closest match
+                    to the properties you have selected.
                     An image matching the selected properties can be rendered by selecting Render.
                 </p>
                 <p>
@@ -1247,12 +1258,14 @@
     </div>
 </div>
 
+
+<!-- Modal that is displayed while the image is rendered by Daz studio -->
 <div class="modal" tabindex="-1" id="loadingModal" role="dialog" style="display:none">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Rendering Image</h5>
-                
+
             </div>
             <div class="modal-body">
                 <p>Please wait. Your image is being rendered.</p>
@@ -1261,9 +1274,5 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 {% endblock %}

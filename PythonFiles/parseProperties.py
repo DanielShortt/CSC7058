@@ -87,11 +87,6 @@ imageSource = "C:/Users/danie/Downloads/ImageProperties.txt" #needs renamed
 
 imageproperties = tempFileName
 
-#if file is exists move to image properties file. This is the file containing the labels selected on the web app.
-# if os.path.isfile(imageSource): 
-#     os.rename(imageSource, imageproperties)
-
-
 #Open the image properties file.
 with open(imageproperties) as file1:
     imageproperties = json.load(file1)
@@ -124,7 +119,7 @@ for x in characterKeys:
             
 
 
-########################################################################################################################################
+#########################################################################################################
 ##ADDING CHARACTER FILE PATHS
 
 #store number of characters selected during labelling process.

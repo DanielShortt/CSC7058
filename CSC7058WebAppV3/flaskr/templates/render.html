@@ -1,6 +1,9 @@
 {% extends "base.html"%}
 {% block title %}Render Page{% endblock %}
 
+
+<!-- Image render page obsolete at this page -->
+
 {% block content %}
 
 <div class="container col-xl-12 col-xxl-8 px-4 py-5 renderedImage">
@@ -20,10 +23,18 @@
     </div>
 
     <div class = "row ">
-        <h6>{{imageTitle}}</h6>
+        <h6>{{renderName}}</h6>
         <img src="{{content}}"  />
         
         <!--<img src="{{content}}" width="100" height="100">-->
+    </div>
+
+    <div>
+        <div class="downloadButton">
+
+            <button onclick="downloadImage('{{content}}', '{{renderName}}')" type="button" class="btn btn-primary">Download Image</button>
+
+        </div>
     </div>
     
 

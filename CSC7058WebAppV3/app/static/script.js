@@ -95,13 +95,13 @@ function charInfo(numOfChars) {
     for (let i = 0; i < 4; i++) {
         if (numOfChars == "char" + i) {
             charTotal = i;
-            addElement(i, "numberChars") //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            addElement(i, "numberChars") 
             document.getElementById("numCharBar").classList.remove("d-flex");
             document.getElementById('numCharBar').style.display = 'none';
         }
     }
   
-
+    //If char total selected >0 then set character to appropriate value.
     if (charTotal > 0 && charCount < 1) {
         charCount += 1;
         var charLoopTitle = "Character " + charCount;
@@ -112,8 +112,12 @@ function charInfo(numOfChars) {
         var updateCharLoopId = document.getElementById("caraCharDetails").id;
         document.getElementById("caraCharDetails").id = charIdUpdate;
         document.getElementById(charIdUpdate).style.display = 'block';
+    } else if(charTotal = 0){
+        document.getElementById('caraNumChars').style.display = 'none';
     }
 }
+
+
 
 //FUNCTION WILL BE USED TO START THE PROCESS TO MODIFY NEXT CHARACTER
 function nextChar() {
@@ -229,28 +233,28 @@ function addElement(object, label) {
 
     if (elementExists == false) {
 
-        //console.log("About to create a new element")
-
         // create a new div element
         const newDiv = document.createElement("div");
         newDiv.className = "row anObject";
         //newDiv.id = objectLabelId;
         newDiv.setAttribute("onclick", "showDiv('" + updateCara + "', 1)");
 
-
+        //new inner div for label
         const newDiv1 = document.createElement("div");
         newDiv1.className = "objectTitle";
 
+        //new label for outter div
         const newLabel = document.createElement("label");
         newLabel.id = objectLabelId;
         const newLabel1 = document.createElement("label");
         newLabel1.className = "labelType";
 
 
-        // and give it some content
+        //and give it some content
         const objectID = document.createTextNode(object);
         const objectLabel = document.createTextNode(label);
 
+        //appending labels to div
         newLabel.appendChild(objectID);
         newLabel1.appendChild(objectLabel);
 
@@ -265,11 +269,10 @@ function addElement(object, label) {
         const parentDiv = document.getElementById("objects");
         parentDiv.insertBefore(newDiv, currentDiv.nextSibling);
         clickCountIncrease();
-        //console.log(time);
+
 
     } else {
-        //console.log(object);
-        //console.log(objectLabelId);
+        //update property already selected to new value selected by user
         document.getElementById(objectLabelId).innerHTML = object;
         clickCountIncrease();
         elementExists = false;
@@ -279,22 +282,16 @@ function addElement(object, label) {
 
 //Create the character Labels and store them in global variables above
 //labels stored in labels column under character header   
-function testPrint1(object, label) {
+function addCharElement(object, label) {
 
-
+    //high level variables required for function
     var temp = "";
     var elementExists = false;
     var objectLabelId = "";
     var objectLabelId = "";
     var newCharDiv = "";
     var elementExists = false, charExists = false;
-    var charClassTitle = "charLabels" + charCount; //should be one
-
-
-
-
-
-    //TESTING DIV CREATION IN THIS ZONE eg CHAR1LABELS, CHAR2LABELS ETC  
+    var charClassTitle = "charLabels" + charCount; //should always start at if char number selected is greater than 1
 
     //Create new High level character label divs
     if (document.getElementById(charClassTitle)) {
@@ -317,8 +314,6 @@ function testPrint1(object, label) {
     if (charCount == 1 && !charExists) {
         // add the newly created element and its content into the DOM
 
-
-        //console.log("CREATING A NEW DIV FOR LABELS 1 ETC")
         const currentDiv = document.getElementById("insertCharObjects");
         const parentDiv = document.getElementById("charObjects");
         parentDiv.insertBefore(newCharDiv, currentDiv.nextSibling);
@@ -339,18 +334,19 @@ function testPrint1(object, label) {
     if (charCount > 0) {
         temp = label + charCount  //eg gender1
     }
+
     var item = characterArray[temp];
 
     if (item != '') {
-
         elementExists = true;
-
     }
 
+    //Looking  in character array and storing value for label + current active character number
     characterArray[temp] = object;
     objectLabelId = temp + "id";
     var currentCharDiv = "";
 
+    //if element does not exist create a new element and popluate active character
     if (elementExists == false) {
 
         //console.log("About to create a new Character element");
@@ -387,7 +383,7 @@ function testPrint1(object, label) {
         // add the newly created element and its content into the DOM
         const currentDiv = document.getElementById("charLabels" + charCount).appendChild(newDiv);
 
-    } else {
+    } else { // else update element that already exists with new selection
         document.getElementById(objectLabelId).innerHTML = object;
         clickCountIncrease();
         elementExists = false;
@@ -405,14 +401,10 @@ function activeChar(id) {
 
     for (let i = 0; i < activeChar1.length; i++) {
 
-        //console.log(activeChar1[i]);
-
         if (id == "characterLabelHeader1" || id == "aCharacterObject1") {
-            //console.log("TESTING SELECTING OBJECTS IN TRUE");
             updateCurrentChar(1);
             activeChar1[i].style.display = "block";
         } else {
-            //console.log("TESTING SELECTING OBJECTS IN TRUE");
             activeChar1[i].style.display = "none";
         }
 
@@ -446,6 +438,7 @@ function activeChar(id) {
     }
 }
 
+//updating current char number title and global variable charCount
 function updateCurrentChar(char) {
     var charLoopTitle;
     var updateCharLoopTitle;
@@ -463,28 +456,30 @@ function loadJSON() {
         .then(response => response.json())
         .then(data => {
 
+            //Store number of scene properties selected
             var count = Object.keys(data.Environment[0]).length;
+            //Store number of character properties selected
             var countC = characterArrayTitles.length;
-            console.log("countC is " + countC);
-            
 
+            //storing scene titles to dictionary
             for (let i = 0; i < count; i++) {
-                //console.log(environmentArray[environmentArrayTitles[i]]);
-                //console.log(data.Environment[0][environmentArrayTitles[i]]);
                 data.Environment[0][environmentArrayTitles[i]] = environmentArray[environmentArrayTitles[i]];
-                console.log(data.Environment[0][environmentArrayTitles[i]]);
+                //console.log(data.Environment[0][environmentArrayTitles[i]]);
             }
 
+            //storing character titles
             for(let i = 0; i < 4; i++){
                 for(let j = 0; j < countC; j++){
                     var tempTitle = (characterArrayTitles[j] + (i+1));
                     data.CharacterInfo[0][tempTitle] = characterArray[tempTitle];
-                    console.log(data.CharacterInfo[0][tempTitle]); 
+                    //console.log(data.CharacterInfo[0][tempTitle]); 
                 }
             }
 
+            //set up JSON file
             outputFile = JSON.stringify(data,null, 2);
 
+            //
             saveStringAsFile("ImageProperties.txt", outputFile) //UserId would be helpful here.
 
         })
@@ -516,23 +511,28 @@ function saveStringAsFile(filename, data) {
     
 }
 
-function codeAddress() {
-    var myModal = new bootstrap.Modal(document.getElementById('tipModal'), {})
-    myModal.toggle()   
-}
-window.onload = codeAddress;
 
-async function downloadImage(){
+
+async function downloadImage(downloadImage, downloadName){
+
+    //console.log(downloadImage, downloadName);
+    if(downloadImage != ""){
+        console.log("inside first part");
+        console.log(downloadImage)
+        imageSrc = downloadImage;
+    } else {
+        console.log("inside second part");
+        imageSrc = "/static/RenderLibrary/Best_Beaches_Surfing20220313_14-57-54.jpg";
+    }
     
-    imageSrc = "/static/RenderLibrary/Best_Beaches_Surfing20220313_14-57-54.jpg";
-    console.log(imageSrc)
+    console.log("about to download " + imageSrc)
     const image = await fetch(imageSrc)
     const imageBlog = await image.blob()
     const imageURL = URL.createObjectURL(imageBlog)
   
     const link = document.createElement('a')
     link.href = imageURL
-    link.download = 'Best_Beaches_Surfing20220313_14-57-54.jpg'
+    link.download = downloadName
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
