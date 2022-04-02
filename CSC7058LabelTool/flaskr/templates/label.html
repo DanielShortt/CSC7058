@@ -3,12 +3,8 @@
 {% block title %}Label Tool{% endblock %}
 
 {% block head %}
-<script src="{{ url_for('static', filename='modalLoad.js')}}"></script>
+<script src="{{ url_for('static', filename='modalGuideLoad.js')}}"></script>
 {% endblock %}
-
-
-
-
 
 {% block content %}
 
@@ -103,7 +99,7 @@
 
         <div class="col-10 justify-content-center text-center allowScroll">
             <div class="labelHeader">
-                <h5>The closest image(s) for the selected properties is displayed below.</h5>
+                <h5>The selected image can be seen below. Please select labels that match this image.</h5>
             </div>
 
             <!-- Div shown depends on the character options updated/modified - Prototype only-->
@@ -118,14 +114,10 @@
 
             <!-- TIME OF DATE OPTIONS SHOWN HERE -->
             <div class="container timeCaraSection" id="caraTime" style="display:none">
-                <div class="row ">
+                <div class="row justify-content-center">
 
 
-                    <div class="col-2">
-
-
-
-                    </div>
+                    
 
                     <div class="col-1 dayIcon " id="Day"
                         onclick="addShadow(this.id); divHide('day', 'caraTime'); addElement(this.id, 'time')">
@@ -140,7 +132,7 @@
 
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-1">
 
                         <!-- DIVIDER DIV-->
 
@@ -157,11 +149,17 @@
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-1">
 
 
                         <!-- DIVIDER DIV-->
                     </div>
+
+                    <!-- REPLACE STARTS UNDER HERE-->
+
+                    <!-- PLACE NEW LABEL HERE -->
+
+                    <!-- REPLACE FINISHES ABOVE HERE-->
 
 
                 </div>
@@ -1090,10 +1088,14 @@
 <div class="modal" tabindex="-1" id="labelCompleteModal" role="dialog" style="display:none">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            
             <div class="modal-header">
                 <h5 class="modal-title">Labelling Complete!</h5>
 
             </div>
+            <div class = "text-center justify-content-center">
+                <img class = "text-center justify-content-center" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"> 
+             </div>
             <div class="modal-body">
                 <p>Thank you. This image has been labeled and we are storing the results.</p>
                 <p>Please click home below to select a new image.</p>
@@ -1113,7 +1115,7 @@
 
 
 <!-- Modal to display tips to user on how to use label tool -->
-<div class="modal" tabindex="-1" id="tipModal" role="dialog">
+<div class="modal" tabindex="-1" id="guideModal" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1121,38 +1123,18 @@
             </div>
             <div class="guideModalText">
                 <p>
-                    A single image is displayed when a rendered image matching the selected properties is found.
-                    This render can be downloaded by selecting Download.
+                    Environment labels can be seen in the left column upper section.
+                    Each label will be shown in the left column middle section once selected.
+                    These can be edited by selecting them in the upper or middle section.
                 </p>
                 <p>
-                    A number of images will be displayed when there is no exact match. These will be the closest match
-                    to the properties you have selected.
-                    An image matching the selected properties can be rendered by selecting Render.
+                    The character labels will be shown once the number of characters has been selected.
+                    The characters can be switched between by either selecting the character in the left column lower section or by selecting "next" or "previous" in the character creation menu.
                 </p>
-                <p>
-                    The properties seen on the left can be modified to create your image.
-                    Additional properties not selected can also be added.
-                </p>
+               
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal that is displayed while the image is rendered by Daz studio -->
-<div class="modal" tabindex="-1" id="labelCompleteModal" role="dialog" style="display:none">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rendering Image</h5>
-
-            </div>
-            <div class="modal-body">
-                <p>Please wait. Your image is being rendered.</p>
             </div>
 
         </div>

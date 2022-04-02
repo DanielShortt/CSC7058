@@ -1,0 +1,103 @@
+{% extends "base.html"%}
+{% block title %}Login Page{% endblock %}
+
+{% block content %}
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+
+    <div class="row">
+        <div class="col">
+            <h6>Welcome Admin</h6>
+
+
+        </div>
+
+    </div>
+
+    <!-- Create forms that an admin can use to add/edit -->
+    <div class="row">
+        <div class="col">
+            <h6>NEW DATA</h6>
+
+            MUST ALLOW ADMIN TO ADD NEW CATEGORY, NEW LABELS, NEW IMAGES
+            <div class="row">
+                <div class="col">
+                    What are you adding? e.g new environment/character 
+                </div>
+                <div class="col">
+                    What are you adding? e.g new category or to existing category
+                </div>
+                <div class="row">
+                    options for new labels
+                    <div class="col">
+                        category/label title
+                    </div>
+                    <div class="col">
+                        category/label image
+                    </div>
+                    <div class="row">
+                        submit
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <h6>UPDATE EXISTING DATA</h6>
+            MUST ALLOW ADMIN TO SELECT CURRENT SECTIONS, LABELS AND IMAGES AND OFFER THE ABILITY TO MODIFY OR DELETE 
+        <div class="col">
+            Dropdown of environment headers e.g. gender
+
+        </div>
+        <div class="col">
+            Dropdown of labels appears relevant to header picked e.g. male/female for gender
+
+        </div>
+        <div class="col">
+            dropdown of options e.g. modify/ delete
+
+        </div>
+        <div class="col">
+            modify options e.g text box or upload new image
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h6>UPDATE EXISTING LABEL INFORMATION</h6>
+            MUST ALLOW ADMIN TO SEARCH FOR IMAGES AND update their properties.
+            <div class="row">
+                search box
+            </div>
+            <div class="row">
+                Image results
+            </div>
+            <div class="row">
+                properties of selected image in text boxes or dropdowns.
+                submit button
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <form action="#" method="post">
+        <p>Name:</p>
+        <p><input type="text" name="nm" /></p>
+        <p><input type="submit" value="submit" /></p>
+    </form>
+
+
+    
+
+</div>
+
+{% endblock %}

@@ -1,6 +1,7 @@
-import os, time
+import os, time, json
 import subprocess
 import ntpath
+import argparse
 from datetime import datetime
 from genericpath import exists
 from flask import Flask, redirect, url_for, render_template, request, session, flash
@@ -56,7 +57,7 @@ def label(image):
 def login():
     if request.method == "POST":
             session.permanent = True
-            user = request.form["nm"]
+            user = request.form["labelLoginModalButton"]
             session["user"] = user
             flash("Login Successful.")
             return redirect(url_for("user" ))
@@ -107,6 +108,52 @@ def renderimage(image):
 
     renderCount = renderCount +1
 
+@app.route("/admin", methods=["POST","GET"])
+def admin():
+
+    if request.method == "POST":
+        print("Nothing")
+
+        f = open('C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/JSON/labels.json')
+        data = json.load(f)
+
+        for i in data['Environment'][0]['Time'][0]:
+            if(i == "Twilight"):
+                print('in')
+                fileIn = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/flaskr/templates/label.html", "r")
+                update = fileIn.read()
+
+                fileInUpdate = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Update/updateLabels.txt", "r")
+                twilightLabel = fileInUpdate.read()
+
+                if("<!-- PLACE NEW LABEL HERE -->" in update):
+                    update = update.replace("<!-- PLACE NEW LABEL HERE -->", twilightLabel)
+                
+
+                fileOut = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/flaskr/templates/label.html", "wt")
+                fileOut.write(update)
+                
+                fileIn.close()
+                fileInUpdate.close()
+                fileOut.close()
+   
+        
+        adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt"
+        #Open the adminMessages file file.
+        fileIn = open(adminMessagesLocation, "r")
+        lines = fileIn.readlines()
+        fileIn.close()
+
+        return render_template("admin.html", messages = lines)
+
+    else :
+        adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt"
+        #Open the adminMessages file file.
+        fileIn = open(adminMessagesLocation, "r")
+        lines = fileIn.readlines()
+        fileIn.close()
+
+        return render_template("admin.html", messages = lines)
 
 
 #THE MAIN FUNCTIONs

@@ -18,7 +18,7 @@
   <link rel="shortcut icon" type="image/jpg" href="/static/favicon.png" />
 
   <!--Local JS File-->
-  <script src="{{ url_for('static', filename='script.js')}}"></script>
+  <script src="{{ url_for('static', filename='labelScript.js')}}"></script>
   <!--<script src="{{url_for('static', filename='somejavascriptfile.js')}}"></script>-->
   <title> {% block title %} {% endblock %} </title>
 </head>
@@ -40,10 +40,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a onclick="loginModal()" class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
 
@@ -55,7 +55,11 @@
         </div>
 
         <div class="d-flex" id="navbarNav">
-          <a class="nav-link" href="login">Login</a>
+          {% if not session['user'] %}
+          <button onclick="loginModal()" type="button" class="btn btn-primary">Login</button>
+          {% else %}
+          <h6>Hello : {{session["user"]}} </h6>
+          {% endif %}
         </div>
 
       </div>
@@ -65,6 +69,37 @@
   <!--Beginning of Content-->
   {% block content %}
   {% endblock %}
+
+
+  <div class="modal" tabindex="-1" id="labelLoginModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login</h5>
+        </div>
+
+        <div class="labelLoginModalForm">
+
+          <form method="POST">
+
+            <div>
+              <input type="text" class="form-control rounded" placeholder="Username" aria-label="Search"
+                aria-describedby="search-addon" name="labelLogin" />
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4 labelLoginModalButton">Sign in</button>
+
+          </form>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--Script-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

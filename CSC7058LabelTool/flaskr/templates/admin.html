@@ -1,0 +1,71 @@
+{% extends "base.html"%}
+{% block title %}Admin Page{% endblock %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='adminScript.js')}}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+
+    <div class="row">
+        <div class="col">
+
+
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col adminMessageWindow">
+
+            <p>Messages for review</p>
+
+            {% for msg in messages %}
+
+                <div class="adminMessageUnique">
+
+                    {% if msg is not none %}
+
+                        <div class="message">
+                            <p>{{msg}}</p>
+                        </div>
+
+                        <div class="message float-end">
+                            <a href="#">Respond</a>                    
+                            <a href="#">Delete</a>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Create forms that an admin can use to add/edit -->
+    <div class="row ">
+        
+
+        <div class="col reloadPage">
+            <h6>NEW DATA</h6>
+
+            <!--<button onclick="reloadApp()">RELOAD PAGE</button>-->
+            <form method="POST">
+                <button type="submit">RELOAD PAGE</button>
+            </form>
+            
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

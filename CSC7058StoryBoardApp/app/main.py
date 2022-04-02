@@ -77,7 +77,7 @@ def renderimage(image):
     #outputFileName = imageName+str(timestamp)
     outputFileName = str(timestamp) #output name combination of time and date
     outputRenderName = outputFileName
-    outputFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV3/app/static/imageProperties/"+outputFileName+".txt"
+    outputFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/imageProperties/"+outputFileName+".txt"
 
     #if property file exists rename and relocate to /static/imageProperties/
     if os.path.exists(propertyFile):
@@ -94,7 +94,7 @@ def renderimage(image):
     #check if image exists and relocate to /static/RenderLibrary/
     while not (imageFound):
         if os.path.exists(imageFileName):
-            renderedImage = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV3/app/static/RenderLibrary/" + outputRenderName + ".jpg"
+            renderedImage = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/RenderLibrary/" + outputRenderName + ".jpg"
             os.rename(imageFileName, renderedImage)
             renderedImageMoved = "/static/RenderLibrary/" + outputRenderName + ".jpg"
             #renderedImage = imageFileName

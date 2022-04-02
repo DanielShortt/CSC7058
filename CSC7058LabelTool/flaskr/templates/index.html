@@ -55,7 +55,7 @@
 
                         <div class="downloadButton">
 
-                            <button onclick=" showDiv('labelLoginModal', 1)" type="button" class="btn btn-primary">Login</button>
+                            <button onclick="codeAddress()" type="button" class="btn btn-primary">Login</button>
 
                         </div>
 
@@ -90,6 +90,8 @@
         </div>
 
     </div>
+
+    {% if session['user'] %}
 
     <div class="row content">
         <div class="col mainContent">
@@ -141,42 +143,12 @@
 
     </div>
 
-
+    {% endif %}
 
 
 </div>
 
 
-<div class="modal" tabindex="-1" id="labelLoginModal" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Login</h5>
-            </div>
 
-            <div class="labelLoginModal">
-
-                <form method="POST">
-
-                    <div>
-                        <input type="text" class="form-control rounded" placeholder="Username" aria-label="Search"
-                            aria-describedby="search-addon" name="labelLogin" />
-                    </div>
-
-                    <!-- Submit button -->
-                    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-                </form>
-
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 {% endblock %}

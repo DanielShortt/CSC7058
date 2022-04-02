@@ -1,4 +1,4 @@
-function codeAddress() {
+async function codeAddress() {
     var myModal = new bootstrap.Modal(document.getElementById('tipModal'), {})
     myModal.toggle()   
 }

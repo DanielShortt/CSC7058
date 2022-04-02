@@ -20,12 +20,6 @@ const characterArray = {
 };
 //End of array
 
-
-//Count clicks on pages
-//document.addEventListener("click", () => {
-
-
-
 //FUNCTION TO HIDE DIV
 function divHide(id, cara) {
     //Take ID of hair selected and add to Json file in background.
@@ -65,7 +59,6 @@ function showCharDiv(divId, element) {
 
 //FUNCTION TO SET NUMBER OF CHARS SELECTED TO CONTROL LOOP 
 //FUNCTION SETS UP DIVS FOR SETTING CHRACTER CREATION VARIABLES
-//UNFINISHED!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function charInfo(numOfChars) {
     //Add Char info here. Must take int argument to control loop iterations.
 
@@ -138,9 +131,6 @@ function addElement(object, label) {
     var elementExists = false;
     var objectLabelId = "";
     var updateCara = "";
-    // console.log("The current label is " + label);
-
-
 
     if (label == "time") {
         if (environmentArray['time'] != "") {
@@ -226,7 +216,6 @@ function addElement(object, label) {
         const newLabel1 = document.createElement("label");
         newLabel1.className = "labelType";
 
-
         //and give it some content
         const objectID = document.createTextNode(object);
         const objectLabel = document.createTextNode(label);
@@ -304,9 +293,6 @@ function addCharElement(object, label) {
         parentDiv.insertBefore(newCharDiv, currentDiv.nextSibling);
     }
 
-    //END OF TEST
-
-
     if (charCount > 0) {
         temp = label + charCount  //eg gender1
     }
@@ -333,7 +319,6 @@ function addCharElement(object, label) {
         newDiv.id = "aCharacterObject" + charCount;
         newDiv.style.display = "block";
         newDiv.setAttribute("onclick", "showDiv('caraNumChars',1), activeChar(this.id),showCharDiv('" + label + "')"); //activeChar(id)
-        // newDiv.onclick=""; Create NEW function to modify selected settings. <--------------------------------------------
 
         const newDiv1 = document.createElement("div");
         newDiv1.className = "charObjectTitle";
@@ -459,20 +444,18 @@ function loadJSON() {
             saveStringAsFile("ImageProperties.txt", outputFile) //UserId would be helpful here.
 
         })
-        .catch(err => console.log(err))
-
-        
+        .catch(err => console.log(err))       
 }
 
 
 function saveStringAsFile(filename, data) {
 
-    //PATH C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/imageProperties/. Can't select path.
     // Convert the text to BLOB.
     const textToBLOB = new Blob([data], { type: 'text/plain' }); //creates a text file from output file passed in
-    //const sFileName = 'formData.txt'; // The file to save the data. 
     let newLink = document.createElement("a"); //creates a document element. Can be called anything. Not placed in DOM.
-    newLink.download = filename; //Creates a download link to store file locally. Cannot download directly due to security.
+    
+    //Creates a download link to store file locally as download. Cannot download directly to specific directory due to security.
+    newLink.download = filename; 
     if (window.webkitURL != null) { //
         newLink.href = window.webkitURL.createObjectURL(textToBLOB);
         newLink.click();
@@ -514,6 +497,12 @@ async function downloadImage(downloadImage, downloadName){
     document.body.removeChild(link)
 
 }
+
+function codeAddress() {
+    var myModal = new bootstrap.Modal(document.getElementById('labelLoginModal'), {})
+    myModal.toggle()   
+}
+
 
 
 
