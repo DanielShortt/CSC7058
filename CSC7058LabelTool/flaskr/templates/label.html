@@ -117,7 +117,7 @@
                 <div class="row justify-content-center">
 
 
-                    
+
 
                     <div class="col-1 dayIcon " id="Day"
                         onclick="addShadow(this.id); divHide('day', 'caraTime'); addElement(this.id, 'time')">
@@ -132,12 +132,7 @@
 
                     </div>
 
-                    <div class="col-1">
 
-                        <!-- DIVIDER DIV-->
-
-
-                    </div>
 
                     <div class="col-1 dayIcon" id="Night"
                         onclick="addShadow(this.id); divHide('night', 'caraTime'); addElement(this.id, 'time')">
@@ -149,34 +144,48 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
 
-
-                        <!-- DIVIDER DIV-->
-                    </div>
 
                     <!-- REPLACE STARTS UNDER HERE-->
 
-                    <!-- PLACE NEW LABEL HERE -->
+                    
 
                     <!-- REPLACE FINISHES ABOVE HERE-->
 
 
                 </div>
 
-                <div class="row">
-                    <a>Skip</a>
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>
 
 
+
             <!-- SETTING OPTIONS SHOWN HERE ----- MIGHT ACTUALY WANT TO MAKE A CAROUSEL HERE-->
             <div class="container settingCaraSection" id="caraSetting" style="display:none">
-                <div class="row ">
+                <div class="row justify-content-center">
 
-                    <div class="col-2">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Beach"
                         onclick="addShadow(this.id); divHide('Beach', 'caraSetting'); addElement(this.id, 'setting')">
@@ -191,8 +200,7 @@
                         </div>
                     </div>
 
-                    <div class="col-2">
-                    </div>
+
 
                     <div class="col-1 dayIcon" id="Tomb"
                         onclick="addShadow(this.id); divHide('Tomb', 'caraSetting'); addElement(this.id, 'setting')">
@@ -206,13 +214,32 @@
                         </div>
                     </div>
 
-                    <div class="col-2">
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
                     </div>
                 </div>
 
-                <div class="row">
-                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
-                </div>
+
 
             </div>
 
@@ -234,8 +261,7 @@
                     </div>
 
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Dim"
                         onclick="addShadow(this.id); divHide('Dim', 'caraLighting'); addElement(this.id, 'lighting')">
@@ -249,8 +275,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Bright"
                         onclick="addShadow(this.id); divHide('Bright', 'caraLighting'); addElement(this.id, 'lighting')">
@@ -267,8 +292,26 @@
 
                 </div>
 
-                <div class="row">
-                    <a>Skip</a>
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>
@@ -291,8 +334,7 @@
                     </div>
 
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Happy"
                         onclick="addShadow(this.id); divHide('Happy', 'caraAtmosphere'); addElement(this.id, 'atmosphere')">
@@ -307,8 +349,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Sad"
                         onclick="addShadow(this.id); divHide('Sad', 'caraAtmosphere'); addElement(this.id, 'atmosphere')">
@@ -326,8 +367,26 @@
 
                 </div>
 
-                <div class="row">
-                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>
@@ -350,8 +409,7 @@
                     </div>
 
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Altar"
                         onclick="addShadow(this.id); divHide('Altar', 'caraProp'); addElement(this.id, 'prop')">
@@ -366,8 +424,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Car"
                         onclick="addShadow(this.id); divHide('Car', 'caraProp'); addElement(this.id, 'prop')">
@@ -400,8 +457,26 @@
 
                 </div>
 
-                <div class="row">
-                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>
@@ -423,8 +498,7 @@
                     </div>
 
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="centreUpper"
                         onclick="addShadow(this.id); divHide('centreUpper', 'caraPropLoc'); addElement(this.id, 'propLoc')">
@@ -438,8 +512,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="rightUpper"
                         onclick="addShadow(this.id); divHide('rightUpper', 'caraPropLoc'); addElement(this.id, 'propLoc')">
@@ -469,8 +542,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="centerLower"
                         onclick="addShadow(this.id); divHide('centerLower', 'caraPropLoc'); addElement(this.id, 'propLoc')">
@@ -484,8 +556,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="rightLower"
                         onclick="addShadow(this.id); divHide('rightLower', 'caraPropLoc'); addElement(this.id, 'propLoc')">
@@ -501,8 +572,26 @@
 
                 </div>
 
-                <div class="row">
-                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>
@@ -524,8 +613,7 @@
                     </div>
 
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="Front"
                         onclick="addShadow(this.id); divHide('Front', 'caraCamera'); addElement(this.id, 'camera')">
@@ -539,8 +627,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="IsoClose"
                         onclick="addShadow(this.id); divHide('IsoClose', 'caraCamera'); addElement(this.id, 'camera')">
@@ -570,8 +657,7 @@
                         </div>
                     </div>
 
-                    <div class="col-1">
-                    </div>
+
 
                     <div class="col-1 dayIcon " id="TopRightCam"
                         onclick="addShadow(this.id); divHide('TopRightCam', 'caraCamera'); addElement(this.id, 'camera')">
@@ -589,8 +675,26 @@
 
                 </div>
 
-                <div class="row">
-                    <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't find the asset you are looking
+                                    for? Why not provide us with s suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>
@@ -744,8 +848,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                        <div class="d-flex justify-content-center align-items-center container ">
+                                            <div
+                                                class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                                <form id="assetSuggestionForm" method="POST">
+
+
+                                                    <div class="input-group mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Can't find
+                                                            the asset you are looking for? Why not provide us with s
+                                                            suggestion.</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                            aria-describedby="button-primary" name="assetSuggestion">
+                                                        <button class="btn btn-primary" type="submit"
+                                                            id="timeSuggestionButton">Submit</button>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
                                         </div>
 
                                     </div>
@@ -829,8 +954,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                        <div class="d-flex justify-content-center align-items-center container ">
+                                            <div
+                                                class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                                <form id="assetSuggestionForm" method="POST">
+
+
+                                                    <div class="input-group mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Can't find
+                                                            the asset you are looking for? Why not provide us with s
+                                                            suggestion.</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                            aria-describedby="button-primary" name="assetSuggestion">
+                                                        <button class="btn btn-primary" type="submit"
+                                                            id="timeSuggestionButton">Submit</button>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
                                         </div>
 
                                     </div>
@@ -879,8 +1025,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                        <div class="d-flex justify-content-center align-items-center container ">
+                                            <div
+                                                class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                                <form id="assetSuggestionForm" method="POST">
+
+
+                                                    <div class="input-group mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Can't find
+                                                            the asset you are looking for? Why not provide us with s
+                                                            suggestion.</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                            aria-describedby="button-primary" name="assetSuggestion">
+                                                        <button class="btn btn-primary" type="submit"
+                                                            id="timeSuggestionButton">Submit</button>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
                                         </div>
 
                                     </div>
@@ -912,8 +1079,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                        <div class="d-flex justify-content-center align-items-center container ">
+                                            <div
+                                                class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                                <form id="assetSuggestionForm" method="POST">
+
+
+                                                    <div class="input-group mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Can't find
+                                                            the asset you are looking for? Why not provide us with s
+                                                            suggestion.</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                            aria-describedby="button-primary" name="assetSuggestion">
+                                                        <button class="btn btn-primary" type="submit"
+                                                            id="timeSuggestionButton">Submit</button>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
                                         </div>
 
                                     </div>
@@ -936,7 +1124,8 @@
                                                     <img src="/static/TopOptions/TshirtTop.png">
                                                 </div>
                                             </div>
-                                            <div class="col-1 charIcon" id="Shirt" onclick="addCharElement(this.id, 'top')">
+                                            <div class="col-1 charIcon" id="Shirt"
+                                                onclick="addCharElement(this.id, 'top')">
                                                 <div class="row text-center">
                                                     <img src="/static/TopOptions/ShirtTop.png">
                                                 </div>
@@ -949,8 +1138,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                        <div class="d-flex justify-content-center align-items-center container ">
+                                            <div
+                                                class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                                <form id="assetSuggestionForm" method="POST">
+
+
+                                                    <div class="input-group mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Can't find
+                                                            the asset you are looking for? Why not provide us with s
+                                                            suggestion.</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                            aria-describedby="button-primary" name="assetSuggestion">
+                                                        <button class="btn btn-primary" type="submit"
+                                                            id="timeSuggestionButton">Submit</button>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
                                         </div>
 
                                     </div>
@@ -989,8 +1199,29 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                    <div class="d-flex justify-content-center align-items-center container ">
+                                        <div
+                                            class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                            <form id="assetSuggestionForm" method="POST">
+
+
+                                                <div class="input-group mb-3">
+                                                    <label for="exampleInputEmail1" class="form-label">Can't find the
+                                                        asset you are looking for? Why not provide us with s
+                                                        suggestion.</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                        aria-describedby="button-primary" name="assetSuggestion">
+                                                    <button class="btn btn-primary" type="submit"
+                                                        id="timeSuggestionButton">Submit</button>
+                                                </div>
+
+                                            </form>
+
+
+                                        </div>
                                     </div>
 
                                 </div>
@@ -1012,7 +1243,8 @@
                                                     <img src="/static/PropOptions/SwordProp.png">
                                                 </div>
                                             </div>
-                                            <div class="col-1 charIcon" id="Gun" onclick="addCharElement(this.id, 'prop')">
+                                            <div class="col-1 charIcon" id="Gun"
+                                                onclick="addCharElement(this.id, 'prop')">
                                                 <div class="row text-center">
                                                     <img src="/static/PropOptions/GunProp.png">
                                                 </div>
@@ -1026,8 +1258,29 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <a>Skip</a> <!-- NEED TO ADD A SKIP FUNCTION HERE -->
+                                    <div class="d-flex justify-content-center align-items-center container ">
+                                        <div
+                                            class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                                            <form id="assetSuggestionForm" method="POST">
+
+
+                                                <div class="input-group mb-3">
+                                                    <label for="exampleInputEmail1" class="form-label">Can't find the
+                                                        asset you are looking for? Why not provide us with s
+                                                        suggestion.</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Asset Suggestion" aria-label="Asset Suggestion"
+                                                        aria-describedby="button-primary" name="assetSuggestion">
+                                                    <button class="btn btn-primary" type="submit"
+                                                        id="timeSuggestionButton">Submit</button>
+                                                </div>
+
+                                            </form>
+
+
+                                        </div>
                                     </div>
 
 
@@ -1066,12 +1319,12 @@
 
                 <div class="col downloadRender">
 
-                    
+
 
                     <div class="renderButton">
 
-                         <button onclick="showDiv('labelCompleteModal')" type="button"
-                                class="btn btn-primary">Complete</button> 
+                        <button onclick="showDiv('labelCompleteModal')" type="button"
+                            class="btn btn-primary">Complete</button>
 
                     </div>
 
@@ -1088,14 +1341,15 @@
 <div class="modal" tabindex="-1" id="labelCompleteModal" role="dialog" style="display:none">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
             <div class="modal-header">
                 <h5 class="modal-title">Labelling Complete!</h5>
 
             </div>
-            <div class = "text-center justify-content-center">
-                <img class = "text-center justify-content-center" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"> 
-             </div>
+            <div class="text-center justify-content-center">
+                <img class="text-center justify-content-center"
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921">
+            </div>
             <div class="modal-body">
                 <p>Thank you. This image has been labeled and we are storing the results.</p>
                 <p>Please click home below to select a new image.</p>
@@ -1103,8 +1357,8 @@
 
             <div class="renderButton">
 
-                <a class="renderLink nav-link" href="/"> <button type="button"
-                        class="btn btn-primary">Home</button> </a>
+                <a class="renderLink nav-link" href="/"> <button type="button" class="btn btn-primary">Home</button>
+                </a>
 
             </div>
 
@@ -1129,9 +1383,10 @@
                 </p>
                 <p>
                     The character labels will be shown once the number of characters has been selected.
-                    The characters can be switched between by either selecting the character in the left column lower section or by selecting "next" or "previous" in the character creation menu.
+                    The characters can be switched between by either selecting the character in the left column lower
+                    section or by selecting "next" or "previous" in the character creation menu.
                 </p>
-               
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

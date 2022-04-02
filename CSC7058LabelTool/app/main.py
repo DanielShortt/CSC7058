@@ -45,11 +45,26 @@ def browse():
     return render_template("browse.html")  
 
 #THE LABEL TOOL
-@app.route("/label<image>") #label page passing in the image name.
+@app.route("/label<image>", methods=["POST","GET"]) #label page passing in the image name.
 def label(image):
-    imageSelectedName = image
-    imageSelected = "/static/Images/" + image
-    return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName)
+
+    if request.method == "POST":
+        imageSelectedName = image
+        imageSelected = "/static/Images/" + image
+
+        #print("no")
+        userAssetRequest = request.form["assetSuggestion"]
+        #print(userAssetRequest)
+        fileAssetAppend = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt", "a")
+        fileAssetAppend.write(userAssetRequest  + "\n") 
+        fileAssetAppend.close()
+
+        return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName)
+
+    else:    
+        imageSelectedName = image
+        imageSelected = "/static/Images/" + image
+        return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName)
 
 
 #THE LOGIN PAGE.  NOT REQUIRED AT THIS STAGE.
@@ -112,7 +127,6 @@ def renderimage(image):
 def admin():
 
     if request.method == "POST":
-        print("Nothing")
 
         f = open('C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/JSON/labels.json')
         data = json.load(f)

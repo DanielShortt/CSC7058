@@ -497,12 +497,10 @@ async function downloadImage(downloadImage, downloadName){
     document.body.removeChild(link)
 
 }
-
-function codeAddress() {
+function loginModal() {
     var myModal = new bootstrap.Modal(document.getElementById('labelLoginModal'), {})
     myModal.toggle()   
 }
-
 
 
 
