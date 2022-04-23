@@ -1,0 +1,453 @@
+<div class="col-10 allowScrollCC">
+    <div class="d-flex flex-column">
+
+        <!--  THE GENDERS -->
+        <div class="container genderCaraSection" id="gender" style="display:none">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Gender</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+
+                    <div class="col-1 charIcon" id="Male"
+                        onclick="addCharElement(this.id, 'gender'), hideCharDiv(this.id, 'gender')">
+                        <div class="row text-center">
+                            <img src="/static/Gender/MaleSymbol.png">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-1 charIcon" id="Female"
+                        onclick="addCharElement(this.id, 'gender'), hideCharDiv(this.id, 'gender')">
+                        <div class="row text-center">
+                            <img src="/static/Gender/FemaleSymbol.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center container ">
+                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                    <form id="assetSuggestionForm" method="POST">
+
+
+                        <div class="input-group mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Can't find
+                                the
+                                asset you are looking for? Why not provide us with s
+                                suggestion.</label>
+                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                aria-label="Asset Suggestion" aria-describedby="button-primary" name="assetSuggestion">
+                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--  THE character locations -->
+        <div class="container genderCaraSection" id="charLoc" style="display:none">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Character Location</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+
+                    <div class="col-1 charIcon" id="charUL"
+                        onclick="addCharElement(this.id, 'charLoc'), hideCharDiv(this.id, 'charLoc')">
+                        <div class="row text-center">
+                            <img src="/static/PropLoc/LeftUpper.jpg">
+                        </div>
+                        <div class="row text-center">
+                            <h5>Back Left</h5>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-1 charIcon" id="charUC"
+                        onclick="addCharElement(this.id, 'charLoc'), hideCharDiv(this.id, 'charLoc')">
+                        <div class="row text-center">
+                            <img src="/static/PropLoc/CenterUpper.jpg">
+                        </div>
+                        <div class="row text-center">
+                            <h5>Back Centre</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-1 charIcon" id="charUR"
+                        onclick="addCharElement(this.id, 'charLoc'), hideCharDiv(this.id, 'charLoc')">
+                        <div class="row text-center">
+                            <img src="/static/PropLoc/RightUpper.jpg">
+                        </div>
+
+                        <div class="row text-center">
+                            <h5>Back Right</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-1 charIcon" id="charLL"
+                        onclick="addCharElement(this.id, 'charLoc'), hideCharDiv(this.id, 'charLoc')">
+                        <div class="row text-center">
+                            <img src="/static/PropLoc/LeftLower.jpg">
+                        </div>
+
+                        <div class="row text-center">
+                            <h5>Front Left</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-1 charIcon" id="charLC"
+                        onclick="addCharElement(this.id, 'charLoc'), hideCharDiv(this.id, 'charLoc')">
+                        <div class="row text-center">
+                            <img src="/static/PropLoc/CenterLower.jpg">
+                        </div>
+
+                        <div class="row text-center">
+                            <h5>Front Centre</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-1 charIcon" id="charLR"
+                        onclick="addCharElement(this.id, 'charLoc'), hideCharDiv(this.id, 'charLoc')">
+                        <div class="row text-center">
+                            <img src="/static/PropLoc/RightLower.jpg">
+                        </div>
+                        <div class="row text-center">
+                            <h5>Back Right</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center container ">
+                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                    <form id="assetSuggestionForm" method="POST">
+
+
+                        <div class="input-group mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Can't find
+                                the
+                                asset you are looking for? Why not provide us with s
+                                suggestion.</label>
+                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                aria-label="Asset Suggestion" aria-describedby="button-primary" name="assetSuggestion">
+                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--CHARACTER HAIR OPTIONS 2 IN HERE-->
+        <div class="container hairCaraSection" id="hair" style="display:none">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Hair</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+
+                    <div class="col-1 charIcon" id="Long"
+                        onclick="addCharElement(this.id, 'hair'), hideCharDiv(this.id, 'hair')">
+                        <div class="row text-center">
+                            <img src="/static/HairOptions/LongHair.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Bob"
+                        onclick="addCharElement(this.id, 'hair'), hideCharDiv(this.id, 'hair')">
+                        <div class="row text-center">
+                            <img src="/static/HairOptions/BobHair.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Short"
+                        onclick="addCharElement(this.id, 'hair'), hideCharDiv(this.id, 'hair')">
+                        <div class="row text-center">
+                            <img src="/static/HairOptions/ShortHair.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Mohawk"
+                        onclick="addCharElement(this.id, 'hair'), hideCharDiv(this.id, 'hair')">
+                        <div class="row text-center">
+                            <img src="/static/HairOptions/MohawkHair.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Shaved"
+                        onclick="addCharElement(this.id, 'hair'), hideCharDiv(this.id, 'hair')">
+                        <div class="row text-center">
+                            <img src="/static/HairOptions/ShavedHair.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center container ">
+                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                    <form id="assetSuggestionForm" method="POST">
+
+
+                        <div class="input-group mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Can't find
+                                the
+                                asset you are looking for? Why not provide us with s
+                                suggestion.</label>
+                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                aria-label="Asset Suggestion" aria-describedby="button-primary" name="assetSuggestion">
+                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--CHARACTER POSE OPTIONS 2 IN HERE-->
+        <div class="container poseCaraSection" id="pose" style="display:none">
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Pose</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+                    <!-- ENTER OPTIONS-->
+                    <div class="col-1 charIcon" id="Standing"
+                        onclick="addCharElement(this.id, 'pose'), hideCharDiv(this.id, 'pose')">
+                        <div class="row text-center">
+                            <img src="/static/PoseOptions/StandingPose.png" height="250">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Sitting"
+                        onclick="addCharElement(this.id, 'pose'), hideCharDiv(this.id, 'pose')">
+                        <div class="row text-center">
+                            <img src="/static/PoseOptions/SittingPose.png" height="250">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center container ">
+                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                    <form id="assetSuggestionForm" method="POST">
+
+
+                        <div class="input-group mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Can't find
+                                the
+                                asset you are looking for? Why not provide us with s
+                                suggestion.</label>
+                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                aria-label="Asset Suggestion" aria-describedby="button-primary" name="assetSuggestion">
+                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--CHARACTER TOP OPTIONS 2 IN HERE-->
+        <div class="container topsCaraSection" id="top" style="display:none">
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Tops</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+                    <!-- ENTER OPTIONS-->
+                    <div class="col-1 charIcon" id="Tshirt"
+                        onclick="addCharElement(this.id, 'top'), hideCharDiv(this.id, 'top')">
+                        <div class="row text-center">
+                            <img src="/static/TopOptions/TshirtTop.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Shirt"
+                        onclick="addCharElement(this.id, 'top'), hideCharDiv(this.id, 'top')">
+                        <div class="row text-center">
+                            <img src="/static/TopOptions/ShirtTop.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Blouse"
+                        onclick="addCharElement(this.id, 'top'), hideCharDiv(this.id, 'top')">
+                        <div class="row text-center">
+                            <img src="/static/TopOptions/BlouseTop.png">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center container ">
+                    <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                        <form id="assetSuggestionForm" method="POST">
+
+
+                            <div class="input-group mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Can't
+                                    find
+                                    the
+                                    asset you are looking for? Why not provide us with s
+                                    suggestion.</label>
+                                <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                    aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                    name="assetSuggestion">
+                                <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--CHARACTER BOTTOM OPTIONS 2 IN HERE-->
+        <div class="container bottomsCaraSection" id="bottoms" style="display:none">
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Bottoms</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+                    <!-- ENTER OPTIONS-->
+                    <div class="col-1 charIcon" id="Trousers"
+                        onclick="addCharElement(this.id, 'bottoms'), hideCharDiv(this.id, 'bottoms')">
+                        <div class="row text-center">
+                            <img src="/static/BottomsOptions/TrousersBottom.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Shorts"
+                        onclick="addCharElement(this.id, 'bottoms'), hideCharDiv(this.id, 'bottoms')">
+                        <div class="row text-center">
+                            <img src="/static/BottomsOptions/ShortsBottom.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Skirt"
+                        onclick="addCharElement(this.id, 'bottoms'), hideCharDiv(this.id, 'bottoms')">
+                        <div class="row text-center">
+                            <img src="/static/BottomsOptions/SkirtBottom.png">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center container ">
+                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                    <form id="assetSuggestionForm" method="POST">
+
+
+                        <div class="input-group mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Can't find
+                                the
+                                asset you are looking for? Why not provide us with s
+                                suggestion.</label>
+                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                aria-label="Asset Suggestion" aria-describedby="button-primary" name="assetSuggestion">
+                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--CHARACTER CHARACTER PROP OPTIONS 2 IN HERE-->
+        <div class="container propCaraSection" id="prop" style="display:none">
+            <div class="row d-flex justify-content-center">
+
+                <div class="row text-center d-flex justify-content-center ">
+                    <h6>Character Props</h6>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+                    <!-- ENTER OPTIONS-->
+
+                    <div class="col-1 charIcon" id="Sword"
+                        onclick="addCharElement(this.id, 'prop'), hideCharDiv(this.id, 'prop')">
+                        <div class="row text-center">
+                            <img src="/static/PropOptions/SwordProp.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Gun"
+                        onclick="addCharElement(this.id, 'prop'), hideCharDiv(this.id, 'prop')">
+                        <div class="row text-center">
+                            <img src="/static/PropOptions/GunProp.png">
+                        </div>
+                    </div>
+                    <div class="col-1 charIcon" id="Phone"
+                        onclick="addCharElement(this.id, 'prop'), hideCharDiv(this.id, 'prop')">
+                        <div class="row text-center">
+                            <img src="/static/PropOptions/PhoneProp.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center container ">
+                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+
+
+                    <form id="assetSuggestionForm" method="POST">
+
+
+                        <div class="input-group mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Can't find
+                                the
+                                asset you are looking for? Why not provide us with s
+                                suggestion.</label>
+                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                aria-label="Asset Suggestion" aria-describedby="button-primary" name="assetSuggestion">
+                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

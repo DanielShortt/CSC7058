@@ -20,6 +20,7 @@ html,body{
     max-height:215px;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .aLabel{
@@ -82,6 +83,7 @@ html,body{
     border-top: 5px solid red;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
+    overflow-x: hidden;
     
 }
 
@@ -165,6 +167,9 @@ html,body{
 
 .dayIcon{
     padding: 5px;
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-right: 25px;
     border-width:2px;
     border-radius: 5px;
     border-style:solid;
@@ -180,6 +185,9 @@ html,body{
 
 .charIcon{
     padding: 5px;
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-right: 25px;
     border-width:2px;
     border-radius: 5px;
     border-style:solid;
@@ -415,5 +423,15 @@ display: inline-block;
 }
 
 .renderButton{
+    display: inline-block;
+}
+
+.assetSuggestion{
+    display: inline-block;
+    margin-top: 20px;
+    width: 400px;
+}
+
+.assetDetails{
     display: inline-block;
 }

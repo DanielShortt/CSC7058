@@ -1,71 +1,47 @@
 //START OF SCRIPTING FILES
 
 //GLOBAL VARIABLES
-var divShown = "";
-var charDivShown = "";
-var charCount = 0, charTotal = 1;
-var outputFile = "";
-var clickCount = 0;
+var divShown = ""; //Stores the id of the current environment label type div shown
+var charDivShown = ""; // stores the id of the current character label type shown
+var charCount = 0, charTotal = 0; //stores the values for the max number of characters selected and current active character
+var latestCharUpdated = 0; //the latest character that has had an update.
+var CharLoopTitleId = "charNumTitle" //Character title.
+var outputFile = ""; //the file used to store the label information selections for output in JSON information after 
+var clickCount = 0; //used to count the number of variables selected/modified.
 
+//Used to navigate the environment array
 const environmentArrayTitles = ["time", "setting", "lighting", "atmosphere", "mainProp", "propLoc", "camera", "numberChars"];
-const characterArrayTitles = ['gender', 'charLoc','hair', 'pose', 'top', 'bottoms', 'prop'];
-                            
-const environmentArray = { 'time': 'Night', 'setting': 'Beach', 'lighting': '', 'atmosphere': 'Sad', 'mainProp': "Surf's Up SurfBoard", 'propLoc': 'leftUpper', 'camera': '', 'numberChars': 1 };
 
-const characterArray = {
-    'gender1': 'Male', 'charLoc1': 'charUL','hair1': 'Short', 'pose1': 'Sitting', 'top1': 'Tshirt', 'bottoms1': 'Shorts', 'prop1': '',
-    'gender2': '', 'charLoc2': '','hair2': '', 'pose2': '', 'top2': '', 'bottoms2': '', 'prop2': '',
-    'gender3': '', 'charLoc3': '','hair3': '', 'pose3': '', 'top3': '', 'bottoms3': '', 'prop3': '',
-    'gender4': '', 'charLoc4': '','hair4': '', 'pose4': '', 'top4': '', 'bottoms4': '', 'prop4': ''
+//Used to navigate the character array
+const characterArrayTitles = ['gender', 'charLoc', 'hair', 'pose', 'top', 'bottoms', 'prop'];
+
+//used to store the environment label selections
+const environmentArray = {
+    'time': 'Night', 'setting': 'Beach', 'lighting': '', 'atmosphere': 'Sad',
+    'mainProp': "Surfboard", 'propLoc': 'leftUpper', 'camera': '', 'numberChars': 1
 };
-//End of array
 
+//used to store the character label selections
+const characterArray = {
+    'gender1': 'Male', 'charLoc1': 'upperLeft', 'hair1': 'Short', 'pose1': 'Sitting', 'top1': 'TShirt', 'bottoms1': 'Shorts', 'props1': '',
+    'gender2': '', 'charLoc2': '', 'hair2': '', 'pose2': '', 'top2': '', 'bottoms2': '', 'props2': '',
+    'gender3': '', 'charLoc3': '', 'hair3': '', 'pose3': '', 'top3': '', 'bottoms3': '', 'props3': '',
+    'gender4': '', 'charLoc4': '', 'hair4': '', 'pose4': '', 'top4': '', 'bottoms4': '', 'props4': ''
+}; //End of array
 
-//Count clicks on pages
-//document.addEventListener("click", () => {
-
-function clickCountIncrease()  {
+//update the value of clickCount. Change the images displayed in display tool.
+function clickCountIncrease() {
     clickCount++;
-    console.log(clickCount);
-    //count += 1;
-    //localStorage.setItem("clickCount", count);
- 
-    if(clickCount %3 == 0) {
-        document.getElementById("mainImage3").style.display = 'block';
-        document.getElementById("mainImage2").style.display = 'none';
-        document.getElementById("mainImage1").style.display = 'none';
-     
-    } else if (clickCount %3 == 1){
-        document.getElementById("mainImage3").style.display = 'none';
-        document.getElementById("mainImage2").style.display = 'block';
-        document.getElementById("mainImage1").style.display = 'none';
-
-    } else if (clickCount %3 == 2){
-        document.getElementById("mainImage3").style.display = 'none';
-        document.getElementById("mainImage2").style.display = 'none';
-        document.getElementById("mainImage1").style.display = 'block';
-
+    for(let i = 0; i<3; i++){
+        mainImage = "mainImage" + i
+        //hide/show demo divs based on the value of i in the loop
+        if (clickCount % 3 == i) {
+            document.getElementById(mainImage).style.display = 'block';
+        } else {
+            document.getElementById(mainImage).style.display = 'none';
+        }
     }
-
- };
-
-//FUNCTION TO HIDE DIV
-function divHide(id, cara) {
-    //Take ID of hair selected and add to Json file in background.
-    buttonid = id
-    var T = document.getElementById(cara);
-    T.style.display = "none";  // <-- Set it to block
-    divShown = "";
-}
-
-//FUNCTION TO HIDE CHARACTER CREATION DIV
-function hideCharDiv(id, cara) {
-    //Take ID of hair selected and add to Json file in background.
-    buttonid = id
-    var T = document.getElementById(cara);
-    T.style.display = "none";  // <-- Set it to block
-    charDivShown = "";
-}
+};
 
 //FUNCTION TO SHOW DIV
 function showDiv(divId, element) {
@@ -76,8 +52,17 @@ function showDiv(divId, element) {
     divShown = divId;
 }
 
+//FUNCTION TO HIDE DIV
+function divHide(id, cara) {
+    buttonid = id
+    //console.log("buttonID selected" + buttonid) // used for debugging.
+    var T = document.getElementById(cara);
+    T.style.display = "none";  // <-- Set it to block
+    divShown = "";
+}
+
 //FUNCTION TO SHOW CHRACTER CREATION DIVS
-function showCharDiv(divId, element) {
+function showCharDiv(divId) {
     if (charDivShown != "") {
         hideCharDiv("", charDivShown);
     }
@@ -86,38 +71,45 @@ function showCharDiv(divId, element) {
     charDivShown = divId;
 }
 
+//FUNCTION TO HIDE CHARACTER CREATION DIV
+function hideCharDiv(id, cara) {
+    buttonid = id
+    //console.log("buttonID selected" + buttonid) // used for debugging.
+    var T = document.getElementById(cara);
+    T.style.display = "none";  // <-- Set it to block
+    charDivShown = "";
+}
+
+
 //FUNCTION TO SET NUMBER OF CHARS SELECTED TO CONTROL LOOP 
 //FUNCTION SETS UP DIVS FOR SETTING CHRACTER CREATION VARIABLES
 //UNFINISHED!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function charInfo(numOfChars) {
-    //Add Char info here. Must take int argument to control loop iterations.
-
-    for (let i = 0; i < 4; i++) {
+    //Add Char info here.
+    for (let i = 0; i < 5; i++) {
         if (numOfChars == "char" + i) {
             charTotal = i;
-            addElement(i, "numberChars") 
+            addElement(i, "numberChars")
             document.getElementById("numCharBar").classList.remove("d-flex");
             document.getElementById('numCharBar').style.display = 'none';
         }
     }
-  
+
     //If char total selected >0 then set character to appropriate value.
     if (charTotal > 0 && charCount < 1) {
         charCount += 1;
+        latestCharUpdated = 1;
         var charLoopTitle = "Character " + charCount;
-        CharLoopTitleId = "charNumTitle"
+        var CharLoopTitleId = "charNumTitle"
         var updateCharLoopTitle = document.getElementById(CharLoopTitleId);
         updateCharLoopTitle.innerHTML = charLoopTitle;
         var charIdUpdate = "caraCharDetails" + charCount;
-        var updateCharLoopId = document.getElementById("caraCharDetails").id;
         document.getElementById("caraCharDetails").id = charIdUpdate;
         document.getElementById(charIdUpdate).style.display = 'block';
-    } else if(charTotal = 0){
+    } else if (charTotal = 0) {
         document.getElementById('caraNumChars').style.display = 'none';
     }
 }
-
-
 
 //FUNCTION WILL BE USED TO START THE PROCESS TO MODIFY NEXT CHARACTER
 function nextChar() {
@@ -161,11 +153,8 @@ function addElement(object, label) {
     var elementExists = false;
     var objectLabelId = "";
     var updateCara = "";
-    // console.log("The current label is " + label);
 
-
-
-    if (label == "time") {
+    if (label == "Time") {
         if (environmentArray['time'] != "") {
             elementExists = true;
         }
@@ -173,7 +162,7 @@ function addElement(object, label) {
         objectLabelId = "timeId";
         updateCara = "caraTime";
 
-    } else if (label == "setting") {
+    } else if (label == "Setting") {
         if (environmentArray['setting'] != "") {
             elementExists = true;
         }
@@ -181,7 +170,7 @@ function addElement(object, label) {
         objectLabelId = "settingId";
         updateCara = "caraSetting";
 
-    } else if (label == "lighting") {
+    } else if (label == "Lighting") {
         if (environmentArray['lighting'] != "") {
             elementExists = true;
         }
@@ -189,7 +178,7 @@ function addElement(object, label) {
         objectLabelId = "lightingId";
         updateCara = "caraLighting";
 
-    } else if (label == "atmosphere") {
+    } else if (label == "Atmosphere") {
         if (environmentArray['atmosphere'] != "") {
             elementExists = true;
         }
@@ -197,15 +186,15 @@ function addElement(object, label) {
         objectLabelId = "atmosphereId";
         updateCara = "caraAtmosphere";
 
-    } else if (label == "prop") {
+    } else if (label == "MainProp") {
         if (environmentArray['mainProp'] != "") {
             elementExists = true;
         }
         environmentArray['mainProp'] = object;
         objectLabelId = "propId";
-        updateCara = "caraProp";
+        updateCara = "caraMainProp";
 
-    } else if (label == "propLoc") {
+    } else if (label == "PropLoc") {
         if (environmentArray['propLoc'] != "") {
             elementExists = true;
         }
@@ -213,7 +202,7 @@ function addElement(object, label) {
         objectLabelId = "propLocId";
         updateCara = "caraPropLoc";
 
-    } else if (label == "camera") {
+    } else if (label == "Camera") {
         if (environmentArray['camera'] != "") {
             elementExists = true;
         }
@@ -284,18 +273,19 @@ function addElement(object, label) {
 //labels stored in labels column under character header   
 function addCharElement(object, label) {
 
+    console.log(object, label) // WORKING HERE
     //high level variables required for function
     var temp = "";
-    var elementExists = false;
     var objectLabelId = "";
     var objectLabelId = "";
     var newCharDiv = "";
     var elementExists = false, charExists = false;
-    var charClassTitle = "charLabels" + charCount; //should always start at if char number selected is greater than 1
+    var charClassTitle = "charLabels" + charCount; 
 
     //Create new High level character label divs
     if (document.getElementById(charClassTitle)) {
         charExists = true
+        latestCharUpdated = charCount;
     } else {
         newCharDiv = document.createElement("div");
         newCharDiv.className = charClassTitle; // row charLabels1
@@ -307,25 +297,22 @@ function addCharElement(object, label) {
         const objectLabel = document.createTextNode("Character " + charCount);
         newLabel.appendChild(objectLabel);
         newCharDiv.appendChild(newLabel);
+        
     }
 
     //Position new div under the character labels in left column
-
     if (charCount == 1 && !charExists) {
         // add the newly created element and its content into the DOM
-
         const currentDiv = document.getElementById("insertCharObjects");
         const parentDiv = document.getElementById("charObjects");
         parentDiv.insertBefore(newCharDiv, currentDiv.nextSibling);
-
-
     } else if (charExists) {
         //do nothing
     } else { // POSITION charLabels2 AFTER charLabels1 etc
-
-        const currentDiv = document.getElementById("charLabels" + (charCount - 1));
+        const currentDiv = document.getElementById("charLabels" + (latestCharUpdated));
         const parentDiv = document.getElementById("charObjects");
         parentDiv.insertBefore(newCharDiv, currentDiv.nextSibling);
+        latestCharUpdated = charCount;
     }
 
     //END OF TEST
@@ -334,21 +321,25 @@ function addCharElement(object, label) {
     if (charCount > 0) {
         temp = label + charCount  //eg gender1
     }
-
+    console.log(temp)
     var item = characterArray[temp];
-
+    
     if (item != '') {
+        console.log("WHY AM I IN HERE?")
         elementExists = true;
     }
 
     //Looking  in character array and storing value for label + current active character number
     characterArray[temp] = object;
     objectLabelId = temp + "id";
-    var currentCharDiv = "";
+   // var currentCharDiv = "";
+
+   console.log(objectLabelId)
+   console.log(elementExists)
 
     //if element does not exist create a new element and popluate active character
     if (elementExists == false) {
-
+        console.log("SHOULD BE IN HERE")
         //console.log("About to create a new Character element");
 
         // create a new div element
@@ -398,42 +389,18 @@ function activeChar(id) {
     var activeChar2 = document.getElementsByClassName("aCharacterObject2");
     var activeChar3 = document.getElementsByClassName("aCharacterObject3");
     var activeChar4 = document.getElementsByClassName("aCharacterObject4");
+    const activeChars= [activeChar1, activeChar2, activeChar3, activeChar4]
 
-    for (let i = 0; i < activeChar1.length; i++) {
-
-        if (id == "characterLabelHeader1" || id == "aCharacterObject1") {
-            updateCurrentChar(1);
-            activeChar1[i].style.display = "block";
-        } else {
-            activeChar1[i].style.display = "none";
-        }
-
-    }
-
-    for (let i = 0; i < activeChar2.length; i++) {
-        if (id == "characterLabelHeader2" || id == "aCharacterObject2") {
-            updateCurrentChar(2);
-            activeChar2[i].style.display = "block";
-        } else {
-            activeChar2[i].style.display = "none";
-        }
-    }
-
-    for (let i = 0; i < activeChar3.length; i++) {
-        if (id == "characterLabelHeader3" || id == "aCharacterObject3") {
-            updateCurrentChar(3);
-            activeChar3[i].style.display = "block";
-        } else {
-            activeChar3[i].style.display = "none";
-        }
-    }
-
-    for (let i = 0; i < activeChar4.length; i++) {
-        if (id == "characterLabelHeader4" || id == "aCharacterObject4") {
-            updateCurrentChar(4);
-            activeChar4[i].style.display = "block";
-        } else {
-            activeChar4[i].style.display = "none";
+    for (let i = 0; i < charTotal; i++) {
+        let activeChar = activeChars[i]
+        let activeCharValue = (i+1) //As i beings at Zero
+        for(let j =0; j< activeChar.length; j++){
+            if (id == "characterLabelHeader" + activeCharValue || id == "aCharacterObject" + activeCharValue) {
+                updateCurrentChar(activeCharValue);
+                activeChar[j].style.display = "block";
+            } else {
+                activeChar[j].style.display = "none";
+            }
         }
     }
 }
@@ -450,7 +417,6 @@ function updateCurrentChar(char) {
 
 //NEED TO LOAD JSON FILE.
 function loadJSON() {
-
     //temp method to load in JSON. Need to figure out how to modify data loaded in.
     fetch('static/JSON/scene.json')
         .then(response => response.json())
@@ -468,28 +434,27 @@ function loadJSON() {
             }
 
             //storing character titles
-            for(let i = 0; i < 4; i++){
-                for(let j = 0; j < countC; j++){
-                    var tempTitle = (characterArrayTitles[j] + (i+1));
-                    data.CharacterInfo[0][tempTitle] = characterArray[tempTitle];
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < countC; j++) {
+                    var tempTitle = (characterArrayTitles[j] + (i + 1));
+                    data.Character[0][tempTitle] = characterArray[tempTitle];
                     //console.log(data.CharacterInfo[0][tempTitle]); 
                 }
             }
 
             //set up JSON file
-            outputFile = JSON.stringify(data,null, 2);
-
-            //
-            saveStringAsFile("ImageProperties.txt", outputFile) //UserId would be helpful here.
+            outputFile = JSON.stringify(data, null, 2);
+            //Download the file
+            downloadFile("ImageProperties.txt", outputFile)
 
         })
         .catch(err => console.log(err))
 
-        
+
 }
 
 
-function saveStringAsFile(filename, data) {
+function downloadFile(filename, data) {
 
     //PATH C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/imageProperties/. Can't select path.
     // Convert the text to BLOB.
@@ -508,28 +473,23 @@ function saveStringAsFile(filename, data) {
         newLink.click();
         document.body.removeChild(newLink);
     }
-    
+
 }
 
 
 
-async function downloadImage(downloadImage, downloadName){
-
-    //console.log(downloadImage, downloadName);
-    if(downloadImage != ""){
-        console.log("inside first part");
-        console.log(downloadImage)
+async function downloadImage(downloadImage, downloadName) {
+    //download image file that user has selected / rendered
+    if (downloadImage != "") {
         imageSrc = downloadImage;
     } else {
-        console.log("inside second part");
         imageSrc = "/static/RenderLibrary/Best_Beaches_Surfing20220313_14-57-54.jpg";
     }
-    
-    console.log("about to download " + imageSrc)
+
     const image = await fetch(imageSrc)
     const imageBlog = await image.blob()
     const imageURL = URL.createObjectURL(imageBlog)
-  
+
     const link = document.createElement('a')
     link.href = imageURL
     link.download = downloadName

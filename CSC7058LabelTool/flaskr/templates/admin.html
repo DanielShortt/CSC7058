@@ -20,32 +20,21 @@
 
     <div class="row">
         <div class="col adminMessageWindow">
-
             <p>Messages for review</p>
-
             {% for msg in messages %}
-
                 <div class="adminMessageUnique">
-
                     {% if msg is not none %}
-
                         <div class="message">
                             <p>{{msg}}</p>
                         </div>
-
                         <div class="message float-end">
                             <a href="#">Respond</a>                    
                             <a href="#">Delete</a>
                         </div>
-
                     {% endif %}
-
                 </div>
-
             {% endfor %}
-
         </div>
-
     </div>
 
 
@@ -64,6 +53,18 @@
 
         </div>
 
+    </div>
+
+    <div class="row ">
+        <div class="col text-center selectImage">
+            <h6>Upload Daz Assets</h6>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Select Zip file..</label>
+                    <input type="file" class="form-control-file" id="UploadImage">
+                </div>
+            </form>
+        </div>
     </div>
 
 </div>

@@ -5,7 +5,7 @@
                 {
                     "Day":"Day",
                     "Night":"Night",
-                    "Twilight":"Twilight"
+                    "Twilight":"<i class='bi bi-sunset-fill' style='font-size: 2rem;'></i>"
                 }
             ],
             "Setting":[

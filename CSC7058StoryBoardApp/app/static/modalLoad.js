@@ -1,5 +1,5 @@
-async function codeAddress() {
+async function tipModal() {
     var myModal = new bootstrap.Modal(document.getElementById('tipModal'), {})
     myModal.toggle()   
 }
-window.onload = codeAddress;
+window.onload = tipModal;

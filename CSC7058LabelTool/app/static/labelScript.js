@@ -62,7 +62,7 @@ function showCharDiv(divId, element) {
 function charInfo(numOfChars) {
     //Add Char info here. Must take int argument to control loop iterations.
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         if (numOfChars == "char" + i) {
             charTotal = i;
             addElement(i, "numberChars") 
@@ -409,94 +409,7 @@ function updateCurrentChar(char) {
     charCount = char;
 }
 
-//NEED TO LOAD JSON FILE.
-function loadJSON() {
 
-    //temp method to load in JSON. Need to figure out how to modify data loaded in.
-    fetch('static/JSON/scene.json')
-        .then(response => response.json())
-        .then(data => {
-
-            //Store number of scene properties selected
-            var count = Object.keys(data.Environment[0]).length;
-            //Store number of character properties selected
-            var countC = characterArrayTitles.length;
-
-            //storing scene titles to dictionary
-            for (let i = 0; i < count; i++) {
-                data.Environment[0][environmentArrayTitles[i]] = environmentArray[environmentArrayTitles[i]];
-                //console.log(data.Environment[0][environmentArrayTitles[i]]);
-            }
-
-            //storing character titles
-            for(let i = 0; i < 4; i++){
-                for(let j = 0; j < countC; j++){
-                    var tempTitle = (characterArrayTitles[j] + (i+1));
-                    data.CharacterInfo[0][tempTitle] = characterArray[tempTitle];
-                    //console.log(data.CharacterInfo[0][tempTitle]); 
-                }
-            }
-
-            //set up JSON file
-            outputFile = JSON.stringify(data,null, 2);
-
-            //
-            saveStringAsFile("ImageProperties.txt", outputFile) //UserId would be helpful here.
-
-        })
-        .catch(err => console.log(err))       
-}
-
-
-function saveStringAsFile(filename, data) {
-
-    // Convert the text to BLOB.
-    const textToBLOB = new Blob([data], { type: 'text/plain' }); //creates a text file from output file passed in
-    let newLink = document.createElement("a"); //creates a document element. Can be called anything. Not placed in DOM.
-    
-    //Creates a download link to store file locally as download. Cannot download directly to specific directory due to security.
-    newLink.download = filename; 
-    if (window.webkitURL != null) { //
-        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-        newLink.click();
-    }
-    else {
-        newLink.href = window.URL.createObjectURL(textToBLOB);
-        newLink.style.display = "none";
-        document.body.appendChild(newLink);
-        newLink.click();
-        document.body.removeChild(newLink);
-    }
-    
-}
-
-
-
-async function downloadImage(downloadImage, downloadName){
-
-    //console.log(downloadImage, downloadName);
-    if(downloadImage != ""){
-        console.log("inside first part");
-        console.log(downloadImage)
-        imageSrc = downloadImage;
-    } else {
-        console.log("inside second part");
-        imageSrc = "/static/RenderLibrary/Best_Beaches_Surfing20220313_14-57-54.jpg";
-    }
-    
-    console.log("about to download " + imageSrc)
-    const image = await fetch(imageSrc)
-    const imageBlog = await image.blob()
-    const imageURL = URL.createObjectURL(imageBlog)
-  
-    const link = document.createElement('a')
-    link.href = imageURL
-    link.download = downloadName
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
-}
 function loginModal() {
     var myModal = new bootstrap.Modal(document.getElementById('labelLoginModal'), {})
     myModal.toggle()   

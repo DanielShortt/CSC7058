@@ -1,12 +1,12 @@
-<div class="col-1 dayIcon " id="Twilight"
-                        onclick="addShadow(this.id); divHide('twilight', 'caraTime'); addElement(this.id, 'time')">
+<div class="col-1 dayIcon " id="//UPDATENAME"
+                        onclick="addShadow(this.id); divHide('//UPDATENAME-LOWERCASE', 'caraTime'); addElement(this.id, 'time')">
 
                         <div class="row text-center">
-			    <i class="bi bi-sunset-fill" style="font-size: 2rem;"></i>
+			    //UPDATEICON
                         </div>
 
                         <div class="row text-center">
-                            <h5>Twilight</h5>
+                            <h5>//UPDATENAME</h5>
                         </div>
 
                     </div>

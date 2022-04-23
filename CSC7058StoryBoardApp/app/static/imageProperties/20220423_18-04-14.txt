@@ -1,0 +1,42 @@
+{
+  "Environment": [
+    {
+      "time": "Night",
+      "setting": "Beach",
+      "lighting": "Dim",
+      "atmosphere": "Sad",
+      "mainProp": "Surfboard",
+      "propLoc": "leftUpper",
+      "camera": "Front",
+      "numberChars": 1
+    }
+  ],
+  "Character": [
+    {
+      "gender1": "Male",
+      "charLoc1": "upperLeft",
+      "hair1": "Mohawk",
+      "pose1": "Standing",
+      "top1": "Tshirt",
+      "bottoms1": "Shorts",
+      "gender2": "",
+      "charLoc2": "",
+      "hair2": "",
+      "pose2": "",
+      "top2": "",
+      "bottoms2": "",
+      "gender3": "",
+      "charLoc3": "",
+      "hair3": "",
+      "pose3": "",
+      "top3": "",
+      "bottoms3": "",
+      "gender4": "",
+      "charLoc4": "",
+      "hair4": "",
+      "pose4": "",
+      "top4": "",
+      "bottoms4": ""
+    }
+  ]
+}

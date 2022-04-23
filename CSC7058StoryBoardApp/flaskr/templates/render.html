@@ -1,46 +1,26 @@
 {% extends "base.html"%}
 {% block title %}Render Page{% endblock %}
-
-
 <!-- Image render page obsolete at this page -->
-
 {% block content %}
-
 <div class="container col-xl-12 px-4 py-5 renderedImage">
     <div class ="row">
-
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for msg in messages %}
-        <p>{{msg}}</p>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-
-
-
         <div class="row">
             <h6>Please see rendered image below.</h6>
         </div>
-
         <div class="row ">
+            <!--Display name of image created-->
             <h6>{{renderName}}</h6>
+            <!--Display new image-->
             <img src="{{content}}" />
-
-            <!--<img src="{{content}}" width="100" height="100">-->
         </div>
-
         <div class="row text-center justify-content-center downloadRender">
             <div class="col downloadButton">
-
+                <!--Download new image-->
                 <button onclick="downloadImage('{{content}}', '{{renderName}}')" type="button"
                     class="btn btn-primary">Download Image</button>
-
             </div>
         </div>
     </div>
-
-
 </div>
 
 {% endblock %}

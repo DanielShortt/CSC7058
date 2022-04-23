@@ -1,11 +1,6 @@
-import os, time, json
-import subprocess
-import ntpath
-import argparse
-from datetime import datetime
-from genericpath import exists
+import os, time, json, ntpath, subprocess
+from datetime import datetime, timedelta
 from flask import Flask, redirect, url_for, render_template, request, session, flash
-from datetime import timedelta
 
 app = Flask(__name__, template_folder='../flaskr/templates')
 app.secret_key = "hello"
@@ -52,10 +47,13 @@ def label(image):
         imageSelectedName = image
         imageSelected = "/static/Images/" + image
 
-        #print("no")
+        #get string from input entered by user.
         userAssetRequest = request.form["assetSuggestion"]
-        #print(userAssetRequest)
+
+        #open file containing messages to be displayed to admin. Would be a database table row.
         fileAssetAppend = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt", "a")
+
+        #add message to file.Write.Close.
         fileAssetAppend.write(userAssetRequest  + "\n") 
         fileAssetAppend.close()
 
@@ -66,84 +64,48 @@ def label(image):
         imageSelected = "/static/Images/" + image
         return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName)
 
-
-#THE LOGIN PAGE.  NOT REQUIRED AT THIS STAGE.
-@app.route("/login", methods=["POST","GET"])
-def login():
-    if request.method == "POST":
-            session.permanent = True
-            user = request.form["labelLoginModalButton"]
-            session["user"] = user
-            flash("Login Successful.")
-            return redirect(url_for("user" ))
-    else:
-        if "user"in session:
-            flash("Already logged in.")
-            return redirect(url_for("user"))
-        return render_template("login.html")
-
-#THE RENDER PAGE. 
-@app.route("/render<image>")
-def renderimage(image):
-
-    time.sleep(10)
-
-    #properties file download from website
-    propertyFile = "C:/Users/danie/Downloads/ImageProperties.txt"
-    imageName = image
-    now = datetime.now()
-    timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
-    #outputFileName = imageName+str(timestamp)
-    outputFileName = str(timestamp) #output name combination of time and date
-    outputRenderName = outputFileName
-    outputFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV3/app/static/imageProperties/"+outputFileName+".txt"
-
-    #if property file exists rename and relocate to /static/imageProperties/
-    if os.path.exists(propertyFile):
-        os.rename("C:/Users/danie/Downloads/ImageProperties.txt", outputFileName)
-        #CREATE SCRIPT TO REPLACE GENERIC TERMS WITH DAZ STUDIO ASSETS
-        subprocess.Popen(['python', 'C:/Users/danie/Documents/GitHub/CSC7058/PythonFiles/parseProperties.py', outputFileName])
-        ##########################################################################################
-
-    #render location
-    imageFileName = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + outputRenderName + ".jpg"
-    imageFound = False
-    renderCount = 0
-
-    #check if image exists and relocate to /static/RenderLibrary/
-    while not (imageFound):
-        if os.path.exists(imageFileName):
-            renderedImage = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV3/app/static/RenderLibrary/" + outputRenderName + ".jpg"
-            os.rename(imageFileName, renderedImage)
-            renderedImageMoved = "/static/RenderLibrary/" + outputRenderName + ".jpg"
-            #renderedImage = imageFileName
-            imageFound = True
-            return render_template("render.html", content=renderedImageMoved, imageTitle = imageName, renderName = outputRenderName )  
-        time.sleep(2.4)
-
-    renderCount = renderCount +1
-
 @app.route("/admin", methods=["POST","GET"])
 def admin():
 
+    #IF a post has been made to this page - i.e. an admin has update the JSON file containing the labels.
     if request.method == "POST":
 
+        #open the labels file 
         f = open('C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/JSON/labels.json')
         data = json.load(f)
 
+        #go through the labels checking for updates - in this case a specific word "Twilight" under the Enviroment section of the 
+        # JSON file.
         for i in data['Environment'][0]['Time'][0]:
             if(i == "Twilight"):
-                print('in')
+                
+                #Open the Labels HTML Page
                 fileIn = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/flaskr/templates/label.html", "r")
                 update = fileIn.read()
 
+                #open the base label file. This will be the template div for a label selection.
                 fileInUpdate = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Update/updateLabels.txt", "r")
-                twilightLabel = fileInUpdate.read()
+                tempLabel = fileInUpdate.read()
 
-                if("<!-- PLACE NEW LABEL HERE -->" in update):
-                    update = update.replace("<!-- PLACE NEW LABEL HERE -->", twilightLabel)
+                #Set the updateparameter name to lower case and replace keyword.
+                iLower = (i.lower())
+                tempLabel = tempLabel.replace('//UPDATENAME-LOWERCASE', iLower)
+
+                #Replace keywork with update paramenter
+                tempLabel = tempLabel.replace('//UPDATENAME', i)
                 
+                
+                tempImage = data['Environment'][0]['Time'][0][i]
 
+                #set icon/image for new label as set by admin
+                tempLabel = tempLabel.replace('//UPDATEICON', tempImage)
+
+                
+                #place updated label div in label html file.
+                if("<!-- PLACE NEW LABEL HERE -->" in update):
+                    update = update.replace("<!-- PLACE NEW LABEL HERE -->", tempLabel)
+                
+                #store and close files
                 fileOut = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/flaskr/templates/label.html", "wt")
                 fileOut.write(update)
                 
@@ -153,7 +115,7 @@ def admin():
    
         
         adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt"
-        #Open the adminMessages file file.
+        #Open the adminMessages file.
         fileIn = open(adminMessagesLocation, "r")
         lines = fileIn.readlines()
         fileIn.close()
@@ -168,6 +130,17 @@ def admin():
         fileIn.close()
 
         return render_template("admin.html", messages = lines)
+
+
+
+@app.route("/logout", methods=["POST","GET"])
+def logout():
+    if session is not None:
+        #clear the session set in place when user logged in.
+        session.clear()
+        return redirect(url_for("home"))
+    else:
+        return url_for("home" )
 
 
 #THE MAIN FUNCTIONs

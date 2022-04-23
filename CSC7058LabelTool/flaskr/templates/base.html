@@ -43,13 +43,9 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a onclick="loginModal()" class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Support</a>
+              
             </li>
           </ul>
         </div>
@@ -58,7 +54,16 @@
           {% if not session['user'] %}
           <button onclick="loginModal()" type="button" class="btn btn-primary">Login</button>
           {% else %}
-          <h6>Hello : {{session["user"]}} </h6>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"></li>
+              <a class="nav-link disabled">Hello : {{session["user"]}} </a>
+              <h6 class="nav-item"></h6>
+            </li>
+            <li class="nav-item">
+              <a href="/logout" type="submit" class="btn btn-primary ">Log-Out</a>
+            </li>
+          </ul>
+          
           {% endif %}
         </div>
 

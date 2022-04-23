@@ -83,6 +83,7 @@ html,body{
     border-top: 5px solid red;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
+    overflow-x: hidden;
     
 }
 
@@ -166,6 +167,7 @@ html,body{
 
 .dayIcon{
     padding: 5px;
+    margin-top: 5px;
     margin-left: 25px;
     margin-right: 25px;
     border-width:2px;

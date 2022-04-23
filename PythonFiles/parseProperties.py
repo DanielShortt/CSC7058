@@ -1,90 +1,28 @@
-import subprocess
-import os
-import psutil
-import time
-import json
-import argparse
-import re
-import winreg
+import subprocess, os, time, json, argparse, winreg, psutil
 
-#arguments
+#arguments passed to script
 parser = argparse.ArgumentParser()
-parser.add_argument('sciSceneSpec', help='Location of Scientific ')
-#parser.add_argument('defSoftMeasurements', help='File location containing default softmeasurements for the scene')
-#parser.add_argument('userSoftMeasurements', help='File location containing user selected softmeasurements for the scene')
-#parser.add_argument('variationCount', type = int,  help='The number of scene variations to be created.')
-#parser.add_argument('storage', help='Output location of scene variations.')
-#parser.add_argument('resultUniqueID', help='Unique ID for scene variations.')
+parser.add_argument('sciSceneSpec', help='Location of label selections made by user.')
+parser.add_argument('assetJSON', help='File path of JSON file containing asset file Paths')
+parser.add_argument('imageName', help='Name of the render output by Daz Studio.')
+
 args = parser.parse_args()
 tempFileName = args.sciSceneSpec
+unloadAssets = args.assetJSON
 
-#Setting up access to asset relative file paths. Would be best positioned in a database.
-enviroAssets = {'Day':'Presets/Lights/Day.duf',
-                'Night':'Presets/Lights/Night.duf',
-                'Beach':'Environments/Landscapes/Multiplane Cyclorama/Beach.duf',
-                'Tomb':'Props/NGartplay/Staging Chamber Iray/SC !Half Set Back Wall OB Iray.duf',
-                'Dark':'/Scene Builder/Starter Essentials/Bright Moonlight Lights.duf',
-                'Bright':'Scene Builder/Starter Essentials/Dusk Lights.duf',
-                'Dim':'Environments/Architecture/Motel/Scenes/Motel Lights/Motel Day Lights.duf',
-                'Fear':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/atmosphere/ExpressionFear.txt',
-                'Happy':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/atmosphere/ExpressionHappy.txt',
-                'Sad':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/atmosphere/ExpressionSad.txt',
-                'Desk':'Props/Z_Office_Collection/Desk/Desk.duf',
-                'Altar':'Props/NGartplay/Staging Chamber 3DL/sc-altar.duf',
-                'Car':'Figures/Celica/Celica.duf',
-                "Surf's Up SurfBoard":"People/Genesis 2 Male/Clothing/Surf's Up Outfit and Board/Surf's Up SurfBoard.duf",
-                'leftUpper':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObjectUpperLeft.txt',
-                'centreUpper':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObjectUpperCentre.txt',
-                'rightUpper':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObjectUpperRight.txt',
-                'leftLower':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObjectLowerLeft.txt',
-                #'centerLower':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObject',
-                'rightLower':'C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/Translations/TranslateObjectLowerRight.txt',
-                'FaceClose':'Camera Presets/closeUpHead.dsa',
-                'Front':'Camera Presets/FrontCamera.duf',
-                'IsoClose':'Camera Presets/IsoView.dsa',
-                'TopLeftCam':'Camera Presets/TopLeft.dsa',
-                'TopRightCam':'Camera Presets/TopRight.dsa',
-                '0':'/filepath/for0/asset.lol',
-                '1':'/filepath/for1/asset.lol',
-                '2':'/filepath/for2/asset.lol',
-                '3':'/filepath/for3/asset.lol',
-                '4':'/filepath/for4/asset.lol'
-                }
+#Loading Asset JSON file
+with open(unloadAssets) as file1:
+    loadAssets = json.load(file1)
 
-#Setting up access to asset relative file paths. Would be best positioned in a database.
-charAssets = {  'Male':'People/Genesis 8 Male/Genesis 8 Basic Male.duf',
-                'Female':'People/Genesis 8 Female/Genesis 8 Basic Female.duf',
-                'charUL':'Scripts/Shortt/Translations/TranslateCharacterUpperLeft.dsa',
-                'charUC':'Scripts/Shortt/Translations/TranslateCharacterUpperCentre.dsa',
-                'charUR':'Scripts/Shortt/Translations/TranslateCharacterUpperRight.dsa',
-                'charLL':'Scripts/Shortt/Translations/TranslateCharacterLowerLeft.dsa',
-                'charLC':'Scripts/Shortt/Translations/TranslateCharacterLowerCentre.dsa',
-                'charLR':'Scripts/Shortt/Translations/TranslateCharacterLowerRight.dsa',
-                'Long':'People/Genesis 8 Female/Hair/Reizibarrientos/TemperascencseNoelHair/NoelHair.duf',
-                'Bob':'People/Genesis 8 Female/Hair/perlk/Bob haircut.duf',
-                'Short':'People/Genesis 8 Male/Hair/Armani Hair/Armani Hair.duf',
-                'Mohawk':'Runtime/Libraries/Character/AprilYSH/AprilGenesis/Ciri Hair.duf',
-                'Shaved':'/filepath/forShaved/asset.lol',
-                'Standing':'People/Genesis 8 Male/Poses/Base Poses/Base Pose Walking A.duf',
-                'Sitting':'People/Genesis 8 Male/Poses/Base Poses/Base Pose Sitting C.duf',
-                'Tshirt':'People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear T Shirt.duf',
-                'Shirt':'People/Genesis 8 Male/Clothing/Walther Wardrobe/WaltherShirt.duf',
-                'Blouse':'People/Genesis 8 Female/Clothing/Most Digital Creations/G8F Plaid Shirt/G8F Plaid Shirt.duf',
-                'Trousers':'People/Genesis 8 Male/Clothing/perlk/G8M Jeans/Open Fly Jeans.duf',
-                'Shorts':'People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear Boxers.duf',
-                'Skirt':'People/Genesis 8 Female/Clothing/Rocker Outfit/Rocker Skirt.duf',
-                'Sword':'Props/kalhh/sword-fantasy/sword.duf',
-                'Gun':'Props/Backwoods Shooting Range/Hand Poses/Genesis 8 Male/Backwoods Shooting Range Rifle L Hand.duf',
-                'Phone':'Props/GMS Props/Smartphone/G8M_Smartprop.duf'}
+#Parsing Environment and character dictionaries
+enviroAssets = loadAssets["Environment"][0]
+charAssets = loadAssets["Character"][0]
 
-scriptAssets = {}
-#imageproperties = "C:/Users/danie/Downloads/ImageProperties.txt"   
+#setting variables
+scriptAssets = {} #store the keys of the environment and character
 enviroCount = 0
 
 #check if file is stored in the correct file location. File name will eventually be an argument passed in.
-imageSource = "C:/Users/danie/Downloads/ImageProperties.txt" #needs renamed
-#imageproperties = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058WebAppV2/app/static/imageProperties/ImageProperties.txt" #needs a renamed
-
 imageproperties = tempFileName
 
 #Open the image properties file.
@@ -93,7 +31,7 @@ with open(imageproperties) as file1:
 
 #store the labels keys for both environment and character selection.
 environmentKeys = imageproperties['Environment'][0]
-characterKeys = imageproperties['CharacterInfo'][0]
+characterKeys = imageproperties['Character'][0]
 
 #Finding the number of environment labels. Used to ensure correct loop count.
 for i in environmentKeys:
@@ -106,18 +44,22 @@ if(environmentKeys["numberChars"]>0):
 
 #getting and storing the values stored against each key in the environment section of the imported JSON file.
 for x in environmentKeys:
+
     for y in enviroAssets:
         if (imageproperties['Environment'][0][x] == y ):
+            #print(imageproperties['Environment'][0][x])
+            #print(y)
             scriptAssets[x]=enviroAssets[y]
+            #print(scriptAssets[x])
+            #print("\n")
 
 #getting and storing the values stored against each key in the Character section of the imported JSON file.
 for x in characterKeys:
     for y in charAssets:
-        if (imageproperties['CharacterInfo'][0][x] == y ):
+        if (imageproperties['Character'][0][x] == y ):
             scriptAssets[x]=charAssets[y]
-            
-            
 
+#print(scriptAssets)
 
 #########################################################################################################
 ##ADDING CHARACTER FILE PATHS
@@ -139,7 +81,7 @@ if(numChars > 0):
         for x in characterKeys:
             #print(x)
             if(str(charLoopCount) in x and characterKeys[x]!=''):
-                #print(x)
+                print(x)
                 #print(characterKeys[x])
                 #add character information based on loop cound y. x will go through each asset for each relevant character.
                 tempReplace = scriptAssets[x]
@@ -238,3 +180,47 @@ winreg.CloseKey(reg) #close the registry
 dazStart = "C:/Daz 3D/Applications/64-bit/DAZ 3D/DAZStudio4/DAZStudio.exe"
 #Starting daz studio 
 subprocess.Popen([dazStart])
+
+
+#setting output location to check for image render
+imageFound = False
+outputRenderName = args.imageName
+renderedImage = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/RenderLibrary/" + outputRenderName + ".jpg"
+
+#while imageFound = false iterate through this loop
+while not (imageFound):
+    #if the image is found based on the above path then reset Daz Studio on launch script to ""
+    #set imageFound to true
+    if os.path.exists(renderedImage):
+        #Reset the Daz Launch script to ""
+        reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the 
+        #get the element to be updated
+        sKey = winreg.OpenKey(reg, "SOFTWARE\DAZ\Studio4", 0 , winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY) 
+        newPath = "" #insert path of scene here.
+        winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
+        winreg.CloseKey(sKey) #close the value
+        winreg.CloseKey(reg) #close the registry
+        imageFound = True 
+        
+        #close any Daz Studio processes.
+        # Iterate over all running process
+        for proc in psutil.process_iter():
+            try:
+                # Get process name & pid from process object.
+                processName = proc.name()
+                #processID = proc.pid #not required.
+                #killing process from task manager to ensure no conflict with relaunching Daz Studio
+                procname = "DAZStudio.exe"
+                if proc.name() == procname:
+                    proc.kill()
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                pass
+    time.sleep(2) #sleep for 2 seconds before checking again if file is created.
+
+#set the daz studio startup script
+reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the registry
+sKey = winreg.OpenKey(reg, "SOFTWARE\DAZ\Studio4", 0 , winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY) #get the element to be updated
+newPath = "" #insert path of scene here.
+winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
+winreg.CloseKey(sKey) #close the value
+winreg.CloseKey(reg) #close the registry
