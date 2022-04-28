@@ -8,10 +8,10 @@ parser.add_argument('imageName', help='Name of the render output by Daz Studio.'
 
 args = parser.parse_args()
 tempFileName = args.sciSceneSpec
-unloadAssets = args.assetJSON
+unloadedAssets = args.assetJSON
 
 #Loading Asset JSON file
-with open(unloadAssets) as file1:
+with open(unloadedAssets) as file1:
     loadAssets = json.load(file1)
 
 #Parsing Environment and character dictionaries
@@ -21,8 +21,6 @@ charAssets = loadAssets["Character"][0]
 #setting variables
 scriptAssets = {} #store the keys of the environment and character
 enviroCount = 0
-
-#check if file is stored in the correct file location. File name will eventually be an argument passed in.
 imageproperties = tempFileName
 
 #Open the image properties file.
@@ -47,19 +45,15 @@ for x in environmentKeys:
 
     for y in enviroAssets:
         if (imageproperties['Environment'][0][x] == y ):
-            #print(imageproperties['Environment'][0][x])
-            #print(y)
+
             scriptAssets[x]=enviroAssets[y]
-            #print(scriptAssets[x])
-            #print("\n")
+
 
 #getting and storing the values stored against each key in the Character section of the imported JSON file.
 for x in characterKeys:
     for y in charAssets:
         if (imageproperties['Character'][0][x] == y ):
             scriptAssets[x]=charAssets[y]
-
-#print(scriptAssets)
 
 #########################################################################################################
 ##ADDING CHARACTER FILE PATHS
@@ -73,7 +67,7 @@ charAssets = 0
 fileIn = open("C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/renderScene - Character.txt", "rt")
 update = fileIn.read()
 
-#if number of characters selected  > 0 start adding character information.
+#if number of characters selected  > 0 start adding character information to character sub script.
 if(numChars > 0):
     charLoopCount = 1
     #print(numChars)
@@ -81,8 +75,6 @@ if(numChars > 0):
         for x in characterKeys:
             #print(x)
             if(str(charLoopCount) in x and characterKeys[x]!=''):
-                print(x)
-                #print(characterKeys[x])
                 #add character information based on loop cound y. x will go through each asset for each relevant character.
                 tempReplace = scriptAssets[x]
                 temp = (x+"DAZ")
@@ -90,9 +82,6 @@ if(numChars > 0):
                 update = update.replace(tempKey, '')
                 update = update.replace(temp, tempReplace)
                 charAssets += 1
-
-                #x.replace('gender1.', '')   #USE TO REMOVE COMMENT OUT FROM SCRIPT.
-
         charLoopCount += 1
     update = update.replace("//charLoopX.", '') #uncommenting out the character loop value in the character script.
     update = update.replace("charLoopXDAZ", str(charAssets)) #setting the value for the loop.
@@ -101,15 +90,10 @@ if(numChars > 0):
     fileIn.close()
     fileOut.close()
 
-#need to add character creation script to render scene. Needs to be position after environment and before expression script.
-
-
-
 ###############################################################################################################
 ##ADDING Environment FILE PATHS to the Daz Script
 
-
-#open the environment default daz script.
+#open the master daz script.
 fileIn = open("C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/renderScene - Environment.txt", "rt")
 update = fileIn.read()
 for i in environmentKeys:
@@ -128,14 +112,14 @@ for i in environmentKeys:
             assetFileName = os.path.basename(assetFilePath)
             assetFileName = assetFileName.replace('.duf', '')
             update = update.replace("//assetDAZ", assetFileName)
-            #print(update)
+            #print(update) #for debugging
         elif(i == "atmosphere"):
             #open expression file and store as updateExpression. Add this to render scene file to add expressions to characters.
             translateIn = open(scriptAssets[i], "rt")
             updateExpression = translateIn.read()
             tempExpression = ("//"+i+"DAZ")
             update = update.replace(tempExpression, updateExpression)
-            #print(update)
+            #print(update) #for debugging
         else:
             #add remaining environment asset relative file paths to render scene file.
             if(scriptAssets[i] != ''):
@@ -145,28 +129,25 @@ for i in environmentKeys:
                 update = update.replace(tempKeyE, '')
                 update = update.replace(temp, tempReplace)
 
-
+#Adding the number of characters in scene to the script
 if(numChars > 0):
     CharFilein = open("C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/renderScene - CharacterProcessed.txt", "rt")
     updateChar = CharFilein.read()
     tempChar = "//" + "charAssets"
     update = update.replace(tempChar, updateChar)
 
-
-
 #ADDING THE FILE NAME TO THE SCRIPT FOR RENDER
-
 tempRenderFileName = args.sciSceneSpec
 renderFileName = os.path.basename(tempRenderFileName) 
 renderFileName = renderFileName.replace('.txt', '')
 update = update.replace('//RENDERNAME', renderFileName)
-#print(renderFileName)
+#print(renderFileName) #for debugging
 
+#Writing out to DSA Daz Master script
 fileOut = open("C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scripts/Shortt/renderScene - Environment.dsa", "wt")
 fileOut.write(update)
 fileIn.close()
 fileOut.close()
-
 
 #set the daz studio startup script
 reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER) #open the registry
@@ -180,7 +161,6 @@ winreg.CloseKey(reg) #close the registry
 dazStart = "C:/Daz 3D/Applications/64-bit/DAZ 3D/DAZStudio4/DAZStudio.exe"
 #Starting daz studio 
 subprocess.Popen([dazStart])
-
 
 #setting output location to check for image render
 imageFound = False
@@ -224,3 +204,5 @@ newPath = "" #insert path of scene here.
 winreg.SetValueEx(sKey, 'StartupScene', '0' , winreg.REG_SZ, newPath) #set the new value
 winreg.CloseKey(sKey) #close the value
 winreg.CloseKey(reg) #close the registry
+
+#End

@@ -1,0 +1,83 @@
+{% extends "base.html"%}
+{% block title %}Admin Page{% endblock %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='adminScriptSB.js')}}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-xxl allowScroll px-5 py-5">
+
+    <div class="row">
+        <div class="col adminMessageWindow">
+            <p>Messages for review</p>
+            {% for msg in messages %}
+                <div class="adminMessageUnique">
+                    {% if msg is not none %}
+                        <div class="message">
+                            <p>{{msg}}</p>
+                        </div>
+                        <div class="message float-end">
+                            <a href="#">Respond</a>                    
+                            <a href="#">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- Create forms that an admin can use to add/edit -->
+    <div class="row justify-content-center">
+        
+
+        <div class="col reloadPage">
+            <h6>NEW DATA</h6>
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label  class="form-label">The label type and icon/images</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="postedTheLabelTypes">
+                        {{theLabelTypes}}
+                    </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label  class="form-label">The label options and images</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="postedTheLabels">
+                        {{theLabels}}
+                    </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label  class="form-label">The label associated asset file paths</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="postedTheLabelAssets">
+                        {{theLabelAssets}}
+                    </textarea>
+                </div>
+
+                <button type="submit">RELOAD DATA</button>
+            </form>
+            
+
+        </div>
+
+    </div>
+
+    <div class="row ">
+        <div class="col text-center selectImage">
+            <h6>Upload Daz Assets</h6>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Select Zip file..</label>
+                    <input type="file" class="form-control-file" id="UploadImage">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

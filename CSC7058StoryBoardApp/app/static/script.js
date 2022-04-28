@@ -83,7 +83,6 @@ function hideCharDiv(id, cara) {
 
 //FUNCTION TO SET NUMBER OF CHARS SELECTED TO CONTROL LOOP 
 //FUNCTION SETS UP DIVS FOR SETTING CHRACTER CREATION VARIABLES
-//UNFINISHED!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function charInfo(numOfChars) {
     //Add Char info here.
     for (let i = 0; i < 5; i++) {

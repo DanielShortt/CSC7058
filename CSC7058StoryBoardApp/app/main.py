@@ -11,8 +11,7 @@ app.permanent_session_lifetime = timedelta(minutes=5)
 #THE HOME PAGE
 @app.route("/", methods=["POST","GET"])
 def home():
-
-
+    
     #Trending images to display on homepage
     image1 = "/static/Images/Best_Beaches_Surfing.jpg"
     imageName1 = ntpath.basename(image1)
@@ -38,6 +37,7 @@ def home():
 @app.route("/browse<search>")
 def browse(search):
 
+    #Location of search results JSON file
     searchResultsJSONfile = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/searchResults.json"
     with open(searchResultsJSONfile) as file1:
         searchResultsJSON = json.load(file1)
@@ -68,7 +68,6 @@ def label(image):
     with open(labelsSource) as file2:
         theLabels = json.load(file2)
 
-    
     #Storing the label types for the environment and characters into individual arrays
     envLabelTypes = labelTypes['Environment'][0]
     charLabelTypes = labelTypes['Character'][0]
@@ -176,9 +175,117 @@ def renderimage():
         time.sleep(2.4)
 
 
+@app.route("/admin", methods=["POST","GET"])
+def admin():
+
+    #JSON File Locations
+    labelsSource = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/labels.json"
+    labelTypeSource = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/labelTypes.json"
+    labelAssetSource = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/assetFilePath.json"
+
+    #IF a post has been made to this page - i.e. an admin has update the JSON file containing the labels.
+    if request.method == "POST":
+
+        #The code to update and display the new JSON Label And image Data.
+
+        #collect updated JSON label JSON info
+        postedTheLabels= request.form["postedTheLabels"]
+        postedTheLabelTypes= request.form["postedTheLabelTypes"]
+        postedTheLabelAssets= request.form["postedTheLabelAssets"]
+
+        #Creationg JSON Files
+        postedTheLabels = json.loads(postedTheLabels)
+        postedTheLabelTypes= json.loads(postedTheLabelTypes)
+        postedTheLabelAssets= json.loads(postedTheLabelAssets)
+
+        #Opening JSON Files
+        with open(labelsSource) as file:
+            theLabels = json.load(file)
+
+        with open(labelTypeSource) as file1:
+            theLabelTypes = json.load(file1)
+        
+        with open(labelAssetSource) as file2:
+            theLabelTypes = json.load(file2)
+
+        #Writing new JSON Files
+        with open(labelsSource, "w") as jsonFile1:
+            json.dump(postedTheLabels, jsonFile1, indent=4)
+
+        with open(labelTypeSource, "w") as jsonFile2:
+            json.dump(postedTheLabelTypes, jsonFile2, indent=4)
+
+        with open(labelAssetSource, "w") as jsonFile3:
+            json.dump(postedTheLabelAssets, jsonFile3, indent=4)
+
+        #closing files
+        file.close()
+        file1.close()
+        file2.close()
+        jsonFile1.close()
+        jsonFile2.close()
+        jsonFile3.close()
+
+        #opening Json files to reload uploads back to the admin page
+        with open(labelsSource) as file:
+            theLabels = json.load(file)
+
+        with open(labelTypeSource) as file1:
+            theLabelTypes = json.load(file1)
+        
+        with open(labelAssetSource) as file2:
+            theLabelAssets = json.load(file2)
+
+        #JSON formatting
+        label_json = json.dumps(theLabels, indent=2)
+        labelTypes_json = json.dumps(theLabelTypes, indent=2)
+        labelAssets_json = json.dumps(theLabelAssets, indent=2)
+
+        file.close()
+        file1.close()
+        file2.close()
+
+        #Admin messages .txt file location
+        adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt"
+        #Open the adminMessages file.
+        fileIn = open(adminMessagesLocation, "r")
+        lines = fileIn.readlines()
+        fileIn.close()
+
+        return render_template("admin.html", messages = lines, theLabels = label_json, theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json )
+
+    #If page has not been posted to i.e., Just being loaded.
+    else :
+
+        #Open JSON File containing label types and options
+        with open(labelsSource) as file:
+            theLabels = json.load(file)
+        
+        with open(labelTypeSource) as file1:
+            theLabelTypes = json.load(file1)
+        
+        with open(labelAssetSource) as file2:
+            theLabelAssets = json.load(file2)
+
+        #JSON Formatting
+        label_json = json.dumps(theLabels, indent=2)
+        labelTypes_json = json.dumps(theLabelTypes, indent=2)
+        labelAssets_json = json.dumps(theLabelAssets, indent=2)
+
+        file.close()
+        file1.close()
+        file2.close()
+
+        #Admin messages .txt file location
+        adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/Admin/messages.txt"
+        #Open the adminMessages file file.
+        fileIn = open(adminMessagesLocation, "r")
+        lines = fileIn.readlines()
+        fileIn.close()
+
+        return render_template("admin.html", messages = lines, theLabels = label_json, theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json)
 
 #THE MAIN FUNCTIONs
 if __name__ == "__main__":
     app.run(debug=True)
 
- 

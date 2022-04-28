@@ -96,14 +96,6 @@ def admin():
                 
                 
                 tempImage = data['Environment'][0]['Time'][0][i]
-
-                #set icon/image for new label as set by admin
-                tempLabel = tempLabel.replace('//UPDATEICON', tempImage)
-
-                
-                #place updated label div in label html file.
-                if("<!-- PLACE NEW LABEL HERE -->" in update):
-                    update = update.replace("<!-- PLACE NEW LABEL HERE -->", tempLabel)
                 
                 #store and close files
                 fileOut = open("C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/flaskr/templates/label.html", "wt")

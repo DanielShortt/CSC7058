@@ -435,3 +435,65 @@ display: inline-block;
 .assetDetails{
     display: inline-block;
 }
+
+.adminMessageWindow{
+    padding: 20px;
+    border: groove gray;
+    border-radius: 10px;
+    height: 300px;
+    width: 60%;
+    overflow: auto;
+
+}
+
+.adminMessageUnique{
+    border-bottom: 1px solid gray;
+    
+}
+.message{
+    display: inline-block;
+}
+
+.app-text{
+    display: inline-block;
+}
+
+.reloadPage{
+    padding: 20px;
+    margin-top:20px;
+    border: groove gray;
+    border-radius: 20px;
+    width: 80%;
+}
+
+.adminTextBox{
+    width: 80%;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey;
+border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: gray;
+border-radius: 5px;
+}
+
+.assetSuggestion{
+    display: inline-block;
+    margin-top: 20px;
+    width: 400px;
+}
+
+.assetDetails{
+    display: inline-block;
+}
