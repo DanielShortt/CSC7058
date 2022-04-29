@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Browse Results{% endblock %}
 
 {% block head %}
 
@@ -92,16 +92,28 @@
         <!-- The options - Selecting this image will open the label tool and populate properties/labels for selection-->
         <div class="col justify-content-center browseResults">
 
-            <div class="col text-center browseTitleMessage">
-                <h3>Select an option below to download or modify</h3>
-            </div>
+            {% if not errorMessage  %}
 
-            <div class="row imgRow justify-content-center">
-                <!--Iterating through array of research results of images-->
-                {% for x in searchResults %}
-                    <a class="img" href="label{{x}}"><img class="img" src="/static/RenderLibrary/{{x}}"></a>
-                {% endfor %}
-            </div>
+                <div class="col text-center browseTitleMessage">
+                    <h3>Select an option below to download or modify</h3>
+                </div>
+
+                <div class="row imgRow justify-content-center">
+                    <!--Iterating through array of research results of images-->
+                    {% for x in searchResults %}
+                        <a class="img" href="label{{x}}"><img class="img" src="/static/RenderLibrary/{{x}}"></a>
+                    {% endfor %}
+                </div>
+                
+            {% else %}
+
+                <div class="row imgRow justify-content-center">
+                    <!--Iterating through array of research results of images-->
+                    <h1>{{errorMessage}}</h1>
+                </div>
+                
+            
+            {% endif %}
 
         </div>
     </div>

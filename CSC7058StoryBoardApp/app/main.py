@@ -1,12 +1,10 @@
 import os, time, subprocess, ntpath, psutil, json
 from datetime import datetime, timedelta
-from flask import Flask, redirect, url_for, render_template, request, session
-
+from flask import Flask, redirect, url_for, render_template, request
 
 app = Flask(__name__, template_folder='../flaskr/templates')
 app.secret_key = "hello"
 app.permanent_session_lifetime = timedelta(minutes=5)
-
 
 #THE HOME PAGE
 @app.route("/", methods=["POST","GET"])
@@ -36,37 +34,36 @@ def home():
 #THE BROWSE PAGE.
 @app.route("/browse<search>")
 def browse(search):
-
     #Location of search results JSON file
     searchResultsJSONfile = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/searchResults.json"
-    with open(searchResultsJSONfile) as file1:
-        searchResultsJSON = json.load(file1)
-
-    #parse out the results for the search term.
-    images= searchResultsJSON[search]
+    searchResultsJSON = loadJSONFile(searchResultsJSONfile)
+    images= None
+    noResults = None
     searchResults = []
-
+    #parse out the results for the search term.
+    try:
+        images= searchResultsJSON[search]
+    except Exception:
+        noResults = "No Results"
     #store image paths in an array
-    for i in images:
-        searchResults.append(i["image"])
-
-    return render_template("browse.html", searchTerm = search, searchResults = searchResults)  
+    if(images is not None):
+        for i in images:
+            searchResults.append(i["image"])
+        return render_template("browse.html", searchTerm = search, searchResults = searchResults)
+    else:
+        return render_template("browse.html", searchTerm = search, errorMessage = noResults )
 
 #THE LABEL TOOL
 @app.route("/label<image>", methods=["POST","GET"]) #label page passing in the image name.
 def label(image):
-
     #open JSON file contain label types and icon/image paths
     labelTypesSource = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/labelTypes.json"
-
-    with open(labelTypesSource) as file1:
-        labelTypes = json.load(file1)
-
     #Open JSON File containing label types and options
     labelsSource = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/JSON/labels.json"
-
-    with open(labelsSource) as file2:
-        theLabels = json.load(file2)
+    #Loading the LabelTypes JSON file
+    labelTypes = loadJSONFile(labelTypesSource)
+    #Loading the labels + options JSON FIle
+    theLabels = loadJSONFile(labelsSource)
 
     #Storing the label types for the environment and characters into individual arrays
     envLabelTypes = labelTypes['Environment'][0]
@@ -123,16 +120,11 @@ def label(image):
 #THE RENDER PAGE. 
 @app.route("/render")
 def renderimage():
-
-    #ensuring process of the JavaScript has completed.
-    time.sleep(1)
-
+    time.sleep(1)#ensuring process of the JavaScript has completed.
     #properties file download from website
     propertyFile = "C:/Users/danie/Downloads/ImageProperties.txt"
-    #Creating file name for image and properties files.
-    now = datetime.now()
-    timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
-    outputFileName = str(timestamp) #output name combination of time and date
+    now = datetime.now()#Creating file name for image and properties files.
+    outputFileName = str(now.strftime("%Y%m%d_%H-%M-%S")) #output name combination of time and date
     outputRenderName = outputFileName
     #path to relocate impage properties file after download
     outputFileName = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/imageProperties/"+outputFileName+".txt"
@@ -145,8 +137,6 @@ def renderimage():
         #CREATE SCRIPT TO REPLACE GENERIC TERMS WITH DAZ STUDIO ASSETS
         subprocess.Popen(['python', 
         'C:/Users/danie/Documents/GitHub/CSC7058/PythonFiles/parseProperties.py',  outputFileName, assetJSON, outputRenderName])
-        ##########################################################################################
-
     #render location straight from Daz Studio
     imageFileName = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library/" + outputRenderName + ".jpg"
     imageFound = False
@@ -199,51 +189,24 @@ def admin():
         postedTheLabelAssets= json.loads(postedTheLabelAssets)
 
         #Opening JSON Files
-        with open(labelsSource) as file:
-            theLabels = json.load(file)
-
-        with open(labelTypeSource) as file1:
-            theLabelTypes = json.load(file1)
-        
-        with open(labelAssetSource) as file2:
-            theLabelTypes = json.load(file2)
+        theLabels = loadJSONFile(labelsSource)
+        theLabelTypes = loadJSONFile(labelTypeSource)
+        theLabelAssets = loadJSONFile(labelAssetSource)
 
         #Writing new JSON Files
-        with open(labelsSource, "w") as jsonFile1:
-            json.dump(postedTheLabels, jsonFile1, indent=4)
+        dumpJSONtoFile(labelsSource, postedTheLabels)
+        dumpJSONtoFile(labelTypeSource, postedTheLabelTypes)
+        dumpJSONtoFile(labelAssetSource, postedTheLabelAssets)
 
-        with open(labelTypeSource, "w") as jsonFile2:
-            json.dump(postedTheLabelTypes, jsonFile2, indent=4)
+        #ReOpening JSON Files
+        theLabels = loadJSONFile(labelsSource)
+        theLabelTypes = loadJSONFile(labelTypeSource)
+        theLabelAssets = loadJSONFile(labelAssetSource)
 
-        with open(labelAssetSource, "w") as jsonFile3:
-            json.dump(postedTheLabelAssets, jsonFile3, indent=4)
-
-        #closing files
-        file.close()
-        file1.close()
-        file2.close()
-        jsonFile1.close()
-        jsonFile2.close()
-        jsonFile3.close()
-
-        #opening Json files to reload uploads back to the admin page
-        with open(labelsSource) as file:
-            theLabels = json.load(file)
-
-        with open(labelTypeSource) as file1:
-            theLabelTypes = json.load(file1)
-        
-        with open(labelAssetSource) as file2:
-            theLabelAssets = json.load(file2)
-
-        #JSON formatting
+        #Reformatting JSON
         label_json = json.dumps(theLabels, indent=2)
         labelTypes_json = json.dumps(theLabelTypes, indent=2)
         labelAssets_json = json.dumps(theLabelAssets, indent=2)
-
-        file.close()
-        file1.close()
-        file2.close()
 
         #Admin messages .txt file location
         adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058LabelTool/app/static/Admin/messages.txt"
@@ -256,25 +219,15 @@ def admin():
 
     #If page has not been posted to i.e., Just being loaded.
     else :
-
-        #Open JSON File containing label types and options
-        with open(labelsSource) as file:
-            theLabels = json.load(file)
-        
-        with open(labelTypeSource) as file1:
-            theLabelTypes = json.load(file1)
-        
-        with open(labelAssetSource) as file2:
-            theLabelAssets = json.load(file2)
+        #Opening JSON Files
+        theLabels = loadJSONFile(labelsSource)
+        theLabelTypes = loadJSONFile(labelTypeSource)
+        theLabelAssets = loadJSONFile(labelAssetSource)
 
         #JSON Formatting
         label_json = json.dumps(theLabels, indent=2)
         labelTypes_json = json.dumps(theLabelTypes, indent=2)
         labelAssets_json = json.dumps(theLabelAssets, indent=2)
-
-        file.close()
-        file1.close()
-        file2.close()
 
         #Admin messages .txt file location
         adminMessagesLocation = "C:/Users/danie/Documents/GitHub/CSC7058/CSC7058StoryBoardApp/app/static/Admin/messages.txt"
@@ -284,6 +237,21 @@ def admin():
         fileIn.close()
 
         return render_template("admin.html", messages = lines, theLabels = label_json, theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json)
+
+
+#Funtion to load JSON FILES
+def loadJSONFile(filepath):
+    with open(filepath) as file: #Opening FILE
+        loaded = json.load(file)#Create JSON FILE
+    file.close()#Close file
+    return loaded #Return the open file
+
+def dumpJSONtoFile(filePath, JSON):
+
+    #Writing new JSON Files
+    with open(filePath, "w") as jsonFile:
+        json.dump(JSON, jsonFile, indent=4)
+    jsonFile.close()
 
 #THE MAIN FUNCTIONs
 if __name__ == "__main__":
