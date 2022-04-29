@@ -9,7 +9,6 @@ app.permanent_session_lifetime = timedelta(minutes=5)
 #THE HOME PAGE
 @app.route("/", methods=["POST","GET"])
 def home():
-    
     #Trending images to display on homepage
     image1 = "/static/Images/Best_Beaches_Surfing.jpg"
     imageName1 = ntpath.basename(image1)
