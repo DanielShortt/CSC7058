@@ -331,10 +331,6 @@ function addCharElement(object, label) {
     //Looking  in character array and storing value for label + current active character number
     characterArray[temp] = object;
     objectLabelId = temp + "id";
-   // var currentCharDiv = "";
-
-   console.log(objectLabelId)
-   console.log(elementExists)
 
     //if element does not exist create a new element and popluate active character
     if (elementExists == false) {

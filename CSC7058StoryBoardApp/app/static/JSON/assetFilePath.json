@@ -25,12 +25,7 @@
             "Front": "Camera Presets/FrontCamera.duf",
             "IsoView": "Camera Presets/IsoView.dsa",
             "TopLeft": "Camera Presets/TopLeft.dsa",
-            "TopRight": "Camera Presets/TopRight.dsa",
-            "0": 0,
-            "1": 1,
-            "2": 2,
-            "3": 3,
-            "4": 4
+            "TopRight": "Camera Presets/TopRight.dsa"
         }
     ],
     "Character": [

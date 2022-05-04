@@ -67,25 +67,6 @@ def label(image):
     #Storing the label types for the environment and characters into individual arrays
     envLabelTypes = labelTypes['Environment'][0]
     charLabelTypes = labelTypes['Character'][0]
-
-    #storing lengths of the above arrays
-    envLabelIcons =([""])*len(envLabelTypes)
-    charLabelIcons = ([""])*len(charLabelTypes)
-
-    #setting count values for each array of label types. Used to populate arrays
-    envCount = 0
-    charCount = 0
-
-    #storing the keyword for each environment label type icon
-    for i in envLabelTypes:
-        envLabelIcons[envCount] = envLabelTypes[i]
-        count = envCount +1
-
-    #storing the path for each character label type image
-    for i in charLabelTypes:
-        charLabelIcons[charCount] = charLabelTypes[i]
-        charCount = count +1
-
     
     #storing all label types and associate label options
     envLabels = theLabels['Environment'][0]
@@ -106,14 +87,14 @@ def label(image):
 
         #Render label page
         return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName, envLabelTypes = envLabelTypes, 
-                                envLabelIcons = labelTypes, theLabels = envLabels,
+                                envLabelIcons = envLabelTypes, theLabels = envLabels,
                                 charLabelTypes = charLabelTypes, charLabels = charLabels)
 
     else: #if no post then render page normally.   
         imageSelectedName = image
         imageSelected = "/static/renderLibrary/" + image
         return render_template("label.html", imgAddress = imageSelected, imgName = imageSelectedName, envLabelTypes = envLabelTypes, 
-                                envLabelIcons = labelTypes, theLabels = envLabels,
+                                envLabelIcons = envLabelTypes, theLabels = envLabels,
                                 charLabelTypes = charLabelTypes, charLabels = charLabels)
 
 #THE RENDER PAGE. 
@@ -214,7 +195,8 @@ def admin():
         lines = fileIn.readlines()
         fileIn.close()
 
-        return render_template("admin.html", messages = lines, theLabels = label_json, theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json )
+        return render_template("admin.html", messages = lines, theLabels = label_json, 
+        theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json )
 
     #If page has not been posted to i.e., Just being loaded.
     else :
@@ -235,7 +217,8 @@ def admin():
         lines = fileIn.readlines()
         fileIn.close()
 
-        return render_template("admin.html", messages = lines, theLabels = label_json, theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json)
+        return render_template("admin.html", messages = lines, theLabels = label_json, 
+        theLabelTypes = labelTypes_json, theLabelAssets = labelAssets_json)
 
 
 #Funtion to load JSON FILES

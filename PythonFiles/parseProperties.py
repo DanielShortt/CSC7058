@@ -9,11 +9,11 @@ def loadJSONFile(filepath):
 
 #Populate the scriptAssets array with assets representing the user label selections
 def populateScriptArray(keys, assets, Type):
-    for x in keys:#storing values stored against each key in the a section of the imported JSON file.
-        for y in assets:
-            if (imageproperties[Type][0][x] == y ):
-                scriptAssets[x]=assets[y]
-    return scriptAssets
+    for x in keys: #For each value in keys
+        for y in assets: #For each value in assets
+            if (imageproperties[Type][0][x] == y ): #If x in imageproperties = y
+                scriptAssets[x]=assets[y] #populate scriptAssets
+    return scriptAssets #return scriptAssets
 
 #########################################################################################################
 ##ADDING CHARACTER FILE PATHS
@@ -53,7 +53,6 @@ def environmentPopulation(environmentKeys, scriptAssets, enviroAssets):
     update = fileIn.read()
     for i in environmentKeys:
         if(environmentKeys[i] != "" and (i + 'DAZ') in update):
-
             #Updating the Key phrases stored in the script file with the relevant asset file paths.
             if(i == "propLoc"):
                 #open the current translation file and add translation to render scene file.
