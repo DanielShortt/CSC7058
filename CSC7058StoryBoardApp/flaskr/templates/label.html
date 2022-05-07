@@ -352,6 +352,22 @@
                                                     {% endfor %}
                                                 </div>
                                             </div>
+                                            <!--Suggestion box-->
+                                            <div class="d-flex justify-content-center align-items-center container ">
+                                                <div class="row d-flex align-items-center justify-content-center assetSuggestion">
+                                                    <form id="assetSuggestionForm" method="POST">
+                                                        <div class="input-group mb-3">
+                                                            <label for="exampleInputEmail1" class="form-label">Can't find the
+                                                                asset you are looking for? Why not provide us with s
+                                                                suggestion.</label>
+                                                            <input type="text" class="form-control" placeholder="Asset Suggestion"
+                                                                aria-label="Asset Suggestion" aria-describedby="button-primary"
+                                                                name="assetSuggestion">
+                                                            <button class="btn btn-primary" type="submit" id="timeSuggestionButton">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -409,6 +425,11 @@
                 <p>
                     The properties seen on the left can be modified to create your image.
                     Additional properties not selected can also be added.
+                </p>
+                <p>
+                    Labels in the left sidebar will be prepopulated with selections that match your image selection.
+                    These selections can be modified and new selections can be made by clicking on the options provided.
+                    Once you have selected a label type, the options available will be displayed below the image.
                 </p>
             </div>
             <div class="modal-footer">
