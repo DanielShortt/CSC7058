@@ -1,0 +1,42 @@
+{
+  "Environment": [
+    {
+      "time": "Night",
+      "setting": "Tomb",
+      "lighting": "Dark",
+      "atmosphere": "Fear",
+      "mainProp": "Altar",
+      "propLoc": "centerLower",
+      "camera": "",
+      "numberChars": 1
+    }
+  ],
+  "Character": [
+    {
+      "gender1": "Female",
+      "charLoc1": "lowerCenter",
+      "hair1": "Long",
+      "pose1": "Sitting",
+      "top1": "Blouse",
+      "bottoms1": "Skirt",
+      "gender2": "",
+      "charLoc2": "",
+      "hair2": "",
+      "pose2": "",
+      "top2": "",
+      "bottoms2": "",
+      "gender3": "",
+      "charLoc3": "",
+      "hair3": "",
+      "pose3": "",
+      "top3": "",
+      "bottoms3": "",
+      "gender4": "",
+      "charLoc4": "",
+      "hair4": "",
+      "pose4": "",
+      "top4": "",
+      "bottoms4": ""
+    }
+  ]
+}

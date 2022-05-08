@@ -1,0 +1,42 @@
+{
+  "Environment": [
+    {
+      "time": "Day",
+      "setting": "Beach",
+      "lighting": "Bright",
+      "atmosphere": "Happy",
+      "mainProp": "Surfboard",
+      "propLoc": "leftUpper",
+      "camera": "Front",
+      "numberChars": 2
+    }
+  ],
+  "Character": [
+    {
+      "gender1": "Male",
+      "charLoc1": "upperLeft",
+      "hair1": "Short",
+      "pose1": "Standing",
+      "top1": "TShirt",
+      "bottoms1": "Shorts",
+      "gender2": "Female",
+      "charLoc2": "upperCenter",
+      "hair2": "Long",
+      "pose2": "Standing",
+      "top2": "Blouse",
+      "bottoms2": "Skirt",
+      "gender3": "",
+      "charLoc3": "",
+      "hair3": "",
+      "pose3": "",
+      "top3": "",
+      "bottoms3": "",
+      "gender4": "",
+      "charLoc4": "",
+      "hair4": "",
+      "pose4": "",
+      "top4": "",
+      "bottoms4": ""
+    }
+  ]
+}

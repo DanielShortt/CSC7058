@@ -4,7 +4,8 @@
             "Time": [
                 {
                     "Day": "/static/Time/Day.jpg",
-                    "Night": "/static/Time/Night.jpg"
+                    "Night": "/static/Time/Night.jpg",
+                    "Twilight": "/static/Time/Twilight.jpg"
                 }
             ],
             "Setting": [

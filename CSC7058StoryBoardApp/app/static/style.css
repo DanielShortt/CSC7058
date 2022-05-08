@@ -17,7 +17,7 @@ html,body{
 }
 
 .theLabels{
-    max-height:215px;
+    max-height:275px;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -79,7 +79,7 @@ html,body{
 }
 
 .objects{
-    max-height: 215px;
+    max-height: 275px;
     border-top: 5px solid red;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
@@ -88,7 +88,7 @@ html,body{
 }
 
 .charObjects{
-    max-height: 215px;
+    max-height: 275px;
     border-top: 5px solid red;
     border-bottom: 1px solid black ;
     overflow-y: scroll;
@@ -382,7 +382,7 @@ height: auto;
 
 .browseResults{
 
-height:550px;
+height:750px;
 overflow: hidden;
 overflow-y: scroll; 
 }

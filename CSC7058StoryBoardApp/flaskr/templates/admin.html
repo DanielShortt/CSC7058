@@ -8,7 +8,7 @@
 {% block content %}
 
 <div class="container-xxl allowScroll px-5 py-5">
-
+    <!-- Populating the user suggestions for review by an admin-->
     <div class="row">
         <div class="col adminMessageWindow">
             <p>Messages for review</p>
@@ -37,6 +37,7 @@
             <h6>NEW DATA</h6>
             <form method="POST">
 
+                <!-- Locating the JSON file for label types and icons in an editable textbox -->
                 <div class="mb-3">
                     <label  class="form-label">The label type and icon/images</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="postedTheLabelTypes">
@@ -44,6 +45,7 @@
                     </textarea>
                 </div>
 
+                <!-- Locating the JSON file for label options and images in an editable textbox -->
                 <div class="mb-3">
                     <label  class="form-label">The label options and images</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="postedTheLabels">
@@ -51,6 +53,7 @@
                     </textarea>
                 </div>
 
+                <!-- Locating the JSON file for Daz Studio asset relative file paths in an editable textbox -->                
                 <div class="mb-3">
                     <label  class="form-label">The label associated asset file paths</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="postedTheLabelAssets">
@@ -66,6 +69,7 @@
 
     </div>
 
+    <!-- Upload feature to upload new Daz Studios to the hosting system -->
     <div class="row ">
         <div class="col text-center selectImage">
             <h6>Upload Daz Assets</h6>
@@ -78,6 +82,38 @@
         </div>
     </div>
 
+</div>
+
+<!-- Modal to display tips to the admin on how to use the admin tools -->
+<div class="modal" tabindex="-1" id="adminTipModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Tips</h5>
+            </div>
+            <div class="guideModalText">
+                <p>
+                    The top section contains messages submitted by users for review by an admin
+                </p>
+                <p>
+                    The next section is a feature to allow an admin update the JSON files responsible for populating the label tool, with label types and options.
+                    
+                </p>
+                <p>
+                    The third JSON file contains the relative file path of assets used by Daz Studio.
+                    Each time a label is added, an asset must be added to this list to ensure that an asset representing the label can be loaded in Daz Studio.
+                </p>
+                <p>
+                    The last section is used for uploading Daz Studio assets.
+                    Not for use at this stage.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 {% endblock %}
