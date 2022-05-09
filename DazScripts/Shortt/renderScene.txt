@@ -1,0 +1,34 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+/////////////////////////
+//LOADING THE SCENE FILES
+/////////////////////////
+
+
+oCM = App.getContentMgr();
+
+var time = "timeDAZ"
+var setting = "settingDAZ"
+var lighting = "lightingDAZ"
+var atmosphere = "atmosphereDAZ"
+var mainProp = "mainPropDAZ"
+var propLoc = "propLocDAZ"
+
+
+
+/////////////////////////
+//CLOSING DAZ STUDIO 
+/////////////////////////
+
+//Close daz option 1
+//var oAction;
+//	var mWindow = MainWindow;
+//	var oAM = mWindow.getActionMgr();
+//	var oAction = oAM.findAction("DzExitAction");
+//	Scene.clear();
+//	oAction.trigger();
+
+//Close daz option 2
+Scene.clear();
+MainWindow.close();

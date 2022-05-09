@@ -1,0 +1,23 @@
+/////////////////////////
+//LOADING THE TRANSLATION FILES
+/////////////////////////
+
+var roots = Scene.getNodeList();
+var translateAsset = "//assetDAZ"
+
+var asset=Scene.findNodeByLabel( translateAsset )
+
+if (asset){
+	asset.select(true);
+	//Change the XPos to ZPos or YPos	to translate in different directio
+	if( asset )
+		asset.getZPosControl().setValue( asset.getZPosControl().getValue() -400 );
+		asset.getXPosControl().setValue( asset.getXPosControl().getValue() +300 )
+}
+
+// Get list of nodesvar 
+selectedItems = Scene.getSelectedNodeList();
+// go through deselecting
+for ( var n = 0 ; n < selectedItems.length ; n++ ) {
+		selectedItems[ n ].select( false );
+}

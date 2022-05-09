@@ -1,0 +1,92 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+/////////////////////////
+//LOADING THE CHARACTER FILES
+/////////////////////////
+
+
+var gender1 = "People/Genesis 8 Male/Genesis 8 Basic Male.duf"
+var hair1 = "People/Genesis 8 Male/Hair/Armani Hair/Armani Hair.duf"
+var pose1 = "People/Genesis 8 Male/Poses/Base Poses/Base Pose Sitting C.duf"
+//top1.var //top1.top1 = "top1DAZ"
+var bottoms1 = "People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear Boxers.duf"
+//prop1.var //prop1.prop1 = "prop1DAZ"
+//gender2.var //gender2.gender2 = "gender2DAZ"
+//hair2.var //hair2.hair2 = "hair2DAZ"
+//pose2.var //pose2.pose2 = "pose2DAZ"
+//top2.var //top2.top2 = "top2DAZ"
+//bottoms2.var //bottoms2.bottoms2 = "bottoms2DAZ"
+//prop2.var //prop2.prop2 = "prop2DAZ"
+//gender3.var //gender3.gender3 = "gender3DAZ"
+//hair3.var //hair3.hair3 = "hair3DAZ"
+//pose3.var //pose3.pose3 = "pose3DAZ"
+//top3.var //top3.top3 = "top3DAZ"
+//bottoms3.var //bottoms3.bottoms3 = "bottoms3DAZ"
+//prop3.var //prop3.prop3 = "prop3DAZ"
+//gender4.var //gender4.gender4 = "gender4DAZ"
+//hair4.var //hair4.hair4 = "hair4DAZ"
+//pose4.var //pose4.pose4 = "pose4DAZ"
+//top4.var //top4.top4 = "top4DAZ"
+//bottoms4.var //bottoms4.bottoms4 = "bottoms4DAZ"
+//prop4.var //prop4.prop4 = "prop4DAZ"
+var charLoop="4"
+
+
+var itemsToRender =
+[
+	gender1, 
+	hair1,
+	pose1,
+	//top1.top1,
+	bottoms1,
+	//prop1.prop1,
+	//gender2.gender2,
+	//hair2.hair2,
+	//pose2.pose2,
+	//top2.top2,
+	//bottoms2.bottoms2,
+	//prop2.prop2,
+	//gender3.gender3,
+	//hair3.hair3,
+	//pose3.pose3,
+	//top3.top3,
+	//bottoms3.bottoms, 
+	//prop3.prop3,
+	//gender4.gender4,
+	//hair4.hair4,
+	//pose4.pose4,
+	//top4.top4,
+	//bottoms4.bottoms4,
+	//prop4.prop4,
+	]
+
+
+
+oCM = App.getContentMgr();
+
+for(var i =0; i<charLoop; i++){
+	
+	var fileOpen = oCM.getAbsolutePath(itemsToRender[i], true);
+	oCM.openFile(fileOpen);
+		
+}
+
+
+
+
+/////////////////////////
+//CLOSING DAZ STUDIO 
+/////////////////////////
+
+//Close daz option 1
+//var oAction;
+//	var mWindow = MainWindow;
+//	var oAM = mWindow.getActionMgr();
+//	var oAction = oAM.findAction("DzExitAction");
+//	Scene.clear();
+//	oAction.trigger();
+
+//Close daz option 2
+Scene.clear();
+MainWindow.close();

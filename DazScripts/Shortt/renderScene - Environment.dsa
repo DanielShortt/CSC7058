@@ -1,0 +1,255 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+/////////////////////////
+//LOADING THE SCENE FILES
+/////////////////////////
+
+var time = "Presets/Lights/Day.duf"
+var setting = "Environments/Landscapes/Multiplane Cyclorama/Beach.duf"
+var lighting = "Scene Builder/Starter Essentials/Dusk Lights.duf"
+var mainProp = "People/Genesis 2 Male/Clothing/Surf's Up Outfit and Board/Surf's Up SurfBoard.duf"
+//camera.var camera = "cameraDAZ"
+
+var envItemsToRender =
+[
+	time,
+	setting,
+	lighting,
+	//atmosphere.atmosphere,
+	mainProp,
+	]
+
+var envLoop = envItemsToRender.length;
+
+oCM = App.getContentMgr();
+
+for(var i =0; i<envLoop; i++){
+	
+	var fileToOpen = oCM.getAbsolutePath(envItemsToRender[i], true);
+	oCM.openFile(fileToOpen);
+	sleep(1000)
+	
+	// Get list of nodesvar 
+	selectedItems = Scene.getSelectedNodeList();
+	//go through deselecting
+	for ( var n = 0 ; n < selectedItems.length ; n++ ) {
+		selectedItems[ n ].select( false );
+}
+		
+}
+
+///////////////////////////
+//LOADING THE TRANSLATION FILES
+/////////////////////////
+
+var roots = Scene.getNodeList();
+var translateAsset = "Surf's Up SurfBoard"
+
+var asset=Scene.findNodeByLabel( translateAsset )
+
+if (asset){
+	asset.select(true);
+	//Change the XPos to ZPos or YPos	to translate in different directio
+	if( asset )
+		asset.getZPosControl().setValue( asset.getZPosControl().getValue() -400 );
+		asset.getXPosControl().setValue( asset.getXPosControl().getValue() -300 )
+}
+
+// Get list of nodesvar 
+selectedItems = Scene.getSelectedNodeList();
+// go through deselecting
+for ( var n = 0 ; n < selectedItems.length ; n++ ) {
+		selectedItems[ n ].select( false );
+}
+
+
+/////////////////////////
+//LOADING THE CHARACTER FILES
+/////////////////////////
+
+
+var gender1 = "People/Genesis 8 Male/Genesis 8 Basic Male.duf"
+var hair1 = "People/Genesis 8 Male/Hair/Armani Hair/Armani Hair.duf"
+var pose1 = "People/Genesis 8 Male/Poses/Base Poses/Base Pose Walking A.duf"
+var top1 = "People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear T Shirt.duf"
+var bottoms1 = "People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear Boxers.duf"
+//prop1.var //prop1.prop1 = "prop1DAZ"
+var charLoc1 = "Scripts/Shortt/Translations/TranslateCharacterUpperLeft.dsa"
+var gender2 = "People/Genesis 8 Female/Genesis 8 Basic Female.duf"
+var hair2 = "People/Genesis 8 Female/Hair/Reizibarrientos/TemperascencseNoelHair/NoelHair.duf"
+var pose2 = "People/Genesis 8 Male/Poses/Base Poses/Base Pose Walking A.duf"
+var top2 = "People/Genesis 8 Female/Clothing/Most Digital Creations/G8F Plaid Shirt/G8F Plaid Shirt.duf"
+var bottoms2 = "People/Genesis 8 Female/Clothing/Rocker Outfit/Rocker Skirt.duf"
+//prop2.var //prop2.prop2 = "prop2DAZ"
+var charLoc2 = "Scripts/Shortt/Translations/TranslateCharacterUpperCentre.dsa"
+//gender3.var //gender3.gender3 = "gender3DAZ"
+//hair3.var //hair3.hair3 = "hair3DAZ"
+//pose3.var //pose3.pose3 = "pose3DAZ"
+//top3.var //top3.top3 = "top3DAZ"
+//bottoms3.var //bottoms3.bottoms3 = "bottoms3DAZ"
+//prop3.var //prop3.prop3 = "prop3DAZ"
+//charLoc3.var //charLoc3.charLoc3 = "charLoc3DAZ"
+//gender4.var //gender4.gender4 = "gender4DAZ"
+//hair4.var //hair4.hair4 = "hair4DAZ"
+//pose4.var //pose4.pose4 = "pose4DAZ"
+//top4.var //top4.top4 = "top4DAZ"
+//bottoms4.var //bottoms4.bottoms4 = "bottoms4DAZ"
+//prop4.var //prop4.prop4 = "prop4DAZ"
+//charLoc4.var //charLoc4.charLoc4 = "charLoc4DAZ"
+var charLoop="12"
+
+
+var charItemsToRender =
+[
+	gender1,
+	hair1,
+	pose1,
+	top1,
+	bottoms1,
+	//prop1.prop1,
+	charLoc1,
+	gender2,
+	hair2,
+	pose2,
+	top2,
+	bottoms2,
+	//prop2.prop2,
+	charLoc2,
+	//gender3.gender3,
+	//hair3.hair3,
+	//pose3.pose3,
+	//top3.top3,
+	//bottoms3.bottoms3, 
+	//prop3.prop3,
+	//charLoc3.charLoc3,
+	//gender4.gender4,
+	//hair4.hair4,
+	//pose4.pose4,
+	//top4.top4,
+	//bottoms4.bottoms4,
+	//prop4.prop4,
+	//charLoc4.charLoc4,
+	]
+
+
+
+oCM = App.getContentMgr();
+
+for(var i =0; i<charLoop; i++){
+	
+	var fileOpen = oCM.getAbsolutePath(charItemsToRender[i], true);
+	oCM.openFile(fileOpen);
+	sleep(500)
+		
+}
+
+
+
+
+//charLocDAZ
+
+
+/////////////////////////
+//SETTING THE EXPRESSION VALUE
+/////////////////////////
+
+
+//Checking if a named node exists
+var nodeSelected=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+//selecting this node
+if (nodeSelected){
+	nodeSelected.select(true);
+}
+
+
+//Naming a parameter to change
+var propUpdate = "Happy HD";
+
+//the value the parameter is to be set
+var updateValue = .75;
+
+//getting the node list of the scene
+var sceneNodeList = Scene.getNodeList();
+
+//cycling through node list
+for (i=0; i < sceneNodeList.length; i++)
+{
+	var nodeSelected = sceneNodeList[i];
+	// If node is selected continue
+	if ( nodeSelected.isSelected() ){
+		//print( nodeSelected.getLabel() ); // for debug tracing
+
+		// get the list of properties for this node
+		var nodePropertyList = nodeSelected.getPropertyList();
+		for (j=0; j < nodePropertyList.length; j++){
+			var selectedProperty = nodePropertyList[j];
+			// get the label of this property
+			var sPropLabel = selectedProperty.getLabel();
+			//print( sPropLabel ); // for debug tracing
+				
+			if ( sPropLabel == propUpdate ){
+				print( sPropLabel ); // for debug tracing
+				// The property class
+				var sClass = selectedProperty.getWidgetClass();
+				//print( sClass );
+					
+				// if we have the class for the PropertySettings object
+				if ( sClass == "DzStyledFloatPropertyWgt" ){
+					selectedProperty.setDoubleValue( updateValue );
+				}
+			} 
+			 
+		}	
+	}
+}
+
+
+
+//camera.camera
+
+//camera.if(camera){
+//camera.var fileOpen = oCM.getAbsolutePath(camera, true);
+//camera.	oCM.openFile(fileOpen);
+//camera.}
+
+
+
+/////////////////////////
+//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+/////////////////////////
+
+//set the render settings
+	
+var oRenderMgr = App.getRenderMgr();
+var renderSettings = oRenderMgr.getRenderOptions();
+
+//store renderSettings
+var bCurrentFrameRender = renderSettings.isCurrentFrameRender;
+var eRenderToId = renderSettings.renderImgToId;
+    
+//get render file info from render setting
+var renderFilename = renderSettings.renderImgFilename;
+var renderFileInfo = new DzFileInfo( renderFilename );
+
+//change render settings
+renderSettings.isCurrentFrameRender = true;
+renderSettings.renderImgToId = renderSettings.DirectToFile;
+var outputPath = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library";
+
+renderSettings.renderImgFilename = outputPath + "/" + "20220508_15-10-04" + "." + renderFileInfo.extension();
+//start the render
+	
+oRenderMgr.doRender();
+
+					
+/////////////////////////
+//CLOSING DAZ STUDIO 
+/////////////////////////
+
+//Close daz option 2
+Scene.clear();
+MainWindow.close();
+
+

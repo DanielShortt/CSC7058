@@ -1,0 +1,115 @@
+{
+    "Environment": [
+        {
+            "Time": [
+                {
+                    "Day": "/static/Time/Day.jpg",
+                    "Night": "/static/Time/Night.jpg"
+                }
+            ],
+            "Setting": [
+                {
+                    "Beach": "/static/Setting/Beach.jpg",
+                    "Tomb": "/static/Setting/Tomb.jpg"
+                }
+            ],
+            "Lighting": [
+                {
+                    "Dark": "/static/Lighting/Dark.jpg",
+                    "Dim": "/static/Lighting/Dim.jpg",
+                    "Bright": "/static/Lighting/Bright.jpg"
+                }
+            ],
+            "Atmosphere": [
+                {
+                    "Fear": "/static/Atmosphere/Fear.jpg",
+                    "Happy": "/static/Atmosphere/Happy.jpg",
+                    "Sad": "/static/Atmosphere/Sad.jpg"
+                }
+            ],
+            "MainProp": [
+                {
+                    "Desk": "/static/props/Desk.jpg",
+                    "Altar": "/static/props/altar.jpg",
+                    "Car": "/static/props/Car.jpg",
+                    "Surfboard": "/static/props/Surfboard.jpg"
+                }
+            ],
+            "PropLoc": [
+                {
+                    "leftUpper": "/static/PropLoc/LeftUpper.jpg",
+                    "centerUpper": "/static/PropLoc/CenterUpper.jpg",
+                    "rightUpper": "/static/PropLoc/RightUpper.jpg",
+                    "leftLower": "/static/PropLoc/LeftLower.jpg",
+                    "centerLower": "/static/PropLoc/CenterLower.jpg",
+                    "rightLower": "/static/PropLoc/RightLower.jpg"
+                }
+            ],
+            "Camera": [
+                {
+                    "FaceClose": "/static/Cameras/CamCloseOnChar.jpg",
+                    "Front": "/static/Cameras/CamFront.jpg",
+                    "IsoView": "/static/Cameras/CamIsoClose.jpg",
+                    "TopLeft": "/static/Cameras/CamTopLeft.jpg",
+                    "TopRight": "/static/Cameras/CamTopRight.jpg"
+                }
+            ]
+        }
+    ],
+    "Character": [
+        {
+            "gender": [
+                {
+                    "Male": "/static/Gender/MaleSymbol.png",
+                    "Female": "/static/Gender/FemaleSymbol.png"
+                }
+            ],
+            "charLoc": [
+                {
+                    "upperLeft": "/static/PropLoc/LeftUpper.jpg",
+                    "upperCenter": "/static/PropLoc/CenterUpper.jpg",
+                    "upperRight": "/static/PropLoc/RightUpper.jpg",
+                    "lowerLeft": "/static/PropLoc/LeftLower.jpg",
+                    "lowerCenter": "/static/PropLoc/CenterLower.jpg",
+                    "lowerRight": "/static/PropLoc/RightLower.jpg"
+                }
+            ],
+            "hair": [
+                {
+                    "Long": "/static/HairOptions/LongHair.png",
+                    "Bob": "/static/HairOptions/BobHair.png",
+                    "Short": "/static/HairOptions/ShortHair.png",
+                    "Mohawk": "/static/HairOptions/MohawkHair.png",
+                    "Shaved": "/static/HairOptions/ShavedHair.png"
+                }
+            ],
+            "pose": [
+                {
+                    "Standing": "/static/PoseOptions/StandingPose.png",
+                    "Sitting": "/static/PoseOptions/SittingPose.png"
+                }
+            ],
+            "top": [
+                {
+                    "TShirt": "/static/TopOptions/TshirtTop.png",
+                    "Shirt": "/static/TopOptions/ShirtTop.png",
+                    "Blouse": "/static/TopOptions/BlouseTop.png"
+                }
+            ],
+            "bottoms": [
+                {
+                    "Trousers": "/static/BottomsOptions/TrousersBottom.png",
+                    "Shorts": "/static/BottomsOptions/ShortsBottom.png",
+                    "Skirt": "/static/BottomsOptions/SkirtBottom.png"
+                }
+            ],
+            "props": [
+                {
+                    "Sword": "/static/PropOptions/SwordProp.png",
+                    "Gun": "/static/PropOptions/GunProp.png",
+                    "Phone": "/static/PropOptions/PhoneProp.png"
+                }
+            ]
+        }
+    ]
+}

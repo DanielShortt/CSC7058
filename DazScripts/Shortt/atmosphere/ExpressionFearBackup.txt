@@ -1,0 +1,62 @@
+/////////////////////////
+//SETTING THE EXPRESSION VALUE
+/////////////////////////
+
+
+//Checking if a named node exists
+var selNode=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+//selecting this node
+if (selNode){
+	selNode.select(true);
+}
+
+
+//Naming a parameter to change
+var propUpdate = ["Afraid HD"];
+
+//the value the parameter is to be set
+var updateValue = .75;
+
+//getting the node list of the scene
+var sceneNodeList = Scene.getNodeList();
+
+//cycling through node list
+for (i=0; i < sceneNodeList.length; i++)
+{
+	var selNode = sceneNodeList[i];
+	// we're only interested in the selected node
+	if ( selNode.isSelected() )
+	{
+		//print( selNode.getLabel() ); // for debug tracing
+
+		// aquire the list of properties belongint to this node
+		var nodePropList = selNode.getPropertyList();
+		for (j=0; j < nodePropList.length; j++)
+		{
+			var selProp = nodePropList[j];
+			// aquire the label of this property
+			var sPropLabel = selProp.getLabel();
+			//print( sPropLabel ); // for debug tracing
+				
+			// Does this property belong to the list of props we want?
+			for (x=0; x< propUpdate.length; x++)
+			{
+				
+				if ( sPropLabel == propUpdate[x] )
+				{
+					print( sPropLabel ); // for debug tracing
+					// The property's Class will give us the data type we need
+					var sClass = selProp.getWidgetClass();
+					//print( sClass );
+						
+					// we need the class for the PropertySettings object
+					if ( sClass == "DzStyledFloatPropertyWgt" )					
+					{
+						selProp.setDoubleValue( updateValue );
+					}
+				} 
+			} 
+		}	
+	}
+}

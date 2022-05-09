@@ -1,0 +1,391 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+/////////////////////////
+//LOADING THE SCENE FILES
+/////////////////////////
+
+
+oCM = App.getContentMgr();
+
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scene Builder/Starter Essentials/Alchemy Chasm.duf", true ); 
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Genesis 8 Basic Male.duf", true ); 
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Poses/Base Poses/Base Pose Kneeling B.duf", true );  
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scene Builder/Starter Essentials/Dusk Lights.duf", true ); 
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear Boxers.duf", true );
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/People/Genesis 8 Male/Clothing/Basic Wear/Basic Wear T Shirt.duf", true );
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Runtime/Libraries/Props/ART_LoadingDock/WallBack.pp2", true );
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Camera Presets/CamerasTest.duf", true );
+
+
+/////////////////////////
+//MOVING THE BACKGROUND
+/////////////////////////
+
+
+var roots = Scene.getNodeList();
+
+var itemBg=Scene.findNodeByLabel( "AC_SFWBack" )
+
+if (itemBg){
+	itemBg.select(true);
+	//MessageBox.information("Head Selected.","","");
+
+	//Change the XPos to ZPos or YPos	to translate in different direction
+	
+	if( itemBg )
+		itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() -900 );
+	
+}
+
+
+/////////////////////////
+//SETTING THE Afraid HD VALUE
+/////////////////////////
+
+
+//Checking if a named node exists
+var selNode=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+//selecting this node
+if (selNode){
+	selNode.select(true);
+}
+
+
+//Naming a parameter to change
+var propUpdate = ["Happy HD"];
+
+//the value the parameter is to be set
+var updateValue = .75;
+
+//getting the node list of the scene
+var sceneNodeList = Scene.getNodeList();
+
+//cycling through node list
+for (i=0; i < sceneNodeList.length; i++)
+{
+	var selNode = sceneNodeList[i];
+	// we're only interested in the selected node
+	if ( selNode.isSelected() )
+	{
+		//print( selNode.getLabel() ); 
+
+		// aquire the list of properties belongint to this node
+		var nodePropList = selNode.getPropertyList();
+		for (j=0; j < nodePropList.length; j++)
+		{
+			var selProp = nodePropList[j];
+			// aquire the label of this property
+			var sPropLabel = selProp.getLabel();
+			//print( sPropLabel ); 
+				
+			// Does this property belong to the list of props we want?
+			for (x=0; x< propUpdate.length; x++)
+			{
+				
+				if ( sPropLabel == propUpdate[x] )
+				{
+					//print( sPropLabel ); 
+					// The property's Class will give us the data type we need
+					var sClass = selProp.getWidgetClass();
+					//print( sClass );
+						
+					// we need the class for the PropertySettings object
+					if ( sClass == "DzStyledFloatPropertyWgt" )					
+					{
+						selProp.setDoubleValue( updateValue );
+					}
+				} 
+			} 
+		}	
+	}
+}
+
+//////////////////////////////////////////////////////
+
+var cameras = new Array();
+
+
+/*
+
+
+cameras[0] = "DzCamera.FRONT_CAMERA"; 
+cameras[1] = "DzCamera.BACK_CAMERA";
+cameras[2] = "DzCamera.LEFT_CAMERA";
+cameras[3] = "DzCamera.RIGHT_CAMERA";
+cameras[4] = "DzCamera.TOP_CAMERA";
+cameras[5] = "DzCamera.BOTTOM_CAMERA";
+cameras[6] = "DzCamera.PERSPECTIVE_CAMERA";
+cameras[7] = "DzCamera.ORTHO_CAMERA";
+cameras[8] = "DzCamera.GENERAL_CAMERA";
+
+for( var i = 0; i < cameras.length; i++ ){
+	
+	tempCam = cameras[i];
+	print(tempCam);
+	
+  	/////////////////////////
+	//SELECTING CAMERA FOR SCENE 
+	/////////////////////////		
+			
+	var oCam = new DzBasicCamera()
+	oCam.setName( "Cam"+ i );
+		sleep( 1000 );
+	oCam.setType(tempCam);
+		sleep( 1000 );
+	Scene.addNode( oCam );
+
+}
+
+*/
+
+	var oRenderMgr = App.getRenderMgr();
+	var renderSettings = oRenderMgr.getRenderOptions();
+
+    //store renderSettings
+    var bCurrentFrameRender = renderSettings.isCurrentFrameRender;
+    var eRenderToId = renderSettings.renderImgToId;
+    
+    //get render file info from render setting
+    var renderFilename = renderSettings.renderImgFilename;
+    var renderFileInfo = new DzFileInfo( renderFilename );
+
+    //change render settings
+    renderSettings.isCurrentFrameRender = true;
+    renderSettings.renderImgToId = renderSettings.DirectToFile;
+    
+oRenderMgr.doRender();    
+    
+    var count = 0;
+
+//Render first set of camera files.
+
+	/////////////////////////
+	//COMMENTED OUT FOR TESTING AIM CAMERA
+	/////////////////////////
+
+
+
+/*
+for( var i = 1; i < 3; i++ ){
+	
+	sleep( 2000 );
+	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
+
+	sleep( 2000 );
+	var oCamera = oViewport.get3DViewport().setCamera("CloseUpCam"+i);
+
+	/////////////////////////
+	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+	/////////////////////////
+	
+    //set image path and name
+
+   	renderSettings.renderImgFilename= "";  
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "INSERTNAME" + count +"." + renderFileInfo.extension();
+
+	oRenderMgr.doRender();
+	count++;
+					
+}
+
+//Render second set of camera files.
+
+for( var i = 1; i < 5; i++ ){
+	
+	sleep( 2000 );
+	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
+
+	sleep( 2000 );
+	var oCamera = oViewport.get3DViewport().setCamera("FarCam"+i);
+
+	/////////////////////////
+	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+	/////////////////////////
+	
+    //set image path and name
+
+   	renderSettings.renderImgFilename= "";  
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "INSERTNAME" + count +"." + renderFileInfo.extension();
+
+	oRenderMgr.doRender();
+	count++;
+					
+}
+*/
+
+//print("Hello");
+for( var i = 1; i < 2; i++ ){
+	
+	sleep( 2000 );
+	var oViewport = MainWindow.getViewportMgr().getActiveViewport(); 
+
+	sleep( 2000 );
+	var oCamera = oViewport.get3DViewport().setCamera("ModCam"+i);
+	var oCamera = oViewport.get3DViewport().getCamera("ModCam"+i);
+
+	/////////////////////////
+	//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+	/////////////////////////
+	
+    //set image path and name
+    
+    /////////////////////////
+	//Select Head
+	/////////////////////////
+	
+	//Checking if a named node exists
+	var selNode=Scene.findNodeByLabel( "Head" )
+	
+	//selecting this node
+	if (selNode){
+		selNode.select(true);
+	}
+	
+	var center1 =  Scene.findNodeByLabel( "Head" )
+	var newPos = center1.getWSPos();
+	//print(center1);
+	
+	oCamera.aimAt(newPos); 	
+
+   	renderSettings.renderImgFilename= "";  
+    renderSettings.renderImgFilename = renderFileInfo.absolutePath() + "/" + renderFileInfo.completeBaseName() + "INSERTNAME" + count +"." + renderFileInfo.extension();
+
+	//oRenderMgr.doRender();
+	count++;
+	//print(count);
+					
+}
+
+	sleep(2000)
+
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+		//MessageBox.information("Head Selected.","","");
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+			itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() -200 );
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -200 );
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+	sleep(2000)
+	
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+			itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() +400 );
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() +1200 );
+			itemBg.getYPosControl().setValue( itemBg.getYPosControl().getValue() +400 );
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+		sleep(2000)
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -450 );
+
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+		sleep(2000)
+if (selNode){
+	
+	var roots = Scene.getNodeList();
+
+	var itemBg=Scene.findNodeByLabel( "ModCam1" )
+	
+	if (itemBg){
+		itemBg.select(true);
+
+	
+		//Change the XPos to ZPos or YPos	to translate in different direction
+	
+		if( itemBg )
+		
+			itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() -450 );
+			itemBg.getYPosControl().setValue( itemBg.getYPosControl().getValue() -100 );
+			itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -20 );
+
+
+			var center1 =  Scene.findNodeByLabel( "Head" )
+			var newPos = center1.getWSPos();
+			//print(center1);
+			
+			oCamera.aimAt(newPos); 	
+	
+	}
+	
+}
+
+
+
+
+
+
+/////////////////////////
+//CLOSING DAZ STUDIO 
+/////////////////////////
+
+//Close daz option 1
+//var oAction;
+//	var mWindow = MainWindow;
+//	var oAM = mWindow.getActionMgr();
+//	var oAction = oAM.findAction("DzExitAction");
+//	Scene.clear();
+//	oAction.trigger();
+
+//Close daz option 2
+//Scene.clear();
+//MainWindow.close();
+

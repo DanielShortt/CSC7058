@@ -1,0 +1,27 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+
+var roots = Scene.getNodeList();
+
+var itemLd=Scene.findNodeByLabel( "Head" )
+
+if (itemLd){
+	itemLd.select(true);
+	var headLoc = itemLd.getWSBoundingBox();
+}
+
+var oViewport = MainWindow.getViewportMgr().getActiveViewport();
+var oCam = new DzBasicCamera()
+oCam.setName( "AssetCam" );
+oCam.setType(DzCamera.PERSPECTIVE_CAMERA);
+Scene.addNode( oCam );
+
+//set the camera settings
+
+var oCamera = oViewport.get3DViewport().setCamera("AssetCam");
+var oCamera = oViewport.get3DViewport().getCamera("AssetCam");
+
+
+ oCamera.frame(headLoc, 1 , 1);
+ 

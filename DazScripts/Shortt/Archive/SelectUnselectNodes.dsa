@@ -1,0 +1,15 @@
+// DAZ Studio version 4.16.0.3 filetype DAZ Script
+
+
+
+var asset=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+if (asset){
+	asset.select(true);}
+	
+	
+var assetSelect = Scene.getSelectedSkeletonList()
+
+	if(assetSelect){
+		asset.select(false);
+	}

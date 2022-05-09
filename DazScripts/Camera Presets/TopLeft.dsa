@@ -1,0 +1,63 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+
+var roots = Scene.getNodeList();
+
+var itemLd=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+if (itemLd){
+	itemLd.select(true);	
+}
+
+//itemLH.select(true );
+var oViewport = MainWindow.getViewportMgr().getActiveViewport();
+var oCam = new DzBasicCamera()
+oCam.setName( "AssetCam" );
+oCam.setType(DzCamera.PERSPECTIVE_CAMERA);
+Scene.addNode( oCam );
+
+//set the camera settings
+
+var oCamera = oViewport.get3DViewport().setCamera("AssetCam");
+var oCamera = oViewport.get3DViewport().getCamera("AssetCam");
+
+
+
+//Position Camera
+
+var itemBg=Scene.findNodeByLabel( "AssetCam" )
+
+if (itemBg){
+	itemBg.select(true);
+
+	//Change the XPos to ZPos or YPos	to translate in different direction
+	
+	if( itemBg )
+		itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -1000 );
+		itemBg.getYPosControl().setValue( itemBg.getYPosControl().getValue() +400 );
+	
+}
+
+
+
+
+ //---Get the Orbit Point---
+// If there is a visible Node labelled "Orbit-Point" then use it:
+var oNode = Scene.findNodeByLabel( "Genesis 8 Male" );
+var vOffset = oNode.getWSPos().subtract(oNode.getOrigin());
+var vNewPos = oNode.getWSPos().subtract(vOffset);
+
+if( oNode && oNode.isVisible() ) {      // Let User enable/disable it via its Visibility
+	g_vOrbitPos     = oNode.getWSPos();
+} else {
+// Leave g_vOrbitPos per its initial default.
+	utyShowInfo( "If you create a visible Node labelled 'Orbit-Point' \n"
+	+ "then it will be used as the point to Orbit instead of the default."
+	);
+}
+
+print(g_vOrbitPos)
+oCamera.aimAt( vNewPos );
+itemBg.getYRotControl().setValue( itemBg.getYRotControl().getValue() +10 );
+	

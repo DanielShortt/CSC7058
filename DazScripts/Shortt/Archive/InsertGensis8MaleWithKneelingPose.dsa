@@ -1,0 +1,11 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+oCM = App.getContentMgr();
+
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Scene Builder/Starter Essentials/Alchemy Chasm.duf", true ); 
+oCM.openFile( "C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\People\\Genesis 8 Male\\Genesis 8 Basic Male.duf", true ); 
+oCM.openFile( "C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\People\\Genesis 8 Male\\Poses\\Base Poses\\Base Pose Kneeling B.duf", true );  
+oCM.openFile( "C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\Scene Builder\\Starter Essentials\\Dusk Lights.duf", true ); 
+oCM.openFile( "C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\People\\Genesis 8 Male\\Clothing\\Basic Wear\\Basic Wear T Shirt.duf", true );
+oCM.openFile( "C:\\Daz 3D\\Applications\\Data\\DAZ 3D\\My DAZ 3D Library\\People\\Genesis 8 Male\\Clothing\\Basic Wear\\Basic Wear Boxers.duf", true );
+oCM.openFile( "C:/Daz 3D/Applications/Data/DAZ 3D/My DAZ 3D Library/Runtime/Libraries/Props/ART_LoadingDock/WallBack.pp2", true );

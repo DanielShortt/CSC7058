@@ -128,7 +128,9 @@ function prevChar() {
     //CREATE NEXT BUTTON. HIDE CURRENT DIVS. UPDATE DIV ID's. SHOW NEW DIVS.
     var charLoopTitle;
     var updateCharLoopTitle;
-    if (charCount > 0) {
+    if (charCount == 1) {
+        //do nothing
+    } else {
         charCount = charCount - 1;
         charLoopTitle = "Character " + charCount;
         updateCharLoopTitle = document.getElementById(CharLoopTitleId);

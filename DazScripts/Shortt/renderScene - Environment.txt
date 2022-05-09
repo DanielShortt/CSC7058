@@ -1,0 +1,100 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+
+/////////////////////////
+//LOADING THE SCENE FILES
+/////////////////////////
+
+//time.var time = "timeDAZ"
+//setting.var setting = "settingDAZ"
+//lighting.var lighting = "lightingDAZ"
+//mainProp.var mainProp = "mainPropDAZ"
+//camera.var camera = "cameraDAZ"
+
+var envItemsToRender =
+[
+	//time.time,
+	//setting.setting,
+	//lighting.lighting,
+	//atmosphere.atmosphere,
+	//mainProp.mainProp,
+	]
+
+var envLoop = envItemsToRender.length;
+
+oCM = App.getContentMgr();
+
+for(var i =0; i<envLoop; i++){
+	
+	var fileToOpen = oCM.getAbsolutePath(envItemsToRender[i], true);
+	oCM.openFile(fileToOpen);
+	sleep(1000)
+	
+	// Get list of nodesvar 
+	selectedItems = Scene.getSelectedNodeList();
+	//go through deselecting
+	for ( var n = 0 ; n < selectedItems.length ; n++ ) {
+		selectedItems[ n ].select( false );
+}
+		
+}
+
+//propLocDAZ
+
+
+//charAssets
+
+
+//charLocDAZ
+
+
+//atmosphereDAZ
+
+
+
+//camera.camera
+
+//camera.if(camera){
+//camera.var fileOpen = oCM.getAbsolutePath(camera, true);
+//camera.	oCM.openFile(fileOpen);
+//camera.}
+
+
+
+/////////////////////////
+//SETTING RENDER SETTINGS AND IMPLEMENTING RENDER
+/////////////////////////
+
+//set the render settings
+	
+var oRenderMgr = App.getRenderMgr();
+var renderSettings = oRenderMgr.getRenderOptions();
+
+//store renderSettings
+var bCurrentFrameRender = renderSettings.isCurrentFrameRender;
+var eRenderToId = renderSettings.renderImgToId;
+    
+//get render file info from render setting
+var renderFilename = renderSettings.renderImgFilename;
+var renderFileInfo = new DzFileInfo( renderFilename );
+
+//change render settings
+renderSettings.isCurrentFrameRender = true;
+renderSettings.renderImgToId = renderSettings.DirectToFile;
+var outputPath = "C:/Daz 3D/Applications/Data/DAZ 3D/Render Library";
+
+renderSettings.renderImgFilename = outputPath + "/" + "//RENDERNAME" + "." + renderFileInfo.extension();
+//start the render
+	
+oRenderMgr.doRender();
+
+					
+/////////////////////////
+//CLOSING DAZ STUDIO 
+/////////////////////////
+
+//Close daz option 2
+Scene.clear();
+MainWindow.close();
+
+

@@ -1,0 +1,408 @@
+// DAZ Studio version 1.8  filetype DAZ Script
+
+// DAZ Studio version 3.1  filetype DAZ Script
+
+//===================================================================
+// by mCasual/Jacques
+//===================================================================
+// ( MIT License ) 
+// Copyright (c) <2012> <mCasual/Jacques>
+// Permission is hereby granted, free of charge, to any person
+// obtaining a copy of this software and associated documentation
+// files (the "Software"), to deal in the Software without
+// restriction, including without limitation the rights to use,
+// copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following
+// conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+// OTHER DEALINGS IN THE SOFTWARE.
+//===================================================================
+var appName = "mcjLookAtTheCamera";
+var tick = Scene.getTimeStep();
+var playRange = Scene.getPlayRange();
+var aniRange = Scene.getAnimRange();
+var sourceRange;
+
+var default_edCustomStarttext = 0;
+var default_edCustomEndtext = 30;
+var default_rbgSourceRangeselected = 1;
+var default_cbNeckchecked =  true;
+var default_cbChestchecked =  false;
+var default_cbAbdomenchecked =  false;
+var default_cbHipchecked =  false;
+var default_edOfftext = 7.85;
+var default_edDelaytext = 0;
+var default_cbIsALoopchecked = true;
+ 
+var wDlg = new DzDialog;
+wDlg.caption = appName;
+wDlgLayout = new DzGridLayout( wDlg );
+wDlgLayout.margin = 5;
+wDlgLayout.spacing = 5;
+
+var userGB = new DzVGroupBox( wDlg );
+	
+te = new DzLabel( userGB )
+
+te.text=( "Select a head node. For the timerange specified, " ) 
++( "the script will make the face face the camera." );
+
+
+wDlgLayout.addWidget( userGB, 0, 0 );
+	
+rbgSourceRange = new DzVButtonGroup( wDlg );
+rbgSourceRange.title = "Time Range";
+rbgSourceRange.columns = 3;
+
+wBtn0 = new DzRadioButton( rbgSourceRange );
+wBtn0.text = "Animation Range : " + round1000( aniRange.start / tick) + " to " + round1000( aniRange.end / tick );
+
+wBtn1 = new DzRadioButton( rbgSourceRange );
+var playRangeStartFr = round1000( playRange.start / tick );
+var playRangeEndFr = round1000( playRange.end / tick );
+wBtn1.text = "Play Range : " + round1000( playRangeStartFr) + " to " +  round1000( playRangeEndFr);
+
+wBtn2 = new DzRadioButton( rbgSourceRange );
+wBtn2.text = "Current Frame Only : " + Scene.getFrame();
+
+wBtn3 = new DzRadioButton( rbgSourceRange );
+wBtn3.text = "Custom Frame Range : ";
+
+edCustomStart = new DzLineEdit( rbgSourceRange );
+var customStartFrame = new Number( getSetting( "customStartFrame",  default_edCustomStarttext ) );
+edCustomStart.text = customStartFrame;
+
+edCustomEnd = new DzLineEdit( rbgSourceRange );
+var customEndFrame = new Number( getSetting( "customEndFrame",  default_edCustomEndtext ) );
+edCustomEnd.text = customEndFrame;
+	
+rbgSourceRange.selected = getSetting( "sourceRangeSelected", default_rbgSourceRangeselected );
+
+
+wDlgLayout.addWidget( rbgSourceRange, 1, 0 );
+
+var userGB1 = new DzVGroupBox( wDlg );
+userGB1.columns = 2;
+
+new DzLabel( userGB1 ).text = "Distance head-node to eyes ( 7.85 for Aiko3 )";
+edOff = new DzLineEdit( userGB1 );
+edOff.text = new Number( getSetting( "edOfftext",  default_edOfftext ) );
+	
+var cbNeck = new DzCheckBox( userGB1 );
+cbNeck.text = "Neck participates";
+cbNeck.checked = getBoolSetting( "cbNeckChecked", default_cbNeckchecked );
+
+var cbChest = new DzCheckBox( userGB1 );
+cbChest.text = "Chest  participates";
+cbChest.checked = getBoolSetting( "cbChestChecked", default_cbChestchecked );
+
+var cbAbdomen = new DzCheckBox( userGB1 );
+cbAbdomen.text = "Abdomen participates";
+cbAbdomen.checked = getBoolSetting( "cbAbdomenChecked", default_cbAbdomenchecked );
+
+var cbHip = new DzCheckBox( userGB1 );
+cbHip.text = "Hip participates";
+cbHip.checked = getBoolSetting( "cbHipChecked", default_cbHipchecked );
+
+wDlgLayout.addWidget( userGB1, 2, 0 );
+
+
+var userGB2 = new DzVGroupBox( wDlg );
+userGB2.columns = 4;
+userGB2.title = "delayed reaction"
+new DzLabel(userGB2).text = ( "Delay (frames)" );
+edDelay = new DzLineEdit( userGB2 );
+edDelay.text = new Number( getSetting( "edDelaytext",  default_edDelaytext ) );
+
+var cbIsALoop = new DzCheckBox( userGB2 );
+cbIsALoop.text = "Playrange is a loop";
+cbIsALoop.checked = getBoolSetting( "cbIsALoopChecked", default_cbIsALoopchecked );
+
+wDlgLayout.addWidget( userGB2, 3, 0 )
+
+
+
+var userGB3 = new DzVGroupBox( wDlg );
+userGB3.columns = 4
+		
+btn5 = addButtonToGB( userGB3, "Do it", doit ); 
+btn6 = addButtonToGB( userGB3, "Web Help", WebHelp ); 
+btn7 = addButtonToGB( userGB3, "Defaults", factoryReset ); 
+btn14 = addButtonToGB( userGB3, "Exit", 0 ); 
+wDlg.setAcceptButton( btn14 )
+	
+wDlgLayout.addWidget( userGB3, 4, 0 )
+	
+wDlg.width  = 400;
+wDlg.height = 400;
+
+beginUndo();
+wDlg.exec();
+acceptUndo( appName )
+
+saveAllSettings()
+	
+	
+//==================================================================
+//
+//==================================================================
+function round1000( a )
+{
+	return( Math.round(a*1000)/1000);
+}
+
+//==================================================================
+//
+//==================================================================
+function saveAllSettings()
+{
+	saveSetting( "customStartFrame",  new Number( edCustomStart.text  ) );
+	saveSetting( "customEndFrame",  new Number( edCustomEnd.text  ) );
+	saveSetting( "sourceRangeSelected", rbgSourceRange.selected );
+	saveBoolSetting( "cbNeckChecked", cbNeck.checked );
+	saveBoolSetting( "cbChestChecked", cbChest.checked );
+	saveBoolSetting( "cbAbdomenChecked", cbAbdomen.checked );
+	saveBoolSetting( "cbHipChecked", cbHip.checked );
+	saveSetting( "edOfftext", edOff.text );
+	saveSetting( "edDelaytext", edDelay.text );
+	saveBoolSetting( "cbIsALoopChecked", cbIsALoop.checked );
+
+}
+
+//==================================================================
+//
+//==================================================================
+function factoryReset()
+{
+	cbNeck.checked = default_cbNeckchecked;
+	cbChest.checked = default_cbChestchecked;
+	cbAbdomen.checked =  default_cbAbdomenchecked;
+	cbHip.checked = default_cbHipchecked;
+	edOff.text = default_edOfftext = 7.85;
+	edCustomStart.text = default_edCustomStarttext;
+	edCustomEnd.text = default_edCustomEndtext;
+	rbgSourceRange.selected = default_rbgSourceRangeselected;
+	edDelay.text = default_edDelaytext;
+	cbIsALoop.checked = default_cbIsALoopchecked;
+	saveAllSettings()
+}
+
+//==================================================================
+//
+//==================================================================
+function WebHelp()	
+{
+	App.showURL( "https://sites.google.com/site/mcasualsdazscripts2/mcjlookatthecamera" );
+}
+
+//==================================================================
+// add a button to the gb, set its text to text, connect it to func
+//==================================================================
+function addButtonToGB( gb, text, func )
+{
+	var wButton = new DzPushButton( gb );
+	wButton.text = text;
+	if( func )
+		connect( wButton, "clicked()", func );
+	return( wButton );
+}	
+
+//==================================================================
+//
+//==================================================================
+function addCheckboxToGB( gb, text, func, val ) 
+{
+	var wButton = new DzCheckBox( gb );
+	wButton.text = text;
+	wButton.checked = val;
+	if( func )
+		connect( wButton, "toggled(bool)", func );
+	return( wButton );
+}
+
+//==============================================================================
+// save key/val in Registry for Windows, 
+// via the Carbon Preferences API for Mac
+//==============================================================================
+function saveSetting( key, keyVal )
+{
+	var m_oMgr = App.getAppSettingsMgr();
+	m_oMgr.pushPath( appName );
+	m_oMgr.setStringValue( key, keyVal );
+	m_oMgr.popPath();
+}
+
+function saveBoolSetting( key, keyVal )
+{
+	var m_oMgr = App.getAppSettingsMgr();
+	m_oMgr.pushPath( appName );
+	m_oMgr.setBoolValue( key, keyVal );
+	m_oMgr.popPath();
+}
+//==============================================================================
+// load key/val from  Registry for Windows, 
+// via the Carbon Preferences API for Mac
+//==============================================================================
+function getSetting( key, defVal )
+{
+	var m_oMgr = App.getAppSettingsMgr();
+	m_oMgr.pushPath( appName );
+	var val = m_oMgr.getStringValue( key, defVal );
+	m_oMgr.popPath();
+	return ( val );
+}
+function getBoolSetting( key, defVal )
+{
+	var m_oMgr = App.getAppSettingsMgr();
+	m_oMgr.pushPath( appName );
+	var val = m_oMgr.getBoolValue( key, defVal );
+	m_oMgr.popPath();
+	return ( val );
+}
+
+//==============================================================================
+//
+//==============================================================================
+function doit()
+{
+	subdoit( false );
+	subdoit( true );
+}
+
+//==============================================================================
+//
+//==============================================================================
+function subdoit( bHeadOnly )
+{
+    var sel = rbgSourceRange.selected;
+    var sourceRange;
+    switch( sel )
+    {
+    case 0:
+	sourceRange	= aniRange;
+	break;
+    case 1:
+	sourceRange	= playRange;
+	break;
+    case 2:
+	var curTime = Scene.getTime();
+	sourceRange	= new DzTimeRange( curTime, curTime );
+	break;
+    case 3:
+	customStartTime = new Number( edCustomStart.text ) * tick;
+	customEndTime = new Number( edCustomEnd.text ) * tick;
+	sourceRange	= new DzTimeRange( customStartTime, customEndTime );
+	break;
+    }
+    var startFr = sourceRange.start/tick;
+    var endFr = sourceRange.end/tick;
+    var vmgr = MainWindow.getViewportMgr();
+    var vport = vmgr.getActiveViewport().get3DViewport();
+    var cam = vport.getCamera();
+    
+    var d = new Number( edOff.text );
+
+    var head = Scene.getPrimarySelection();
+    var neck = head.getNodeParent();
+    var chest = neck.getNodeParent();
+    var abdomen = chest.getNodeParent();
+    var hip = abdomen.getNodeParent();
+    
+    
+    var headYControl = head.getYRotControl();
+    var neckYControl = neck.getYRotControl();
+    var chestYControl = chest.getYRotControl();
+    var abdomenYControl = abdomen.getYRotControl();
+    var hipYControl = hip.getYRotControl();
+    
+    var cbNeckchecked = cbNeck.checked;
+    var cbChestchecked = cbChest.checked;
+    var cbAbdomenchecked = cbAbdomen.checked;
+    var cbHipchecked = cbHip.checked;
+
+    var numParticipants = 1;
+    if( cbNeckchecked )
+	++numParticipants;
+    if( cbChestchecked )
+	++numParticipants;
+    if( cbAbdomenchecked )
+	++numParticipants;
+    if( cbHipchecked )
+	++numParticipants;    
+    
+    var delay = new Number( edDelay.text );
+    var bLoop = cbIsALoop.checked;
+    
+    for( var fr = startFr; fr <= endFr; fr++ )
+    {
+	var t = fr * tick;
+	var frSrc = fr;
+	if( delay != 0 )
+	{
+		frSrc = Math.round( fr - delay )
+		if( bLoop )
+		{
+			frSrc = getCyclic( frSrc, startFr, endFr );
+		}
+	 }
+	var rHead = head.getWSRot( t );
+	var vHeadUp = rHead.getYAxis();
+	vHeadUp.normalize();
+	vHeadUp.x *= d;
+	vHeadUp.y *= d;
+	vHeadUp.z *= d;
+	//"world-space" position of the camera
+	var campos = cam.getWSPos( frSrc * tick );
+	 campos = campos.subtract( vHeadUp );
+	var vLookat = campos.subtract( head.getWSPos( t ) );
+	var r = cam.getWSRot( t );
+	var vLookingAt = r.getZAxis();
+	var rToLookAt = vLookat.getRotationTo(  vLookingAt );
+	r = r.multiply( rToLookAt );
+	oldTwist = headYControl.getValue( t );
+	head.setWSRot( t, r );
+	if( !bHeadOnly )
+	{
+		newTwist = headYControl.getValue( t );
+		totaltwist = newTwist - oldTwist;
+		var chipin = totaltwist / numParticipants;
+		headYControl.setValue( t, oldTwist + chipin );
+		if( cbNeckchecked )
+	   		neckYControl.setValue( t, neckYControl.getValue( t ) + chipin ); 
+		if( cbChestchecked )
+	   		chestYControl.setValue( t, chestYControl.getValue( t ) + chipin ); 
+		if( cbAbdomenchecked )
+	   		abdomenYControl.setValue( t, abdomenYControl.getValue( t ) + chipin ); 
+		if( cbHip.checked )
+	   		hipYControl.setValue( t, hipYControl.getValue( t ) + chipin );
+	   	}
+    }
+}
+
+//======================================================================
+// ex 0,30, where keygrame at 0 == keyframe at 30
+// ex 15,45, where keygrame at 15 == keyframe at 45
+//======================================================================
+function getCyclic( i, loopStart, loopEnd )
+{
+	i = i - loopStart;
+	loopSize = loopEnd - loopStart
+	var j = i % loopSize;
+	if( i < 0 )
+	{
+		j = Math.ceil( i / -loopSize )
+		j = i + j * loopSize;
+	}
+	return( j + loopStart );
+}

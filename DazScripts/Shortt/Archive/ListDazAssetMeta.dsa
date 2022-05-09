@@ -1,0 +1,128 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+(function(){
+ 
+	// Get the asset manager
+	var oAssetMgr = App.getAssetMgr();
+	// If the manager was not found
+	if( !oAssetMgr ){
+		// We are done...
+		return;
+	}
+ 
+	// Get the top level asset container for products
+	var oProductsTop = oAssetMgr.getProducts();
+	// If we do not have the products container
+	if( !oProductsTop ){
+		// We are done...
+		return;
+	}
+ 
+	// Define a variable for whether or not
+	// we only want installed products
+	var bInstalled = true;
+ 
+	// Print the container name
+	print( bInstalled ? "Installed" : "All", oProductsTop.getContainerName(), ":" );
+ 
+	// Declare working variables
+	var oIntermediate, oProduct;
+	var nProducts;
+	var nAssets;
+	var aAssets;
+	var oAssets = new Array;
+	
+	//set file path for new file
+	var directory_path = "C:/Daz 3D/Applications/Data/DAZ 3D/AssetRender/assets.txt";
+	//create new file
+	var file = new DzFile( directory_path );
+ 
+	// Get the number of intermediate containers; alpha-numeric sorting
+	var nIntermediates = oProductsTop.getNumChildContainers();
+	
+	output = {};
+	
+	// Iterate over all intermediate containers
+	for( var i = 0; i < nIntermediates; i += 1 ){
+		// Get the 'current' intermediate container
+		oIntermediate = oProductsTop.getChildContainer( i );
+		// Print the container name
+		print( "+++++", oIntermediate.getContainerName(), "+++++" );
+ 
+		// Get the number of product containers within the intermediate
+		nProducts = oIntermediate.getNumChildContainers();
+		
+		// Iterate over all product containers
+		for( var j = 0; j < nProducts; j += 1 ){
+			// Get the 'current' product container
+			oProduct = oIntermediate.getChildContainer( j );
+			// If we only care about installed products,
+			// and the 'current' one is not
+			if( bInstalled && !oProduct.isInstalled ){
+				// Next!!
+				continue;
+			}
+ 
+			// Print the container name
+			print( oProduct.getContainerName() );
+			nAssets = oProduct.getAssets();
+			//print("");
+			//print(oProduct.getContainerName() + " Number of assets ["+nAssets.length+"]");
+			//print("About to go in.");
+			//print("");
+			
+			output["Main"] = oProduct.title;	
+					
+			aAssets = oProduct.getAssets();
+			
+			
+			for( var k = 0; k < nAssets.length; k += 1 ){
+				//print("WE ARE IN !!!!!!!");
+				//This prints the path to the asset
+				//print("Asset = " + nAssets[k].getRelativeFilePath());
+				
+				//Attempting to print name
+				//print("Asset = " + nAssets[k].getName());
+				//print("Asset = " + nAssets[k].getTitle());
+				//print("Asset = " + nAssets[k].getFilename());
+				//print("Asset = " + nAssets[k].assetName); //THIS WORKS
+				
+				//aAssets[k] = nAssets[k].assetName;
+				
+				//
+				aAssets[k] = nAssets[k].getRelativeFilePath() + "\n" ;
+
+				//open file for appending data
+				file.open( DzFile.Append );
+			//write to file
+				file.write(aAssets[k]);
+			//close file
+				file.close();				
+				
+				//oAssets.push(aAssets[k]);
+			}
+			
+				//list of assets
+			output["Assets"] = nAssets;
+			//store assets in json format
+			
+			var jsonOutput = JSON.stringify( output, undefined, "\t" )
+
+			print( jsonOutput );			
+			
+		}		
+	}		
+				
+	for( var i = 0; i < oAssets.length; i += 1 ){
+		
+		//print(oAssets[i])
+		
+	}
+// Finalize the function and invoke
+})();
+
+//Close daz option 2
+Scene.clear();
+//MainWindow.close();
+	
+	

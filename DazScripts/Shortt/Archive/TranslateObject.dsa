@@ -1,0 +1,16 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+var roots = Scene.getNodeList();
+
+var itemBg=Scene.findNodeByLabel( "Desk" )
+
+if (itemBg){
+	itemBg.select(true);
+	//MessageBox.information("Head Selected.","","");
+
+	//Change the XPos to ZPos or YPos	to translate in different direction
+	
+	if( itemBg )
+		itemBg.getXPosControl().setValue( itemBg.getXPosControl().getValue() -600 );
+	
+}

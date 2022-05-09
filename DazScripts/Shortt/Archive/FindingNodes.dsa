@@ -1,0 +1,26 @@
+// DAZ Studio version 4.15.0.30 filetype DAZ Script
+
+oCM = App.getContentMgr();
+
+var roots = Scene.getNodeList();
+
+var female=Scene.findNodeByLabel( "Genesis 8 Female" )
+
+	if (female){
+		print("hello")
+		//female.eCTRLAfraid_HD().setValue(eCTRLAfraid_HD.eCTRLAfraid_HD.getValue() + 50)
+}
+
+
+for( var i = 0; i< roots.length;  i++ ){
+	print(roots[i].name)
+}
+for( var i = 0; i< roots.length;  i++ ){
+	if (roots[i].name == "head"){
+	print(roots[i].name)
+	
+	//expr = roots[i].DzNodeProperty("Expressions", true)
+	//print(expr)
+}
+	
+}

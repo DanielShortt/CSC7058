@@ -1,0 +1,11 @@
+var roots = Scene.getNodeList();
+var translateAsset = assetDAZ
+
+var asset=Scene.findNodeByLabel( "translateAsset" )
+
+if (itemBg){
+	asset.select(true);
+	//Change the XPos to ZPos or YPos	to translate in different directio
+	if( itemBg )
+		itemBg.getZPosControl().setValue( itemBg.getZPosControl().getValue() -900 );
+}

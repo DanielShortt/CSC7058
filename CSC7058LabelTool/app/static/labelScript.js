@@ -107,7 +107,9 @@ function prevChar() {
     //CREATE NEXT BUTTON. HIDE CURRENT DIVS. UPDATE DIV ID's. SHOW NEW DIVS.
     var charLoopTitle;
     var updateCharLoopTitle;
-    if (charCount > 0) {
+    if (charCount == 1) {
+        //do nothing
+    } else {
         charCount = charCount - 1;
         charLoopTitle = "Character " + charCount;
         updateCharLoopTitle = document.getElementById(CharLoopTitleId);
@@ -132,7 +134,7 @@ function addElement(object, label) {
     var objectLabelId = "";
     var updateCara = "";
 
-    if (label == "time") {
+    if (label == "Time") {
         if (environmentArray['time'] != "") {
             elementExists = true;
         }
@@ -140,7 +142,7 @@ function addElement(object, label) {
         objectLabelId = "timeId";
         updateCara = "caraTime";
 
-    } else if (label == "setting") {
+    } else if (label == "Setting") {
         if (environmentArray['setting'] != "") {
             elementExists = true;
         }
@@ -148,7 +150,7 @@ function addElement(object, label) {
         objectLabelId = "settingId";
         updateCara = "caraSetting";
 
-    } else if (label == "lighting") {
+    } else if (label == "Lighting") {
         if (environmentArray['lighting'] != "") {
             elementExists = true;
         }
@@ -156,7 +158,7 @@ function addElement(object, label) {
         objectLabelId = "lightingId";
         updateCara = "caraLighting";
 
-    } else if (label == "atmosphere") {
+    } else if (label == "Atmosphere") {
         if (environmentArray['atmosphere'] != "") {
             elementExists = true;
         }
@@ -164,15 +166,15 @@ function addElement(object, label) {
         objectLabelId = "atmosphereId";
         updateCara = "caraAtmosphere";
 
-    } else if (label == "prop") {
+    } else if (label == "MainProp") {
         if (environmentArray['mainProp'] != "") {
             elementExists = true;
         }
         environmentArray['mainProp'] = object;
         objectLabelId = "propId";
-        updateCara = "caraProp";
+        updateCara = "caraMainProp";
 
-    } else if (label == "propLoc") {
+    } else if (label == "PropLoc") {
         if (environmentArray['propLoc'] != "") {
             elementExists = true;
         }
@@ -180,7 +182,7 @@ function addElement(object, label) {
         objectLabelId = "propLocId";
         updateCara = "caraPropLoc";
 
-    } else if (label == "camera") {
+    } else if (label == "Camera") {
         if (environmentArray['camera'] != "") {
             elementExists = true;
         }

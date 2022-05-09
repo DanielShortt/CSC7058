@@ -1,0 +1,54 @@
+/////////////////////////
+//SETTING THE EXPRESSION VALUE
+/////////////////////////
+
+
+//Checking if a named node exists
+var nodeSelected=Scene.findNodeByLabel( "Genesis 8 Male" )
+
+//selecting this node
+if (nodeSelected){
+	nodeSelected.select(true);
+}
+
+
+//Naming a parameter to change
+var propUpdate = "Afraid HD";
+
+//the value the parameter is to be set
+var updateValue = .75;
+
+//getting the node list of the scene
+var sceneNodeList = Scene.getNodeList();
+
+//cycling through node list
+for (i=0; i < sceneNodeList.length; i++)
+{
+	var nodeSelected = sceneNodeList[i];
+	// If node is selected continue
+	if ( nodeSelected.isSelected() ){
+		//print( nodeSelected.getLabel() ); // for debug tracing
+
+		// get the list of properties for this node
+		var nodePropertyList = nodeSelected.getPropertyList();
+		for (j=0; j < nodePropertyList.length; j++){
+			var selectedProperty = nodePropertyList[j];
+			// get the label of this property
+			var sPropLabel = selectedProperty.getLabel();
+			//print( sPropLabel ); // for debug tracing
+				
+			if ( sPropLabel == propUpdate ){
+				print( sPropLabel ); // for debug tracing
+				// The property class
+				var sClass = selectedProperty.getWidgetClass();
+				//print( sClass );
+					
+				// if we have the class for the PropertySettings object
+				if ( sClass == "DzStyledFloatPropertyWgt" ){
+					selectedProperty.setDoubleValue( updateValue );
+				}
+			} 
+			 
+		}	
+	}
+}
